@@ -1,35 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   window.h                                           :+:      :+:    :+:   */
+/*   map_parse_color.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/19 03:43:19 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/08/21 06:40:43 by yusudemi         ###   ########.fr       */
+/*   Created: 2025/08/24 07:11:09 by yusudemi          #+#    #+#             */
+/*   Updated: 2025/08/24 09:04:58 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WINDOW_H
-# define WINDOW_H
-
+#include "map.h"
+#include "main.h"
 #include "minilibx/mlx.h"
+#include <stdio.h>
 
-typedef struct s_window t_window;
-
-struct s_window
+void	map_parse_color(int rgb, int id)
 {
-	void	*mlx;
-	void	*win;
-	void	*img;
-	char	*img_data;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-	int		width;
-	int		height;
-	char	*title;
-};
+	t_map	*map;
 
-
-#endif
+	map = &(pointer_storage(NULL)->map_datas);
+	if (id == C)
+		map->color_c = rgb;
+	else if (id == F)
+		map->color_f = rgb;
+}

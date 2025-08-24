@@ -6,11 +6,11 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 03:43:45 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/08/19 03:44:02 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/08/21 12:01:13 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ENGINE_H
 # define ENGINE_H
-
+// raycasting engine [loading..]
 #endif

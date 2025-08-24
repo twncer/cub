@@ -1,35 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   window.h                                           :+:      :+:    :+:   */
+/*   texture.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/19 03:43:19 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/08/21 06:40:43 by yusudemi         ###   ########.fr       */
+/*   Created: 2025/08/19 03:42:53 by yusudemi          #+#    #+#             */
+/*   Updated: 2025/08/21 11:45:51 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WINDOW_H
-# define WINDOW_H
+#ifndef TEXTURES_H
+# define TEXTURES_H
 
-#include "minilibx/mlx.h"
+typedef struct s_texture t_texture;
 
-typedef struct s_window t_window;
-
-struct s_window
+struct s_texture
 {
-	void	*mlx;
-	void	*win;
 	void	*img;
-	char	*img_data;
+	char	*addr;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
 	int		width;
 	int		height;
-	char	*title;
 };
-
 
 #endif

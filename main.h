@@ -1,35 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   window.h                                           :+:      :+:    :+:   */
+/*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/19 03:43:19 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/08/21 06:40:43 by yusudemi         ###   ########.fr       */
+/*   Created: 2025/08/21 06:39:23 by yusudemi          #+#    #+#             */
+/*   Updated: 2025/08/24 08:57:21 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WINDOW_H
-# define WINDOW_H
+#ifndef MAIN_H
+# define MAIN_H
 
-#include "minilibx/mlx.h"
+# include "map.h"
+# include "window.h"
+# include "player.h"
 
-typedef struct s_window t_window;
+typedef struct s_main t_main;
 
-struct s_window
+struct s_main
 {
-	void	*mlx;
-	void	*win;
-	void	*img;
-	char	*img_data;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-	int		width;
-	int		height;
-	char	*title;
+	t_map		map_datas;
+	t_window	window;
+	t_player	player;
 };
 
+void	cleanup(const char *msg);
+t_main	*pointer_storage(t_main	*game);
 
 #endif
