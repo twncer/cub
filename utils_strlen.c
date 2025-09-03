@@ -1,32 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.h                                             :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/21 06:39:23 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/09/03 04:48:10 by yusudemi         ###   ########.fr       */
+/*   Created: 2025/09/02 06:58:51 by yusudemi          #+#    #+#             */
+/*   Updated: 2025/09/02 06:59:40 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAIN_H
-# define MAIN_H
-
-# include "map.h"
-# include "window.h"
-# include "player.h"
-
-typedef struct s_main t_main;
-
-struct s_main
+int	ft_strlen(const char *s)
 {
-	t_map		map;
-	t_window	window;
-	t_player	player;
-};
+	const char	*p;
 
-void	map_cleanup(t_main *game);
-void	map_cleanup_exit(t_main *game);  // Added: for error cases
-
-#endif
+	p = s;
+	while (*p)
+		p++;
+	return (p - s);
+}

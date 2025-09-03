@@ -6,50 +6,85 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 05:33:47 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/08/24 08:38:24 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/09/03 05:34:20 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "map.h"
 #include "main.h"
-#include <fcntl.h>
-#include <unistd.h>
-#include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
+#include <stdio.h>  // Added: for printf function
 
-static int	validate_extension(char	*map_loc);
-static char	*process_materials(char *raw_map);
-
-void	cub_map(char *map_location)
+static int	find_id(char *raw_map)
 {
-	int		fd;
-	char	*raw_map;
-	// validate ext
-	if (!validate_extension(map_location))
-	{
-		cleanup("map file extension must be `.cub`!");
-	}
-	// read map
-	fd = open(map_location, O_RDONLY, 0666);
-	if (fd == -1)
-	{
-		printf("Error: Cannot open map file\n");
-		exit(1); // also add here
-	}
-	raw_map = cub_map_read(fd);
-	close(fd);
-	// validate and parse (now with texture loading using MLX)
-	cub_map_process(raw_map);
-	free(raw_map);
+	if (raw_map[0] == 'N' && raw_map[1] == 'O' && is_space(raw_map[2]))
+		return (0);
+	if (raw_map[0] == 'S' && raw_map[1] == 'O' && is_space(raw_map[2]))
+		return (1);
+	if (raw_map[0] == 'W' && raw_map[1] == 'E' && is_space(raw_map[2]))
+		return (2);
+	if (raw_map[0] == 'E' && raw_map[1] == 'A' && is_space(raw_map[2]))
+		return (3);
+	if (raw_map[0] == 'F' && is_space(raw_map[1]))
+		return (4);
+	if (raw_map[0] == 'C' && is_space(raw_map[1]))
+		return (5);
+	return (6);
 }
 
-static int	validate_extension(char	*map_loc)
+static void	check_parsed_table(int parsed[6])
 {
-	int	len;
+	int	i;
 
-	len = strlen(map_loc);
-	if (len < 4 || strcmp(map_loc + len - 4, ".cub") != 0)
-		return (0);
-	return (1);
+	i = -1;
+	while (i++ < 6)
+	{
+		if (parsed[i] == 0)
+		{
+			printf("Error: Missing map material data\n");
+			exit(1);
+		}
+	}
+}
+
+static void	map_parse(char *raw_map, t_main *g)
+{
+	int			parsed[6] = {0, 0, 0, 0, 0, 0}; // NO SO WE EA F C - when refactoring i found out i dont need map xd
+	int			current_id;
+	char		*map_start;
+
+	map_start = raw_map;
+	while (*raw_map)
+	{
+		while (*raw_map && (is_space(*raw_map) || *raw_map == '\n'))
+		{
+			if (*raw_map == '\n')
+				map_start = raw_map + 1;
+			raw_map++;
+		}
+		if (*raw_map == '\0')
+			break;
+		current_id = find_id(raw_map);
+		if (current_id < F)
+			parse_texture(raw_map, current_id, parsed, g);
+		else if (current_id < MAP)
+			parse_color(raw_map, current_id, parsed, g);
+		else
+			break ;
+	}
+	check_parsed_table(parsed);
+	validate_map(map_start);
+}
+
+void	cub_map(char *map_file, t_main *game)
+{
+	char	*raw_map;
+
+	raw_map = cub_map_read(map_file);
+	if (!raw_map)
+	{
+		printf("Error: Failed to read map file\n");
+		exit(1);
+	}
+	map_parse(raw_map, game);
+	free(raw_map);
 }

@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 03:32:21 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/08/24 11:20:49 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/09/03 05:34:21 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 # define MAP_H
 
 #include "texture.h"
+#include "utils.h"  // Added: for is_space and ft_strjoin declarations
 
 typedef struct s_map t_map;
+typedef struct s_main t_main;  // Forward declaration
 
 enum e_identifiers
 {
@@ -28,6 +30,7 @@ enum e_identifiers
 	MAP
 };
 
+
 struct s_map
 {
 	t_texture	texture_no;
@@ -36,17 +39,15 @@ struct s_map
 	t_texture	texture_ea;
 	int			color_f;
 	int			color_c;
-	int			**map;
+	int			**matrix;
 };
 
-void	cub_map(char *map_location);
-char	*cub_map_read(int fd);
-void	cub_map_process(char *raw_map);
-void	cub_map_parse(char *raw_map, int current_id);
-void	validate_texture(char *raw_map, int id, int parsed[6]);
-void	map_parse_texture(int id, char *relative_path, int ext);
-int		find_id(char *raw_map);
-int		is_space(char c);
-char	*ft_strjoin(char const *s1, char const *s2);
+void	cub_map(char *map_location, t_main *game);
+char	*cub_map_read(char *map_file);
+void	parse_texture(char *raw_map, int id, int parsed[6], t_main *g);
+void	parse_color(char *raw_map, int id, int parsed[6], t_main *g);
+void	validate_map(char *raw_map);
+int		**create_matrix(char *raw_map);  // Added: missing function declaration
+// Note: create_matrix function is called but not defined - needs implementation
 
 #endif

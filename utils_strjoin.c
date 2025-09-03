@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_validate_map.c                                 :+:      :+:    :+:   */
+/*   utils_strjoin.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/24 08:48:09 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/09/03 05:51:28 by yusudemi         ###   ########.fr       */
+/*   Created: 2025/09/02 06:59:43 by yusudemi          #+#    #+#             */
+/*   Updated: 2025/09/03 05:34:11 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "map.h"
-#include "main.h"
 #include <stdlib.h>
-#include <stdio.h>  // Added: for printf function
+#include "utils.h"  // Added: for ft_strlen function declaration
 
-void	validate_map(char *raw_map)
+char	*ft_strjoin(char *str1, char *str2)
 {
-	int	**map __attribute__((unused));  // Marked unused until implementation
+	char	*res;
+	char	*ret;
 
-	if (!*raw_map)
-	{
-		printf("Error: Missing map data\n");
-		exit(1);
-	}
-	map = create_matrix(raw_map);  // Note: create_matrix function needs to be implemented
-	// TODO: Implement actual map validation logic
-	// validate map on matrix?
+	res = malloc(sizeof(char) * (ft_strlen(str1) + ft_strlen(str2) + 1));
+	if (!res)
+		return (NULL);
+	ret = res;
+	while (*str1)
+		*res++ = *str1++;
+	while (*str2)
+		*res++ = *str2++;
+	*res = '\0';
+	return (ret);
 }

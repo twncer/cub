@@ -5,23 +5,115 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/24 07:11:09 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/08/24 09:04:58 by yusudemi         ###   ########.fr       */
+/*   Created: 2025/08/24 07:07:17 by yusudemi          #+#    #+#             */
+/*   Updated: 2025/09/03 05:34:18 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "map.h"
 #include "main.h"
-#include "minilibx/mlx.h"
-#include <stdio.h>
+#include <stdio.h>   // Added: for printf function
+#include <stdlib.h>  // Added: for exit function
 
-void	map_parse_color(int rgb, int id)
+static void	validate_format(char *color, int len)
 {
-	t_map	*map;
+	int	i;
+	int	commas;
+	int	comma_seen;
+	
+	i = -1;
+	commas = 0;
+	comma_seen = 1;
+	while (i++ < len)
+	{
+		if (color[i] == ',' && comma_seen == 0)
+		{
+			comma_seen = 1;
+			commas++;
+		}
+		else if (color[i] >= '0' && color[i] <= '9')
+		{
+			comma_seen = 0;
+			continue ;
+		}
+		// Note: Invalid character found, but parsing continues incorrectly
+		printf("Error: Invalid character in color value\n");
+		exit(1);
+	}
+	// Fixed: assignment operator should be comparison operator
+	if (comma_seen == 1 || commas != 2)
+	{
+		printf("Error: Missing RGB component in color value\n");
+		exit(1);
+	}
+}
 
-	map = &(pointer_storage(NULL)->map_datas);
+static int	extract_rgb_component(char **str)
+{
+	int	value;
+	
+	value = 0;
+	// Fixed: character comparison should be with '9' not 9
+	while (**str >= '0' && **str <= '9')
+	{
+		value = value * 10 + (**str - '0');
+		if (value > 255)
+		{
+			printf("Error: RGB component must be between 0-255\n");
+			exit(1);
+		}
+		(*str)++;  // Added: missing pointer increment
+	}
+	return (value);
+}
+
+static int	str_to_rgb(char	*color)
+{
+	int rgb[3];
+	int	i;
+	
+	i = 0;
+	while (i < 3)
+	{
+		rgb[i] = extract_rgb_component(&color);
+		i++;
+	}
+	return (rgb[0] << 16 | rgb[1] << 8 | rgb[2]);
+}
+static int	extract_color(char *color_start)
+{
+	char	*color_end;
+	int		color_len;
+
+	color_start++;
+	while (*color_start && is_space(*color_start))
+		color_start++;
+	color_end = color_start;
+	while (*color_end && !is_space(*color_end) && *color_end != '\n')
+		color_end++;
+	color_len = color_end - color_start;
+	if (color_len < 5)
+	{
+		printf("Error: Missing RGB component in color value\n");
+		exit(1);
+	}
+	validate_format(color_start, color_len);
+	return (str_to_rgb(color_start));
+}
+
+void	parse_color(char *raw_map, int id, int parsed[6], t_main *g)
+{
+	int	rgb;
+	
+	if (parsed[id])
+	{
+		printf("Error: Duplicate color identifier\n");
+		exit(1);
+	}
+	// get color, validate in raw, then transform it to int end return
+	rgb = extract_color(raw_map);
 	if (id == C)
-		map->color_c = rgb;
+		g->map.color_c = rgb;
 	else if (id == F)
-		map->color_f = rgb;
+		g->map.color_f = rgb;
+	parsed[id] = 1;
 }

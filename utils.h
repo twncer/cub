@@ -1,32 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.h                                             :+:      :+:    :+:   */
+/*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/21 06:39:23 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/09/03 04:48:10 by yusudemi         ###   ########.fr       */
+/*   Created: 2025/09/02 07:15:39 by yusudemi          #+#    #+#             */
+/*   Updated: 2025/09/03 05:34:17 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAIN_H
-# define MAIN_H
+#ifndef UTILS_H
+# define UTILS_H
 
-# include "map.h"
-# include "window.h"
-# include "player.h"
-
-typedef struct s_main t_main;
-
-struct s_main
-{
-	t_map		map;
-	t_window	window;
-	t_player	player;
-};
-
-void	map_cleanup(t_main *game);
-void	map_cleanup_exit(t_main *game);  // Added: for error cases
+// Utility functions for string and character operations
+int		is_space(char c);                    // Fixed: was ft_isspace
+int		ft_strlen(const char *s);            // String length function
+char	*ft_strjoin(char *str1, char *str2);  // Fixed: was strjoin
 
 #endif

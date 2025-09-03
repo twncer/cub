@@ -1,32 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.h                                             :+:      :+:    :+:   */
+/*   utils_isspace.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/21 06:39:23 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/09/03 04:48:10 by yusudemi         ###   ########.fr       */
+/*   Created: 2025/09/02 06:57:25 by yusudemi          #+#    #+#             */
+/*   Updated: 2025/09/03 05:34:12 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAIN_H
-# define MAIN_H
-
-# include "map.h"
-# include "window.h"
-# include "player.h"
-
-typedef struct s_main t_main;
-
-struct s_main
+int	is_space(char c)
 {
-	t_map		map;
-	t_window	window;
-	t_player	player;
-};
-
-void	map_cleanup(t_main *game);
-void	map_cleanup_exit(t_main *game);  // Added: for error cases
-
-#endif
+	return (c == ' '
+			|| c == '\t'
+			|| c == '\v'
+			|| c == '\f'
+			|| c == '\r');
+}
