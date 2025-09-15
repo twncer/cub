@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 05:41:36 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/09/03 05:49:52 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/09/04 18:23:41 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,8 @@ char	*cub_map_read(char	*map_file)
 	char	*raw_map;
 	int		fd;
 	// validate ext
-	if (!validate_extension(map_file)) // put this part map_read.c
-		return (NULL);
+	if (!validate_extension(map_file))
+		return (printf("Error: cub map must have .cub extension\n"), NULL);
 	fd = open(map_file, O_RDONLY, 0666);
 	if (fd == -1)
 	{
@@ -81,7 +81,7 @@ char	*cub_map_read(char	*map_file)
 	raw_map = reader(fd);
 	close(fd);
 	if (!raw_map)
-		return (NULL);
+		return (printf("Error: Failed to read map file\n"), NULL);
 	return (raw_map);
 }
 

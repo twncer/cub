@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 07:07:17 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/09/03 05:34:18 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/09/08 01:30:43 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	validate_format(char *color, int len)
 	i = -1;
 	commas = 0;
 	comma_seen = 1;
-	while (i++ < len)
+	while (++i < len)
 	{
 		if (color[i] == ',' && comma_seen == 0)
 		{
@@ -35,14 +35,10 @@ static void	validate_format(char *color, int len)
 			comma_seen = 0;
 			continue ;
 		}
-		// Note: Invalid character found, but parsing continues incorrectly
-		printf("Error: Invalid character in color value\n");
-		exit(1);
 	}
-	// Fixed: assignment operator should be comparison operator
 	if (comma_seen == 1 || commas != 2)
 	{
-		printf("Error: Missing RGB component in color value\n");
+		printf("Error: not valid color value\n"); // find error msg for here
 		exit(1);
 	}
 }
@@ -75,6 +71,16 @@ static int	str_to_rgb(char	*color)
 	while (i < 3)
 	{
 		rgb[i] = extract_rgb_component(&color);
+		if (i < 2) // Skip comma after first two components
+		{
+			if (*color == ',')
+				color++;
+			else
+			{
+				printf("Error: Invalid character in color value\n");
+				exit(1);
+			}
+		}
 		i++;
 	}
 	return (rgb[0] << 16 | rgb[1] << 8 | rgb[2]);
@@ -103,14 +109,16 @@ static int	extract_color(char *color_start)
 void	parse_color(char *raw_map, int id, int parsed[6], t_main *g)
 {
 	int	rgb;
-	
+
 	if (parsed[id])
 	{
 		printf("Error: Duplicate color identifier\n");
 		exit(1);
 	}
+	
 	// get color, validate in raw, then transform it to int end return
 	rgb = extract_color(raw_map);
+	
 	if (id == C)
 		g->map.color_c = rgb;
 	else if (id == F)

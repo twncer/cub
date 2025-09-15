@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 05:33:47 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/09/03 05:34:20 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/09/08 01:46:06 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,14 +65,24 @@ static void	map_parse(char *raw_map, t_main *g)
 			break;
 		current_id = find_id(raw_map);
 		if (current_id < F)
+		{
 			parse_texture(raw_map, current_id, parsed, g);
+			// Advance to next line after processing texture
+			while (*raw_map && *raw_map != '\n')
+				raw_map++;
+		}
 		else if (current_id < MAP)
+		{
 			parse_color(raw_map, current_id, parsed, g);
+			// Advance to next line after processing color
+			while (*raw_map && *raw_map != '\n')
+				raw_map++;
+		}
 		else
 			break ;
 	}
 	check_parsed_table(parsed);
-	validate_map(map_start);
+	parse_matrix(map_start, g);
 }
 
 void	cub_map(char *map_file, t_main *game)
@@ -81,10 +91,24 @@ void	cub_map(char *map_file, t_main *game)
 
 	raw_map = cub_map_read(map_file);
 	if (!raw_map)
-	{
-		printf("Error: Failed to read map file\n");
 		exit(1);
-	}
 	map_parse(raw_map, game);
+	// check textures one by one
+	//test color
+	printf("color_f::%d\ncolor_c::%d\n", game->map.color_f, game->map.color_c);
+	// matrix
+	printf("matrix::\n");
+	int i = -1;
+	while (game->map.matrix[++i])
+	{
+		int j = -1;
+		while (game->map.matrix[i][++j])
+		{
+			printf("%d", game->map.matrix[i][j]);	
+		}
+		printf("\n");
+	}
+	//player
+	printf("player_x::%f\nplayer_y::%f\n", game->map.player.x, game->map.player.y);
 	free(raw_map);
 }

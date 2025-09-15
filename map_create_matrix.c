@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_parse_map.c                                    :+:      :+:    :+:   */
+/*   map_create_matrix.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 08:07:31 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/09/03 05:34:20 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/09/08 01:38:21 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <stdio.h>   // Added: for printf function
-#include "utils.h"  // Added: for is_space function
+#include <stdio.h>
+#include "main.h"
 
 int	is_valid_map_char(char c)
 {
@@ -20,7 +20,7 @@ int	is_valid_map_char(char c)
 		|| c == 'N' || c == 'S' || c == 'E' || c == 'W');
 }
 
-static int get_map_height(char *raw_map)
+static int get_map_height(char *raw_map, t_main *g)
 {
 	int	count;
 	int	ret;
@@ -32,10 +32,7 @@ static int get_map_height(char *raw_map)
 		if (*raw_map == '\n')
 			count++;
 		else if (!is_valid_map_char(*raw_map))
-		{
-			printf("Error: Map has invalid character\n");
-			exit(1);
-		}
+			map_cleanup_exit("Error: Map has invalid character", g);
 		else
 			ret = count;
 		raw_map++;
@@ -55,65 +52,61 @@ static int	char_to_int(char c)
 }
 
 // put 2 for spaces as placeholder. continue on rawmap including nl ((*rawmap)++) 
-int	*create_map_line(char **raw_map)
+static char	*create_map_line(char **raw_map, t_main *g)
 {
-	int	*map_line;
+	char	*matrix_line;
+	int	i;
 	int	line_len;
-	int	*ret;
 
 	line_len = 0;
 	while ((*raw_map)[line_len] && (*raw_map)[line_len] != '\n')
 		line_len++;
-	map_line = malloc(sizeof(int) * (line_len + 1));
-	if (!map_line)
+	matrix_line = malloc(sizeof(char) * (line_len + 1));
+	if (!matrix_line)
+		return (NULL);
+	i = -1;
+	while (++i < line_len)
 	{
-		printf("Error: Memory allocation failed\n");
-		exit(1);
-	}
-	ret = map_line;
-	while (**raw_map && **raw_map != '\n')
-	{
-		(*map_line) = char_to_int(**raw_map);
-		map_line++;
+		matrix_line[i] = char_to_int(**raw_map);
+		if (**raw_map == 'N' || **raw_map == 'S'
+			|| **raw_map == 'E' || **raw_map == 'W')
+		{
+			if (g->map.player.x != -1)
+				map_cleanup_exit("Error: map must include only one player", g);
+			g->map.player.x = i;
+		}
 		(*raw_map)++;
 	}
-	(*map_line) = 0;
-	return (ret);
+	(*raw_map)++;
+	matrix_line[i] = 0;
+	return (matrix_line);
 }
 
-int	**create_matrix(char *raw_map)
+int	create_matrix(char *raw_map, t_main *g)
 {
-	int	**map;
-	int	map_height;
+	int	matrix_height;
+	int	player;
 	int	i;
 
-	if (!*raw_map)
-	{
-		printf("Error: Missing map data\n");
-		exit(1);
-	}
-	map_height = get_map_height(raw_map);
-	map = malloc (sizeof(int *) * (map_height + 1));
-	if (!map)
-	{
-		printf("Error: Memory allocation failed\n");
-		exit(1);
-	}
-	map[map_height] = NULL;
+	matrix_height = get_map_height(raw_map, g);
+	g->map.matrix = malloc(sizeof(char *) * (matrix_height + 1));
+	if (!g->map.matrix)
+		map_cleanup_exit("Error: Memory allocation failed", g);
+	g->map.matrix[matrix_height] = NULL;
 	i = -1;
-	while (i++ < map_height)
+	player = 0;
+	while (++i < matrix_height)
 	{
-		if (*raw_map == '\n')
-			continue;
-		map[i] = create_map_line(&raw_map);
-		if (!map[i]) // needed
+		g->map.matrix[i] = create_map_line(&raw_map, g);
+		if (g->map.player.x != -1 && !player)
 		{
-			while (--i >= 0)
-				free(map[i]);
-			free(map);  // Added: free the map array itself
-			printf("Error: Memory allocation failed\n");
-			exit(1);
+			player = 1;
+			g->map.player.y = i;
 		}
+		if (!g->map.matrix[i])
+			map_cleanup_exit("Error: Memory allocation failed", g);
 	}
-	return (map);
+	if (g->map.player.x == -1)
+		map_cleanup_exit("Error: map must include a player", g);
+	return (matrix_height);
 }

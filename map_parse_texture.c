@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 07:52:38 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/09/03 05:49:04 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/09/08 00:28:16 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static char	*extract_texture_path(char *path_start)
 		exit(1);
 	}
 	i = -1;
-	while (i++ < path_len)
+	while (++i < path_len)
 		path[i] = path_start[i];
 	path[i] = '\0';
 	return (path);
@@ -61,17 +61,22 @@ static void	check_file_extension(char *path)
 		printf("Error: Invalid texture file path\n");
 		exit(1);
 	}
-	fd = open(path, O_RDONLY);
-	if (fd == -1)
-	{
-		printf("Error: Cannot open texture file\n");
-		exit(1);
-	}
+	printf("path: [%s]\n", path);
 	if (strcmp(path + path_len - 4, ".xpm") != 0)
 	{
 		printf("Error: Texture file must have .xpm extension\n");
 		exit(1);
 	}
+	
+	// Check if file exists and is readable
+	fd = open(path, O_RDONLY);
+	if (fd < 0)
+	{
+		printf("Error: Cannot open texture file: %s\n", path);
+		exit(1);
+	}
+	close(fd);
+	printf("Texture file exists and is readable: %s\n", path);
 }
 
 static t_texture	*find_target_texture(int id, t_map *map)
@@ -92,12 +97,13 @@ static void set_texture(int id, char *path, t_main *g)
 	t_texture *target_texture;
 
 	target_texture = find_target_texture(id, &(g->map));
+	printf("Attempting to load texture: [%s]\n", path);
 	target_texture->img = mlx_xpm_file_to_image(g->window.mlx, path, 
 		&target_texture->width, &target_texture->height);
-	free(path);
 	if (!target_texture->img)
 	{
-		printf("Error: Failed to load texture image\n");
+		printf("Error: Failed to load texture image from path: %s\n", path);
+		free(path);
 		exit(1);
 	}
 	target_texture->addr = mlx_get_data_addr(target_texture->img,
@@ -106,21 +112,28 @@ static void set_texture(int id, char *path, t_main *g)
 	if (!target_texture->addr)
 	{
 		printf("Error: Failed to get texture data address\n");
+		free(path);
 		exit(1);
 	}
+	free(path);
+	printf("Successfully loaded texture: %dx%d pixels\n", 
+		target_texture->width, target_texture->height);
 }
 
 void	parse_texture(char *raw_map, int id, int parsed[6], t_main *g)
 {
 	char	*path;
+	char	*id_names[] = {"NO", "SO", "WE", "EA", "F", "C"};
 
+	printf("Parsing texture ID: %s (id=%d)\n", id_names[id], id);
 	if (parsed[id])
 	{
-		printf("Error: Duplicate texture identifier\n");
+		printf("Error: Duplicate texture identifier: %s\n", id_names[id]);
 		exit(1);
 	}
 	path = extract_texture_path(raw_map);
 	check_file_extension(path);
 	set_texture(id, path, g);
 	parsed[id] = 1;
+	printf("Successfully parsed texture: %s\n", id_names[id]);
 }

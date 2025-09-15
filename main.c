@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 03:23:43 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/09/03 04:44:21 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/09/05 19:08:30 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ static void	_init(t_main *game)
 		printf("Error: Failed to initialize MLX\n");
 		exit(1);
 	}
+	game->map.player.x = -1;
+	game->map.player.y = -1;
 }
 
 int main(int argc, char **argv)

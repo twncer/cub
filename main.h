@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 06:39:23 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/09/03 04:48:10 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/09/05 19:09:55 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,6 @@ struct s_main
 {
 	t_map		map;
 	t_window	window;
-	t_player	player;
 };
-
-void	map_cleanup(t_main *game);
-void	map_cleanup_exit(t_main *game);  // Added: for error cases
 
 #endif

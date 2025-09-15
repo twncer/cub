@@ -6,13 +6,14 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 01:02:54 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/09/03 05:34:11 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/09/07 23:32:00 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 #include "minilibx/mlx.h"  // Added: for MLX functions
 #include <stdlib.h>
+#include <stdio.h>
 
 void	map_cleanup(t_main *game)
 {
@@ -52,8 +53,9 @@ void	map_cleanup(t_main *game)
 }
 
 // Cleanup and exit for error cases
-void	map_cleanup_exit(t_main *game)
+void	map_cleanup_exit(char *errmsg, t_main *game)
 {
+	printf("%s\n", errmsg);
 	map_cleanup(game);
 	exit(1);
 }
