@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 03:32:21 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/09/07 23:38:03 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/10/01 18:03:17 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ enum e_identifiers
 	C,
 	MAP
 };
-
 
 struct s_map
 {

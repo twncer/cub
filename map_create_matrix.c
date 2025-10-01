@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 08:07:31 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/09/08 01:38:21 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/10/01 18:28:51 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,24 @@ static int get_map_height(char *raw_map, t_main *g)
 static int	char_to_int(char c)
 {
 	if (c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W')
-		return (1);
+		return (48);
 	else if (c == '1')
-		return (2);
+		return (49);
 	else if (is_space(c)) // placeholders in map line to correctly visialize map
-		return (3);
+		return (50);
 	return (83);
+}
+
+void	parse_player_view(t_main *g, char direction)
+{
+	if (direction == 'W')
+		g->map.player.view_ref_x = -1;
+	if (direction == 'E')
+		g->map.player.view_ref_x = 1;
+	if (direction == 'N')
+		g->map.player.view_ref_y = -1;
+	if (direction == 'S')
+		g->map.player.view_ref_y = 1;
 }
 
 // put 2 for spaces as placeholder. continue on rawmap including nl ((*rawmap)++) 
@@ -73,7 +85,9 @@ static char	*create_map_line(char **raw_map, t_main *g)
 		{
 			if (g->map.player.x != -1)
 				map_cleanup_exit("Error: map must include only one player", g);
-			g->map.player.x = i;
+			parse_player_view(g, **raw_map);
+			g->map.player.x = i + 0.5;
+			g->map.player.view_ref_x += g->map.player.x;
 		}
 		(*raw_map)++;
 	}
@@ -101,7 +115,9 @@ int	create_matrix(char *raw_map, t_main *g)
 		if (g->map.player.x != -1 && !player)
 		{
 			player = 1;
-			g->map.player.y = i;
+			g->map.player.y += i + 0.5;
+			printf("{[[%f]]}\n", g->map.player.view_ref_y);
+			g->map.player.view_ref_y += g->map.player.y;
 		}
 		if (!g->map.matrix[i])
 			map_cleanup_exit("Error: Memory allocation failed", g);

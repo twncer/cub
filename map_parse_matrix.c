@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 08:48:09 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/09/08 01:46:13 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/10/01 18:05:00 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int	flood_fill(char **matrix, int x, int y)
 
 	if (y < 0 || !matrix[y] || x < 0 || matrix[y][x] == 0)
 		return (0);
-	if (matrix[y][x] == 2 || matrix[y][x] == 83)
+	if (matrix[y][x] == 49 || matrix[y][x] == 83)
 		return (1);
 	matrix[y][x] = 83;
 	up = flood_fill(matrix, x, y - 1);

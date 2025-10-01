@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 05:33:47 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/09/08 01:46:06 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/10/01 18:14:34 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,11 +104,12 @@ void	cub_map(char *map_file, t_main *game)
 		int j = -1;
 		while (game->map.matrix[i][++j])
 		{
-			printf("%d", game->map.matrix[i][j]);	
+			printf("%c", game->map.matrix[i][j]);	
 		}
 		printf("\n");
 	}
 	//player
 	printf("player_x::%f\nplayer_y::%f\n", game->map.player.x, game->map.player.y);
+	printf("playerref_x::%f\nplayerref_y::%f\n", game->map.player.view_ref_x, game->map.player.view_ref_y);
 	free(raw_map);
 }
