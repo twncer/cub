@@ -6,13 +6,14 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 08:07:31 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/01 18:28:51 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/10/04 04:08:41 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <stdio.h>
 #include "main.h"
+#include <math.h>
 
 int	is_valid_map_char(char c)
 {
@@ -53,14 +54,14 @@ static int	char_to_int(char c)
 
 void	parse_player_view(t_main *g, char direction)
 {
-	if (direction == 'W')
-		g->map.player.view_ref_x = -1;
-	if (direction == 'E')
-		g->map.player.view_ref_x = 1;
 	if (direction == 'N')
-		g->map.player.view_ref_y = -1;
+		g->map.player.dov = 0; // 0degrees,
+	if (direction == 'E')
+		g->map.player.dov = M_PI / 2; // 90 d
 	if (direction == 'S')
-		g->map.player.view_ref_y = 1;
+		g->map.player.dov = M_PI; // 180 d
+	if (direction == 'W')
+		g->map.player.dov = 3 * M_PI / 2; // 270d
 }
 
 // put 2 for spaces as placeholder. continue on rawmap including nl ((*rawmap)++) 
@@ -87,7 +88,6 @@ static char	*create_map_line(char **raw_map, t_main *g)
 				map_cleanup_exit("Error: map must include only one player", g);
 			parse_player_view(g, **raw_map);
 			g->map.player.x = i + 0.5;
-			g->map.player.view_ref_x += g->map.player.x;
 		}
 		(*raw_map)++;
 	}
@@ -116,8 +116,6 @@ int	create_matrix(char *raw_map, t_main *g)
 		{
 			player = 1;
 			g->map.player.y += i + 0.5;
-			printf("{[[%f]]}\n", g->map.player.view_ref_y);
-			g->map.player.view_ref_y += g->map.player.y;
 		}
 		if (!g->map.matrix[i])
 			map_cleanup_exit("Error: Memory allocation failed", g);
