@@ -6,12 +6,12 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 01:02:54 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/09/07 23:32:00 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/10/04 04:44:32 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
-#include "minilibx/mlx.h"  // Added: for MLX functions
+#include "minilibx/mlx.h"
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -49,10 +49,9 @@ void	map_cleanup(t_main *game)
 		free(game->map.matrix);
 		game->map.matrix = NULL;
 	}
-	// Note: Removed exit(1) - let caller decide whether to exit
 }
 
-// Cleanup and exit for error cases
+// cleanup and exit for error cases
 void	map_cleanup_exit(char *errmsg, t_main *game)
 {
 	printf("%s\n", errmsg);

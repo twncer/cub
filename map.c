@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 05:33:47 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/04 04:10:03 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/10/04 05:20:03 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ static void	check_parsed_table(int parsed[6])
 
 static void	map_parse(char *raw_map, t_main *g)
 {
-	int			parsed[6] = {0, 0, 0, 0, 0, 0}; // NO SO WE EA F C - when refactoring i found out i dont need map xd
+	int			parsed[6] = {0, 0, 0, 0, 0, 0}; // NO SO WE EA F C - when refactoring i found out i dont need map xd 
+	// you can delete this and check parsed obj via game struct
 	int			current_id;
 	char		*map_start;
 
