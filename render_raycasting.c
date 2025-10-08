@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 00:20:16 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/08 05:14:33 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/10/08 05:21:08 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,11 @@ void	raycasting(t_main *g)
 		d.ray = &curr->ray;
 		d.ray_d.x = cos(direction);
 		d.ray_d.y = sin(direction);
-		printf("fuc\n");
 		raycast_single(&d, g->map.matrix);
-		printf("fuc2\n");
 		curr->ray.distance *= cos(direction - g->map.player.dov);
 		direction += fov_rad / WIN_WIDTH;
 		curr = curr->next;
 	}
-	printf("fuc3\n");
 }
 
 void	raycasting_right_rotation(t_main *g)

@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 03:50:45 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/08 04:59:48 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/10/08 05:21:29 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static void	insert_vertical_hit(t_cast_data *d)
 			((1 - d->step.y) / 2)) / d->ray_d.y;
 	if (d->step.y == 1)
 	{
-		d->ray->side = 'N';
+		d->ray->side = 'N'; // dont really sure about this
 		d->ray->hit.y = d->map_pos.y;
 	}
 	else
