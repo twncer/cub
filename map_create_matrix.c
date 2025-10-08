@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 08:07:31 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/08 05:19:41 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/10/08 06:34:30 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,13 @@ static int	char_to_int(char c)
 
 void	parse_player_view(t_main *g, char direction)
 {
-	if (direction == 'N')
-		g->map.player.dov = 0; // 0degrees,
 	if (direction == 'E')
-		g->map.player.dov = M_PI / 2; // 90 d
+		g->map.player.dov = 0; // 0degrees,
 	if (direction == 'S')
-		g->map.player.dov = M_PI; // 180 d
+		g->map.player.dov = M_PI / 2; // 90 d
 	if (direction == 'W')
+		g->map.player.dov = M_PI; // 180 d
+	if (direction == 'N')
 		g->map.player.dov = 3 * M_PI / 2; // 270d
 }
 
@@ -116,7 +116,7 @@ int	create_matrix(char *raw_map, t_main *g)
 		if (g->map.player.pos.x != -1 && !player)
 		{
 			player = 1;
-			g->map.player.pos.y += i + 0.5;
+			g->map.player.pos.y = i + 0.5;
 		}
 		if (!g->map.matrix[i])
 			map_cleanup_exit("Error: Memory allocation failed", g);

@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 03:23:43 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/08 04:15:47 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/10/08 06:03:03 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ static void	_init(t_main *game)
 	}
 	game->map.player.pos.x = -1;
 	game->map.player.pos.y = -1;
+	list_create(&game->rays, WIN_WIDTH);
 }
 
 int main(int argc, char **argv)
