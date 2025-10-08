@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 03:23:43 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/04 05:24:27 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/10/08 04:15:47 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,8 @@ static void	_init(t_main *game)
 		printf("Error: Failed to initialize MLX\n");
 		exit(1);
 	}
-	game->map.player.x = -1;
-	game->map.player.y = -1;
-}
-
-void	render(t_main *g) // move it to its own file later
-{
-	// raycasting shit then create and put the images
-	return;
+	game->map.player.pos.x = -1;
+	game->map.player.pos.y = -1;
 }
 
 int main(int argc, char **argv)
@@ -51,9 +45,10 @@ int main(int argc, char **argv)
 	// read, validate, parse .cub file
 	cub_map(argv[1], &game); // game  goes here because i need to use mlx connection to convert textures
 	cub_create_window(&game); // game goes here for memory management stuff 
-	// (if you add gb with destructor it can be change to &(game.win))
+	// (if you add gc with destructor it can be change to &(game.win))
 	// game loop needed here
-	render(&game); // add the render and its done easy right
+	
+	cub_render(&game, raycasting); // add the render and its done easy right
 	mlx_loop(game.window.mlx);
 	map_cleanup(&game);
 	return 0;

@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 06:39:23 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/09/05 19:09:55 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/10/08 04:43:57 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include "map.h"
 # include "window.h"
 # include "player.h"
+# include "render.h"
+# include "render_ray_list.h"
 
 typedef struct s_main t_main;
 
@@ -23,6 +25,7 @@ struct s_main
 {
 	t_map		map;
 	t_window	window;
+	t_ray_list	rays;
 };
 
 #endif

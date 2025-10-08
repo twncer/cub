@@ -1,37 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   window.h                                           :+:      :+:    :+:   */
+/*   render_background.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/19 03:43:19 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/07 19:37:10 by yusudemi         ###   ########.fr       */
+/*   Created: 2025/10/08 00:15:12 by yusudemi          #+#    #+#             */
+/*   Updated: 2025/10/08 00:15:37 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WINDOW_H
-# define WINDOW_H
+#include "main.h"
 
-#include "minilibx/mlx.h"
-
-typedef struct s_window t_window;
-
-# define WIN_HEIGHT 600
-# define WIN_WIDTH 800
-
-
-struct s_window
+void	render_background(t_main *g)
 {
-	void	*mlx;
-	void	*win;
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-};
+	int	x;
+	int	y;
 
-void	cub_create_window(t_main *g);
-
-#endif
+	y = -1;
+	while (++y < WIN_HEIGHT)
+	{
+		x = -1;
+		while (++x < WIN_WIDTH)
+		{
+			if (y < (WIN_HEIGHT / 2))
+				put_pixel(x, y, g->map.color_c, &g->window);
+			else
+				put_pixel(x, y, g->map.color_f, &g->window);
+		}
+	}
+}

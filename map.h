@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 03:32:21 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/01 18:03:17 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/10/08 03:07:29 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 #include "utils.h"
 #include "player.h"
 
-typedef struct s_map t_map;
-typedef struct s_main t_main;  // Forward declaration
+typedef struct s_map	t_map;
+typedef struct s_main	t_main;
 
 enum e_identifiers
 {

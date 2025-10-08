@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 08:48:09 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/01 18:05:00 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/10/08 01:36:00 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	parse_matrix(char *raw_map, t_main *g)
 	if (!copy)
 		map_cleanup_exit("Error: Memory allocation failed", g);
 	// validate the matrix through copy
-	if (!flood_fill(copy, g->map.player.x, g->map.player.y))
+	if (!flood_fill(copy, g->map.player.pos.x, g->map.player.pos.y))
 	{
 		free_copy_matrix(copy);
 		map_cleanup_exit("Error: Player area is not properly enclosed by walls", g);

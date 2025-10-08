@@ -6,23 +6,31 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 03:41:29 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/04 03:59:22 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/10/08 04:49:22 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PLAYER_H
 # define PLAYER_H
 
+# include "vector.h"
+
 typedef struct s_player t_player;
 typedef struct s_view	t_view;
 
-# define FOV 60.0;
+typedef struct s_main	t_main; // forward dec
+
+# define FOV 60.0
+# define MOVE_SPEED 1.0
+# define SENSITIVITY 1.0 // cant less than 1.0
 
 struct s_player
 {
-	double	x;
-	double	y;
-	double	dov; // direction of view
+	t_vector	pos;
+	double		dov; // direction of view
 };
+
+void	change_direction(t_main *g, int key);
+void	change_position(t_main *g, int key);
 
 #endif

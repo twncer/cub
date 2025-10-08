@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 08:07:31 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/04 04:08:41 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/10/08 01:36:44 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,10 +84,10 @@ static char	*create_map_line(char **raw_map, t_main *g)
 		if (**raw_map == 'N' || **raw_map == 'S'
 			|| **raw_map == 'E' || **raw_map == 'W')
 		{
-			if (g->map.player.x != -1)
+			if (g->map.player.pos.x != -1)
 				map_cleanup_exit("Error: map must include only one player", g);
 			parse_player_view(g, **raw_map);
-			g->map.player.x = i + 0.5;
+			g->map.player.pos.x = i + 0.5;
 		}
 		(*raw_map)++;
 	}
@@ -112,15 +112,15 @@ int	create_matrix(char *raw_map, t_main *g)
 	while (++i < matrix_height)
 	{
 		g->map.matrix[i] = create_map_line(&raw_map, g);
-		if (g->map.player.x != -1 && !player)
+		if (g->map.player.pos.x != -1 && !player)
 		{
 			player = 1;
-			g->map.player.y += i + 0.5;
+			g->map.player.pos.y += i + 0.5;
 		}
 		if (!g->map.matrix[i])
 			map_cleanup_exit("Error: Memory allocation failed", g);
 	}
-	if (g->map.player.x == -1)
+	if (g->map.player.pos.x == -1)
 		map_cleanup_exit("Error: map must include a player", g);
 	return (matrix_height);
 }

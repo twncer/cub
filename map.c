@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 05:33:47 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/04 05:20:03 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/10/08 01:37:57 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ void	cub_map(char *map_file, t_main *game)
 		printf("\n");
 	}
 	//player
-	printf("player_x::%f\nplayer_y::%f\n", game->map.player.x, game->map.player.y);
+	printf("player_x::%f\nplayer_y::%f\n", game->map.player.pos.x, game->map.player.pos.y);
 	printf("player_dov::%f\n", game->map.player.dov);
 	free(raw_map);
 }

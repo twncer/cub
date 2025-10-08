@@ -1,37 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   window.h                                           :+:      :+:    :+:   */
+/*   render_put_pixel.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/19 03:43:19 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/07 19:37:10 by yusudemi         ###   ########.fr       */
+/*   Created: 2025/10/08 03:54:18 by yusudemi          #+#    #+#             */
+/*   Updated: 2025/10/08 03:54:30 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WINDOW_H
-# define WINDOW_H
+#include "main.h"
 
-#include "minilibx/mlx.h"
-
-typedef struct s_window t_window;
-
-# define WIN_HEIGHT 600
-# define WIN_WIDTH 800
-
-
-struct s_window
+void	put_pixel(int x, int y, int color, t_window *win)
 {
-	void	*mlx;
-	void	*win;
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-};
+	char	*dest;
 
-void	cub_create_window(t_main *g);
-
-#endif
+	if (x >= 0 && x < WIN_WIDTH && y >= 0 && y < WIN_HEIGHT)
+	{
+		dest = win->addr + (y * win->line_length + x
+				* (win->bits_per_pixel / 8));
+		*(unsigned int *)dest = color;
+	}
+}
