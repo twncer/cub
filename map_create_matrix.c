@@ -6,10 +6,11 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 08:07:31 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/08 01:36:44 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/10/08 05:19:41 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#define _GNU_SOURCE // delete it later its just for me .p
 #include <stdlib.h>
 #include <stdio.h>
 #include "main.h"
