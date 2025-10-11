@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 18:02:04 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/08 04:39:47 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/10/11 18:46:15 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ struct s_cast_data
 	t_vector_int	step;
 	t_vector		side_dist;
 	t_vector		delta_dist;
+	double			fov_rad;
+	double			direction;
 };
 
 struct s_ray

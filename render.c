@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 17:41:45 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/08 06:28:52 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/10/11 19:35:24 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,16 @@ static void	draw_wall_column(t_main *g, int x, t_ray *ray)
 void	render_scene(t_main *g)
 {
 	t_ray_node	*current;
-	int			x;
+	int			i;
+	int			j;
 	
 	current = g->rays.head;
-	x = -1;
-	while (current && ++x < WIN_WIDTH)
+	i = -1;
+	while (current && ++i < g->rays.list_size)
 	{
-		draw_wall_column(g, x, &current->ray);
+		j = -1;
+		while (++j < g->rays.package_size)
+			draw_wall_column(g, j + (i * g->rays.package_size), &(current->ray_pack[j]));
 		current = current->next;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 00:20:16 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/08 06:28:36 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/10/11 19:31:04 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,24 +19,25 @@
 void	raycasting(t_main *g)
 {
 	t_ray_node	*curr;
-	int			x;
-	double		fov_rad;
-	double		direction;
+	int			i;
 	t_cast_data	d;
 
-	fov_rad = FOV * (M_PI) / 180.0;
-	direction = g->map.player.dov - (fov_rad / 2.0);
+	d.fov_rad = FOV * (M_PI) / 180.0;
+	d.direction = g->map.player.dov - (d.fov_rad / 2.0);
 	curr = g->rays.head;
-	x = -1;
 	d.player = &g->map.player;
-	while (++x < WIN_WIDTH && curr)
+	while (curr)
 	{
-		d.ray = &curr->ray;
-		d.ray_d.x = cos(direction);
-		d.ray_d.y = sin(direction);
-		raycast_single(&d, g->map.matrix);
-		curr->ray.distance *= cos(direction - g->map.player.dov);
-		direction += fov_rad / WIN_WIDTH;
+		i = -1;
+		while (++i < g->rays.package_size)
+		{
+			d.ray = &(curr->ray_pack[i]);
+			d.ray_d.x = cos(d.direction);
+			d.ray_d.y = sin(d.direction);
+			raycast_single(&d, g->map.matrix);
+			curr->ray_pack[i].distance *= cos(d.direction - g->map.player.dov);
+			d.direction += d.fov_rad / WIN_WIDTH;
+		}
 		curr = curr->next;
 	}
 }
