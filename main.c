@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 03:23:43 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/12 04:04:01 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/10/12 09:27:00 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,7 @@ static void	_init(t_main *game)
 // render_list recode. check render_ray_list.h for info [OK]
 // check render_ray_list_ops file and recode [OK]
 // add rotation ray casting algorithms [OK]
-// check go off the map problem
-// idea for off map: when player is off the map render black screen
-// check if player is in map or off the map on change position and
-// if it is off the map then give cub_render NULL instead of 
-// function then in renderer if raycast == NULL render black screen
-// yay
+// check go off the map problem [OK]
 // need image rendering 
 // memory management :( [BURAK]
 // tests and more tests need to look all scenarios [BURAK]

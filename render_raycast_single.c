@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 03:50:45 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/08 06:36:13 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/10/12 09:26:28 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,10 @@ void	raycast_single(t_cast_data *d, char **matrix)
 			d->map_pos.y += d->step.y;
 			d->ray->side = 1;
 		}
+		// if you looking here and want to delete this just dont xd
+		if (d->map_pos.y < 0 || !matrix[d->map_pos.y] || 
+			d->map_pos.x < 0 || !matrix[d->map_pos.y][d->map_pos.x])
+			break ;
 		if (matrix[d->map_pos.y][d->map_pos.x] == '1')
 			break ;
 	}

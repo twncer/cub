@@ -6,12 +6,12 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 17:41:45 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/11 19:35:24 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/10/12 09:23:32 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
-
+#include <math.h>
 #include <stdio.h>
 
 static int	get_wall_color(char wall_side)
@@ -66,17 +66,61 @@ void	render_scene(t_main *g)
 	}
 }
 
+void	render_black_screen(t_window *win)
+{
+	int black;
+	int	y;
+	int x;
+
+	printf("rendering the fucking black screen >&\n");
+	black = 0x000000;
+	y = -1;
+	while (++y < WIN_HEIGHT)
+	{
+		x = -1;
+		while (++x < WIN_WIDTH)
+		{
+			put_pixel(x,y,black,win);
+		}
+	}
+}
+
+int check_off_map(t_main *g)
+{
+	double	width;
+	double	height;
+
+	if (g->map.player.pos.y < 0.0 || g->map.player.pos.x < 0.0)
+		return (1);
+	height = 0.0;
+	while (g->map.matrix[(int)height])
+		height += 1.0;
+	if (g->map.player.pos.y >= height)
+		return (1);
+	width = 0.0;
+	while (g->map.matrix[(int)g->map.player.pos.y][(int)width])
+		width += 1.0;
+	if (g->map.player.pos.x >= width)
+		return (1);
+	return (0);
+}
+
 void	cub_render(t_main *g, t_raycasting_func raycast)
 {
 	// check if player is in map
 	// if not render black screen xd
 	//get background colors and put it on addr ptr // render_background
-	render_background(g);
+	if (raycast == raycasting && check_off_map(g))
+		render_black_screen(&g->window);
+	else
+	{
+		render_background(g);
+		raycast(g);
+		render_scene(g);
+	}
 	// do raycasting and store its data
-	raycast(g);
 	// according to raycasting data
 	// render walls and image that you make
-	render_scene(g);
 	// put all this shit on screen yay
 	mlx_put_image_to_window(g->window.mlx, g->window.win, g->window.img, 0, 0);
 }
