@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 19:10:17 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/12 08:14:34 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/10/12 12:23:02 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void	change_direction(t_main *g, int key)
 		player->dov += rotation_step;
 		if (player->dov >= (M_PI * 2))
 		 	player->dov -= (M_PI * 2);
+		list_pop_left(&g->rays);
 		cub_render(g, raycasting_right_rotation);
 	}
 	else // (key == XK_Left)
@@ -64,6 +65,7 @@ void	change_direction(t_main *g, int key)
 		player->dov -= rotation_step;
 		if (player->dov < 0)
 			player->dov += (2 * M_PI);
+		list_pop_right(&g->rays);
 		cub_render(g, raycasting_left_rotation);
 	}
 }

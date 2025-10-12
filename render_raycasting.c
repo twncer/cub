@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 00:20:16 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/12 08:15:17 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/10/12 12:22:28 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,21 @@
 
 #include <stdio.h>
 
+static t_ray_node	*init_cast_data(t_cast_data *d, t_main *g)
+{
+	d->fov_rad = FOV * (M_PI) / 180.0;
+	d->direction = g->map.player.dov - (d->fov_rad / 2.0);
+	d->player = &g->map.player;
+	return (g->rays.head);
+}
+
 void	raycasting(t_main *g)
 {
 	t_ray_node	*curr;
 	int			i;
 	t_cast_data	d;
 
-	d.fov_rad = FOV * (M_PI) / 180.0;
-	d.direction = g->map.player.dov - (d.fov_rad / 2.0);
-	curr = g->rays.head;
-	d.player = &g->map.player;
+	curr = init_cast_data(&d, g);
 	while (curr)
 	{
 		i = -1;
@@ -50,11 +55,7 @@ void	raycasting_right_rotation(t_main *g)
 	int			i;
 	t_cast_data	d;
 
-	list_pop_left(&g->rays);
-	d.fov_rad = FOV * (M_PI) / 180.0;
-	d.direction = g->map.player.dov - (d.fov_rad / 2.0);
-	curr = g->rays.head;
-	d.player = &g->map.player;
+	curr = init_cast_data(&d, g);
 	while (curr)
 	{
 		i = -1;
@@ -83,11 +84,7 @@ void	raycasting_left_rotation(t_main *g)
 	int			i;
 	t_cast_data	d;
 
-	list_pop_right(&g->rays);
-	d.fov_rad = FOV * (M_PI) / 180.0;
-	d.direction = g->map.player.dov - (d.fov_rad / 2.0);
-	curr = g->rays.head;
-	d.player = &g->map.player;
+	curr = init_cast_data(&d, g);
 	while (curr)
 	{
 		i = -1;
