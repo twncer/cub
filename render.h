@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 18:02:04 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/12 03:35:58 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/10/12 11:35:53 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,13 @@
 # define RENDER_H
 
 # include "player.h"
+# include "map.h"
 
 typedef struct s_cast_data	t_cast_data;
 typedef struct s_ray		t_ray;
 typedef struct s_main		t_main;
 typedef struct s_window		t_window;
+typedef struct s_render_data	t_render_data;
 
 struct s_cast_data
 {
@@ -31,6 +33,19 @@ struct s_cast_data
 	t_vector		delta_dist;
 	double			fov_rad;
 	double			direction;
+};
+
+struct s_render_data
+{
+	t_texture	*wall_texture;
+	int			wall_height;
+	int			wall_start;
+	int			wall_end;
+	double		wall_hit;
+	int			texture_x;
+	int			texture_y;
+	double		texture_step;
+	double		texture_pos;
 };
 
 struct s_ray
@@ -50,5 +65,7 @@ void	raycasting(t_main *g);
 void	raycasting_right_rotation(t_main *g);
 void	raycasting_left_rotation(t_main *g);
 void	raycast_single(t_cast_data *d, char **matrix);
-
+int 	check_off_map(t_main *g);
+void	render_black_screen(t_window *win);
+void	render_scene(t_main *g);
 #endif

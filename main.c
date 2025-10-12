@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 03:23:43 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/12 09:27:00 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/10/12 11:43:57 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	_init(t_main *game)
 // check render_ray_list_ops file and recode [OK]
 // add rotation ray casting algorithms [OK]
 // check go off the map problem [OK]
-// need image rendering 
+// need image rendering [OK]
 // memory management :( [BURAK]
 // tests and more tests need to look all scenarios [BURAK]
 // find name for project group [after bonus mayb]
