@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 21:05:00 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/11 19:23:04 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/10/12 02:37:16 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,32 @@
 #include <stdlib.h>
 #include <string.h>
 #include "window.h"
+
+static t_ray	*create_ray_pack(int size)
+{
+	t_ray	*pack;
+
+	pack = malloc(sizeof(t_ray) * size);
+	memset(pack, 0, sizeof(t_ray) * size);
+	return (pack);
+}
+
+static void	add_ray_pack(t_ray_list *list, t_ray *ray_pack)
+{
+	t_ray_node	*new;
+	
+	new = malloc(sizeof(t_ray_node));
+	if (!new)
+		return ;
+	new->ray_pack = ray_pack;
+	new->next = NULL;
+	new->prev = list->tail;
+	if (list->tail)
+		list->tail->next = new;
+	else
+		list->head = new;
+	list->tail = new;
+}
 
 void	list_create(t_ray_list *raylist, int packege_size)
 {
@@ -26,17 +52,8 @@ void	list_create(t_ray_list *raylist, int packege_size)
 	while (++i < raylist->list_size)
 	{
 		empty = create_ray_pack(packege_size);
-		list_add_right(raylist, empty);
+		add_ray_pack(raylist, empty);
 	}
-}
-
-t_ray	*create_ray_pack(int size)
-{
-	t_ray	*pack;
-
-	pack = malloc(sizeof(t_ray) * size);
-	memset(pack, 0, sizeof(t_ray) * size);
-	return (pack);
 }
 
 void	list_clear(t_ray_list *list)
@@ -49,6 +66,7 @@ void	list_clear(t_ray_list *list)
 	{
 		next = curr->next;
 		free(curr->ray_pack);
+		curr->ray_pack = NULL;
 		free(curr);
 		curr = next;
 	}

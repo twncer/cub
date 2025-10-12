@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 18:02:04 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/11 18:46:15 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/10/12 03:35:58 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ struct s_ray
 {
 	t_vector	hit;
 	double		distance;
+	double		raw_distance;	// Distance before fish-eye correction
 	char		side;
 };
 

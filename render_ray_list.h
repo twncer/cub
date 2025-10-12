@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 04:27:51 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/11 19:51:02 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/10/12 02:37:22 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,7 @@ struct s_ray_list
 };
 
 void	list_create(t_ray_list *raylist, int packege_size);
-t_ray	*create_ray_pack(int size);
 void	list_clear(t_ray_list *raylist);
-void	list_add_left(t_ray_list *raylist, t_ray *ray_pack);
-void	list_add_right(t_ray_list *raylist, t_ray *ray_pack);
 void	list_pop_right(t_ray_list *raylist);
 void	list_pop_left(t_ray_list *raylist);
 

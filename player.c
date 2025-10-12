@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 19:10:17 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/08 05:12:11 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/10/12 03:55:56 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,23 +23,23 @@ void	change_position(t_main *g, int key)
 	player = &g->map.player;
 	if (key == XK_w)
 	{
-		player->pos.x += 0.1 * cos(player->dov) * MOVE_SPEED;
-		player->pos.y += 0.1 * sin(player->dov) * MOVE_SPEED;
+		player->pos.x += 0.05 * cos(player->dov) * MOVE_SPEED;
+		player->pos.y += 0.05 * sin(player->dov) * MOVE_SPEED;
 	}
 	else if (key == XK_s)
 	{
-		player->pos.x -= 0.1 * cos(player->dov) * MOVE_SPEED;
-		player->pos.y -= 0.1 * sin(player->dov) * MOVE_SPEED;
+		player->pos.x -= 0.05 * cos(player->dov) * MOVE_SPEED;
+		player->pos.y -= 0.05 * sin(player->dov) * MOVE_SPEED;
 	}
 	else if (key == XK_d)
 	{
-		player->pos.x += 0.1 * cos(player->dov + (M_PI / 2)) * MOVE_SPEED;
-		player->pos.y += 0.1 * sin(player->dov + (M_PI / 2)) * MOVE_SPEED;
+		player->pos.x += 0.05 * cos(player->dov + (M_PI / 2)) * MOVE_SPEED;
+		player->pos.y += 0.05 * sin(player->dov + (M_PI / 2)) * MOVE_SPEED;
 	}
 	else // (key == XK_a)
 	{
-		player->pos.x += 0.1 * cos(player->dov - (M_PI / 2)) * MOVE_SPEED;
-		player->pos.y += 0.1 * sin(player->dov - (M_PI / 2)) * MOVE_SPEED;
+		player->pos.x += 0.05 * cos(player->dov - (M_PI / 2)) * MOVE_SPEED;
+		player->pos.y += 0.05 * sin(player->dov - (M_PI / 2)) * MOVE_SPEED;
 	}
 	cub_render(g, raycasting);
 }
@@ -47,18 +47,21 @@ void	change_position(t_main *g, int key)
 void	change_direction(t_main *g, int key)
 {
 	t_player	*player;
+	double		rotation_step;
 
 	player = &g->map.player;
+	rotation_step = (FOV * M_PI / 180.0) * SENSITIVITY * 0.05;
+	// this means one package goes dont touch this !!
 	if (key == XK_Right)
 	{
-		player->dov += M_PI * 0.05 * SENSITIVITY;
+		player->dov += rotation_step;
 		if (player->dov >= (M_PI * 2))
 		 	player->dov -= (M_PI * 2);
 		cub_render(g, raycasting_right_rotation);
 	}
 	else // (key == XK_Left)
 	{
-		player->dov -= M_PI * 0.05 * SENSITIVITY;
+		player->dov -= rotation_step;
 		if (player->dov < 0)
 			player->dov += (2 * M_PI);
 		cub_render(g, raycasting_left_rotation);
