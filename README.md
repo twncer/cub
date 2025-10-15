@@ -12,12 +12,3 @@ __->__ decide what to do on bonus. _[will be noted below]_
 
 ### \~-- BONUS --\~  
 __->__ firbal  
-
-### \~-- render_ray_list.h --\~  
-__->__ todos for better performance  
-__->__ make t_ray -> *t_ray. it become an array of rays  
-__->__ one node takes (SENSITIVITY * 0.05(maybe define this) * WIN_WIDTH) + 1 ray  
-__->__ this way you can free only one node and alloc one node per rotate  
-__->__ on render you should refactor the algo if you make changes  
-__->__ HAHAHA  
-__->__ OK
