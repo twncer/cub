@@ -1,5 +1,4 @@
 ### \~-- main.c --\~  
-### //  
 __->__ todos  
 __->__ ~render_list recode. check render_ray_list.h for info [OK]~  
 __->__ ~check render_ray_list_ops file and recode [OK]~  
@@ -12,11 +11,9 @@ __->__ find name for project group [after bonus mayb]
 __->__ decide what to do on bonus. _[will be noted below]_  
 
 ### \~-- BONUS --\~  
-### //
 __->__ firbal  
 
 ### \~-- render_ray_list.h --\~  
-### //  
 __->__ todos for better performance  
 __->__ make t_ray -> *t_ray. it become an array of rays  
 __->__ one node takes (SENSITIVITY * 0.05(maybe define this) * WIN_WIDTH) + 1 ray  
