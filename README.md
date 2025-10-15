@@ -15,12 +15,12 @@ __->__ an entitiy class for all (door, fireball etc.)
 __->__ subclasses for entities  
 __->__ spellbook (fire, alohomora?)  
 __->__ real-time movement and rendering?  
-__->__ ground and sky will be a texture
-__->__ doors
-__->__ identify doors by its position
-__->__ wall collision
-__->__ minimap
-__->__ looking up and down with mouse and keys
+__->__ ground and sky will be a texture  
+__->__ doors  
+__->__ identify doors by its position  
+__->__ wall collision  
+__->__ minimap  
+__->__ looking up and down with mouse and keys  
 
 ### \~-- fireball --~
 __->__ renders after scene, as foreground
