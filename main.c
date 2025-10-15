@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 03:23:43 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/12 11:43:57 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/10/15 21:18:33 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,17 +31,6 @@ static void	_init(t_main *game)
 	game->map.player.pos.y = -1;
 	list_create(&game->rays, WIN_WIDTH * SENSITIVITY * 0.05);
 }
-// 
-// todos
-// render_list recode. check render_ray_list.h for info [OK]
-// check render_ray_list_ops file and recode [OK]
-// add rotation ray casting algorithms [OK]
-// check go off the map problem [OK]
-// need image rendering [OK]
-// memory management :( [BURAK]
-// tests and more tests need to look all scenarios [BURAK]
-// find name for project group [after bonus mayb]
-// decide what to do on bonus.
 
 int main(int argc, char **argv)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_ray_list.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 04:27:51 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/12 02:37:22 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/10/15 21:22:23 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,6 @@
 typedef struct s_ray_node	t_ray_node;
 typedef struct s_ray_list	t_ray_list;
 
-// todos for better performance
-// make t_ray -> *t_ray. it become an array of rays
-// one node takes (SENSITIVITY * 0.05(maybe define this) * WIN_WIDTH) + 1 ray
-// this way you can free only one node and alloc one node per rotate
-// on render you should refactor the algo if you make changes
-// HAHAHA
-// OK
 struct s_ray_node
 {
 	t_ray_node	*next;
