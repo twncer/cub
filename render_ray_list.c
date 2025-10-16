@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 21:05:00 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/12 02:37:16 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/10/16 13:43:12 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,39 @@
 #include <stdlib.h>
 #include <string.h>
 #include "window.h"
+#include <math.h>
+
+#include <stdio.h>
+
+static int	calculate_package_size(int target_size)
+{
+	int	i;
+	int	best_size;
+	int	best_diff;
+
+	i = 0;
+	best_size = 1;
+	best_diff = abs(1 - target_size);
+	while (++i < WIN_WIDTH)
+	{
+		if (WIN_WIDTH % i == 0)
+		{
+			if (abs(i - target_size) < best_diff)
+			{
+				best_diff = abs(i - target_size);
+				best_size = i;
+			}			
+			if (i != (WIN_WIDTH / i) &&
+				(abs(WIN_WIDTH / i - target_size) < best_diff))
+			{
+					best_diff = abs(WIN_WIDTH / i - target_size);
+					best_size = WIN_WIDTH / i;
+			}
+		}
+	}
+	printf("targetsize::%d\nbest_size::%d\n", target_size, best_size);
+	return (best_size);
+}
 
 static t_ray	*create_ray_pack(int size)
 {
@@ -47,6 +80,7 @@ void	list_create(t_ray_list *raylist, int packege_size)
 	int		i;
 
 	i = -1;
+	packege_size = calculate_package_size(packege_size);
 	raylist->package_size = packege_size;
 	raylist->list_size = WIN_WIDTH / packege_size;
 	while (++i < raylist->list_size)
