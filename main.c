@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 03:23:43 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/16 13:19:19 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/10/16 15:15:35 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,13 @@
 #include <string.h>
 #include "main.h"
 #include "minilibx/mlx.h"
+#include "gc/gc.h"
+
+__attribute__((destructor))
+void cya(void)
+{
+	dump_gc();	
+}
 
 static void	_init(t_main *game)
 {

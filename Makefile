@@ -7,7 +7,8 @@ MLX_DIR			= minilibx
 MLX				= $(MLX_DIR)/libmlx.a
 MLXFLAGS		= -lmlx -lXext -lX11 -lm -lz
 
-SRC				= $(wildcard *.c)
+SRC				= $(wildcard *.c) \
+					$(wildcard gc/*.c)
 OBJ				= $(SRC:.c=.o)
 
 all: $(NAME)

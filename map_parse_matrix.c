@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   map_parse_matrix.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 08:48:09 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/15 21:54:37 by root             ###   ########.fr       */
+/*   Updated: 2025/10/16 15:20:24 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include "gc/gc.h"
 
 static int	flood_fill(char **matrix, int x, int y)
 {
@@ -39,7 +40,7 @@ static char	**copy_matrix(char **matrix, int height)
 	int i;
 	int j;
 
-	copy = malloc(sizeof(char *) * (height + 1));
+	copy = alloc(sizeof(char *) * (height + 1));
 	if (!copy)
 		return (NULL);
 	i = -1;
@@ -48,7 +49,7 @@ static char	**copy_matrix(char **matrix, int height)
 		j = -1;
 		while (matrix[i][++j])
 			;
-		copy[i] = malloc(sizeof(char) * (j + 1));
+		copy[i] = alloc(sizeof(char) * (j + 1));
 		if (!copy)
 			return (NULL);
 		j = -1;

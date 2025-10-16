@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 13:04:00 by btuncer           #+#    #+#             */
-/*   Updated: 2025/10/16 14:30:56 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/10/16 15:15:34 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,6 @@ t_gc *get_gc();
 t_gc *get_crit_gc();
 void mem_err(void);
 void *alloc(ssize_t size);
+void dump_gc(void);
 
 #endif
