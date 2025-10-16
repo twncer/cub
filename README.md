@@ -8,11 +8,10 @@
 - [OK] check go off the map problem
 - [OK] need image rendering
 - [OK] decide what to do on bonus
-
+- [OK] memory management (Burak)
 
 ### In Progress
 - [ ] find name for project group (brainstorm here) -> firbal?
-- [ ] memory management (Burak)
 - [ ] tests and more tests need to look all scenarios (Burak)
 
 ## Bonus
