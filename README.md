@@ -1,27 +1,51 @@
-### \~-- main.c --\~  
-__->__ todos  
-__->__ ~render_list recode. check render_ray_list.h for info [OK]~  
-__->__ ~check render_ray_list_ops file and recode [OK]~  
-__->__ ~add rotation ray casting algorithms [OK]~  
-__->__ ~check go off the map problem [OK]~  
-__->__ ~need image rendering [OK]~  
-__->__ ~memory management :( [BURAK]~  
-__->__ tests and more tests need to look all scenarios [BURAK]  
-__->__ find name for project group [after bonus mayb]  
-__->__ decide what to do on bonus. _[will be noted below]_  
 
-### \~-- BONUS --\~
-__->__ an entitiy class for all (door, fireball etc.)  
-__->__ subclasses for entities  
-__->__ spellbook (fire, alohomora?)  
-__->__ real-time movement and rendering?  
-__->__ ground and sky will be a texture  
-__->__ doors  
-__->__ identify doors by its position  
-__->__ wall collision  
-__->__ minimap  
-__->__ looking up and down with mouse and keys  
+## Todos
 
-### \~-- fireball --~
-__->__ renders after scene, as foreground  
-__->__ fireball have white spaces that doesnt renders.  
+### Completed
+- [OK] render_list recode. check render_ray_list.h for info
+- [OK] check render_ray_list_ops file and recode
+- [OK] add rotation ray casting algorithms
+- [OK] check go off the map problem
+- [OK] need image rendering
+- [OK] decide what to do on bonus
+
+
+### In Progress
+- [ ] find name for project group (brainstorm here) -> firbal?
+- [ ] memory management (Burak)
+- [ ] tests and more tests need to look all scenarios (Burak)
+
+## Bonus
+
+### CHANGE
+- [ ] real-time movement and rendering
+- [ ] ground and sky will be a texture
+- [ ] wall collision
+
+### NEW
+- [ ] looking up and down with mouse and keys
+- [ ] minimap
+
+### Spell System General Ideas
+- [ ] an entity class for all (door, fireball etc.)
+- [ ] subclasses for entities
+- [ ] spellbook (fire, alohomora(unlock door), colloportus(locks door))
+- [ ] key SPACE activate the spell
+- [ ] key Q passes the next spell
+
+### Fireball
+- [ ] renders after scene, as foreground
+- [ ] fireball have white spaces that doesnt renders
+
+### Doors
+- [ ] in map validation door must process as 0
+- [ ] add doors as array in map struct. need door count then alloc sizeof(t_door) * doorcount
+- [ ] doors have lock -> int lock
+- [ ] a door have its location and direction -> t_vec pos, double dov(radian)
+- [ ] identify doors by its position -> this is a function that looks all the doors and returns the searched
+- [ ] key E should open unlocked doors
+- [ ] opening of a door is -> changes dov rapidly
+- [ ] sound effect on open
+- [ ] sound effect for locked doors
+- [ ] sound effect on lock
+- [ ] sound effect on unlock
