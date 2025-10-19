@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_read.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 05:41:36 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/09/04 18:23:41 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/10/19 07:39:11 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 #include <stdio.h>   // Added: for printf function
 #include <string.h>  // Added: for strlen and strcmp functions
 #include "main.h"
+
+#include "gc/gc.h"
 
 static char	*reader(int fd)
 {

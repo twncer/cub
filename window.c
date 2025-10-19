@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/04 04:31:29 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/08 05:16:21 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/10/19 07:27:48 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <X11/keysym.h>
 #include <stdlib.h>
 
+#include "gc/gc.h"
 #include <stdio.h>
 /*
 ◦ The left and right arrow keys of the keyboard must allow you to look left and
@@ -55,6 +56,7 @@ void	cub_create_window(t_main *g)
 
 	d = &g->window;
 	d->win = mlx_new_window(d->mlx, WIN_WIDTH, WIN_HEIGHT, "Cub3D");
+	safe_mlx(d->win, op_win);
 	if (!d->win)
 	{
 		mlx_destroy_display(d->win);

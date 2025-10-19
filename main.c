@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 03:23:43 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/16 15:15:35 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/10/19 07:40:13 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,15 @@
 __attribute__((destructor))
 void cya(void)
 {
-	dump_gc();	
+	dump_gc();
+	dump_crit_gc();
 }
 
 static void	_init(t_main *game)
 {
 	memset(game, 0, sizeof(t_main));
 	game->window.mlx = mlx_init(); // connection to mlx for textures
+	safe_mlx(game->window.mlx, op_mlx); // insert connection into the safe
 	if (!game->window.mlx)
 	{
 		printf("Error: Failed to initialize MLX\n");
