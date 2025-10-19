@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 03:23:43 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/19 08:28:25 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/10/19 09:32:13 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,7 @@
 __attribute__((destructor))
 void cya(void)
 {
-	printf("=== dumpin gc ===\n");
-	dump_gc();
-	printf("=== dumped gc ===\n");
-	printf("=== dumpin crit gc ===\n");
 	dump_crit_gc();
-	printf("=== dumped crit gc ===\n");
 }
 
 static void	_init(t_main *game)
@@ -62,7 +57,7 @@ int main(int argc, char **argv)
 	// (if you add gc with destructor it can be change to &(game.win))
 	// game loop needed here
 	
-	// dump_gc();
+	dump_gc();
 	cub_render(&game, raycasting); // add the render and its done easy right
 	mlx_loop(game.window.mlx);
 	map_cleanup(&game);

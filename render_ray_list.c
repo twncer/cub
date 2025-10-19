@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 21:05:00 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/19 08:06:15 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/10/19 09:21:49 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static t_ray	*create_ray_pack(int size)
 {
 	t_ray	*pack;
 
-	pack = malloc(sizeof(t_ray) * size);
+	pack = alloc_crit(sizeof(t_ray) * size);
 	memset(pack, 0, sizeof(t_ray) * size);
 	return (pack);
 }
@@ -63,7 +63,7 @@ static void	add_ray_pack(t_ray_list *list, t_ray *ray_pack)
 {
 	t_ray_node	*new;
 	
-	new = malloc(sizeof(t_ray_node));
+	new = alloc_crit(sizeof(t_ray_node));
 	if (!new)
 		return ;
 	new->ray_pack = ray_pack;
@@ -101,9 +101,9 @@ void	list_clear(t_ray_list *list)
 	while (curr)
 	{
 		next = curr->next;
-		free(curr->ray_pack);
+		// free(curr->ray_pack); HERE1
 		curr->ray_pack = NULL;
-		free(curr);
+		// free(curr); HERE1
 		curr = next;
 	}
 	list->head = NULL;

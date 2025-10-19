@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 06:59:43 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/19 08:03:31 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/10/19 09:16:55 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*ft_strjoin(char *str1, char *str2)
 	char	*res;
 	char	*ret;
 
-	res = malloc(sizeof(char) * (ft_strlen(str1) + ft_strlen(str2) + 1));
+	res = alloc_crit(sizeof(char) * (ft_strlen(str1) + ft_strlen(str2) + 1));
 	if (!res)
 		return (NULL);
 	ret = res;

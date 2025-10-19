@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 01:02:54 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/19 08:40:39 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/10/19 09:35:44 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,18 +37,19 @@ void	map_cleanup(t_main *game)
 	// 	game->window.mlx = NULL;
 	// }
 	//clear the map struct
-	int	i;
-	if (game->map.matrix)
-	{
-		i = -1;
-		while (game->map.matrix[++i])
-		{
-			free(game->map.matrix[i]);
-			game->map.matrix[i] = NULL;
-		}
-		free(game->map.matrix);
-		game->map.matrix = NULL;
-	}
+	
+	//int	i;
+	// if (game->map.matrix) HERE1
+	// {
+	// 	i = -1;
+	// 	while (game->map.matrix[++i])
+	// 	{
+	// 		free(game->map.matrix[i]);
+	// 		game->map.matrix[i] = NULL;
+	// 	}
+	// 	free(game->map.matrix);
+	// 	game->map.matrix = NULL;
+	// } HERE1
 }
 
 // cleanup and exit for error cases

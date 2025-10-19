@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 07:52:38 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/19 08:00:15 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/10/19 09:21:09 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static char	*extract_texture_path(char *path_start)
 		printf("Error: Missing texture file\n");
 		exit(1);
 	}
-	path = malloc(path_len + 1);
+	path = alloc_crit(path_len + 1);
 	if (!path)
 	{
 		printf("Error: Memory allocation failed\n");
@@ -104,7 +104,7 @@ static void set_texture(int id, char *path, t_main *g)
 	if (!target_texture->img)
 	{
 		printf("Error: Failed to load texture image from path: %s\n", path);
-		free(path);
+		// free(path); HERE1
 		exit(1);
 	}
 	target_texture->addr = mlx_get_data_addr(target_texture->img,
@@ -113,10 +113,10 @@ static void set_texture(int id, char *path, t_main *g)
 	if (!target_texture->addr)
 	{
 		printf("Error: Failed to get texture data address\n");
-		free(path);
+		// free(path); HERE1
 		exit(1);
 	}
-	free(path);
+	// free(path); HERE1
 	printf("Successfully loaded texture: %dx%d pixels\n", 
 		target_texture->width, target_texture->height);
 }

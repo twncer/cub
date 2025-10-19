@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 08:07:31 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/19 08:00:05 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/10/19 09:11:38 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ static char	*create_map_line(char **raw_map, t_main *g)
 	line_len = 0;
 	while ((*raw_map)[line_len] && (*raw_map)[line_len] != '\n')
 		line_len++;
-	matrix_line = malloc(sizeof(char) * (line_len + 1));
+	matrix_line = alloc_crit(sizeof(char) * (line_len + 1));
 	if (!matrix_line)
 		return (NULL);
 	i = -1;
@@ -105,7 +105,7 @@ int	create_matrix(char *raw_map, t_main *g)
 	int	i;
 
 	matrix_height = get_map_height(raw_map, g);
-	g->map.matrix = malloc(sizeof(char *) * (matrix_height + 1));
+	g->map.matrix = alloc_crit(sizeof(char *) * (matrix_height + 1));
 	if (!g->map.matrix)
 		map_cleanup_exit("Error: Memory allocation failed", g);
 	g->map.matrix[matrix_height] = NULL;

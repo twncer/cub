@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 08:48:09 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/19 08:00:13 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/10/19 09:36:28 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static char	**copy_matrix(char **matrix, int height)
 	int i;
 	int j;
 
-	copy = malloc(sizeof(char *) * (height + 1));
+	copy = alloc(sizeof(char *) * (height + 1));
 	if (!copy)
 		return (NULL);
 	i = -1;
@@ -49,7 +49,7 @@ static char	**copy_matrix(char **matrix, int height)
 		j = -1;
 		while (matrix[i][++j])
 			;
-		copy[i] = malloc(sizeof(char) * (j + 1));
+		copy[i] = alloc(sizeof(char) * (j + 1));
 		if (!copy)
 			return (NULL);
 		j = -1;
@@ -61,15 +61,15 @@ static char	**copy_matrix(char **matrix, int height)
 	return (copy);
 }
 
-static void	free_copy_matrix(char **copy)
-{
-	int l;
+// static void	free_copy_matrix(char **copy) HERE2
+// {
+// 	int l;
 
-	l = -1;
-	while (copy[++l])
-		free(copy[l]);
-	free(copy);
-}
+// 	l = -1;
+// 	// while (copy[++l]) HERE1
+// 	// 	free(copy[l]);
+// 	// free(copy); HERE1
+// } HERE2
 
 void	parse_matrix(char *raw_map, t_main *g)
 {
@@ -89,7 +89,7 @@ void	parse_matrix(char *raw_map, t_main *g)
 	// validate the matrix through copy
 	if (!flood_fill(copy, g->map.player.pos.x, g->map.player.pos.y))
 	{
-		free_copy_matrix(copy);
+		// free_copy_matrix(copy); HERE1
 		map_cleanup_exit("Error: Player area is not properly enclosed by walls", g);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 05:41:36 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/19 08:00:17 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/10/19 09:21:21 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static char	*reader(int fd)
 	char	read_buffer[10000];
 	int		bytes_read;
 
-	raw_map = malloc(1);
+	raw_map = alloc_crit(1);
 	if (!raw_map)
 	{
 		printf("Error: Memory allocation failed\n");
@@ -40,13 +40,13 @@ static char	*reader(int fd)
 		bytes_read = read(fd, read_buffer, sizeof(read_buffer) -1);
 		if (bytes_read == -1)
 		{
-			free(raw_map);
+			// free(raw_map); HERE1
 			printf("Error: Encountered an error while reading file\n");
 			return (NULL);
 		}
 		read_buffer[bytes_read] = '\0';
 		tmp = ft_strjoin(raw_map, read_buffer);
-		free(raw_map);
+		// free(raw_map); HERE1
 		if (!tmp)
 		{
 			printf("Error: Memory allocation failed\n");

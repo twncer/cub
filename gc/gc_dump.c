@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 13:51:06 by btuncer           #+#    #+#             */
-/*   Updated: 2025/10/19 08:41:36 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/10/19 09:40:51 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,8 @@ void safe_mlx(void *ptr, int option)
         if (mlx && win)
             mlx_destroy_window(mlx, win); 
         if (mlx)
-            mlx_destroy_display(mlx);            
+            mlx_destroy_display(mlx);
+        free(mlx);       
         mlx = NULL;
         win = NULL;
     }

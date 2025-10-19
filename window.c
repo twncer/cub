@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/04 04:31:29 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/19 08:42:17 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/10/19 09:22:07 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	cub_create_window(t_main *g)
 	if (!d->win)
 	{
 		// mlx_destroy_display(d->win);
-		free(d->mlx);
+		// free(d->mlx); HERE1
 		exit(1);
 	}
 	safe_mlx(d->win, op_win);
@@ -68,7 +68,7 @@ void	cub_create_window(t_main *g)
 	{
 		// mlx_destroy_window(d->mlx, d->win);
 		// mlx_destroy_display(d->win);
-		free(d->mlx);
+		// free(d->mlx); HERE1
 		exit(1);
 	}
 	d->addr = mlx_get_data_addr(d->img, &(d->bits_per_pixel),
