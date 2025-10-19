@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 13:03:40 by btuncer           #+#    #+#             */
-/*   Updated: 2025/10/19 07:27:30 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/10/19 08:24:45 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void mem_err(void)
 
 void *insert_to_gc(t_garbage *garbage, t_gc *gc)
 {
-    if (!garbage | !gc)
+    if (!garbage || !gc)
         return (NULL);
     if (!gc->first_node)
     {
@@ -46,12 +46,12 @@ void *alloc(ssize_t size)
     return (garbage->mem);
 }
 
-void *alloc_crit(ssize_t size) //   the first two garbages in crit gc are...
-{                              // always 1) mlx connection and 2) window
+void *alloc_crit(ssize_t size)
+{
     t_garbage *garbage;
     
     garbage = new_garbage(size);
-    if (!garbage || insert_to_gc(garbage, get_crit_gc()))
+    if (!garbage || !insert_to_gc(garbage, get_crit_gc()))
         mem_err();
     return (garbage->mem);
 }

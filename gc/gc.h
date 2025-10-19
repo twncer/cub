@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 13:04:00 by btuncer           #+#    #+#             */
-/*   Updated: 2025/10/19 07:41:32 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/10/19 08:19:42 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ enum e_safe_mlx_options
     op_destroy
 };
 
-typedef struct s_garbage t_garbage;
+typedef struct s_garbage t_garbage; 
 typedef struct s_gc t_gc;
 
 struct s_garbage

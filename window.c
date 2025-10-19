@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/04 04:31:29 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/19 07:27:48 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/10/19 08:42:17 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 static int	quit(t_main *g) // if u implement destructor this func can take void!
 {
 	mlx_destroy_image(g->window.mlx, g->window.img);
-	mlx_destroy_window(g->window.mlx, g->window.win);
+	// mlx_destroy_window(g->window.mlx, g->window.win);
 	map_cleanup(g); // needs mlx connection for cleanup
 	exit(0);
 	return(0);
@@ -56,18 +56,18 @@ void	cub_create_window(t_main *g)
 
 	d = &g->window;
 	d->win = mlx_new_window(d->mlx, WIN_WIDTH, WIN_HEIGHT, "Cub3D");
-	safe_mlx(d->win, op_win);
 	if (!d->win)
 	{
-		mlx_destroy_display(d->win);
+		// mlx_destroy_display(d->win);
 		free(d->mlx);
 		exit(1);
 	}
+	safe_mlx(d->win, op_win);
 	d->img = mlx_new_image(d->mlx, WIN_WIDTH, WIN_HEIGHT);
 	if (!d->img)
 	{
-		mlx_destroy_window(d->mlx, d->win);
-		mlx_destroy_display(d->win);
+		// mlx_destroy_window(d->mlx, d->win);
+		// mlx_destroy_display(d->win);
 		free(d->mlx);
 		exit(1);
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_cleanup.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 01:02:54 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/15 21:55:16 by root             ###   ########.fr       */
+/*   Updated: 2025/10/19 08:40:39 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,12 @@ void	map_cleanup(t_main *game)
 			mlx_destroy_image(game->window.mlx, game->map.texture_ea.img);
 	}
 	//close mlx connection which opened at _init at main
-	if (game->window.mlx)
-	{
-		mlx_destroy_display(game->window.mlx);
-		free(game->window.mlx);
-		game->window.mlx = NULL;
-	}
+	// if (game->window.mlx)
+	// {
+	// 	mlx_destroy_display(game->window.mlx);
+	// 	free(game->window.mlx);
+	// 	game->window.mlx = NULL;
+	// }
 	//clear the map struct
 	int	i;
 	if (game->map.matrix)

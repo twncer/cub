@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   utils_strjoin.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 06:59:43 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/09/03 05:34:11 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/10/19 08:03:31 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "utils.h"  // Added: for ft_strlen function declaration
 
+#include "gc/gc.h"
 char	*ft_strjoin(char *str1, char *str2)
 {
 	char	*res;
@@ -29,3 +30,4 @@ char	*ft_strjoin(char *str1, char *str2)
 	*res = '\0';
 	return (ret);
 }
+// note that shi

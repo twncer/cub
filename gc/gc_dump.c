@@ -6,12 +6,14 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 13:51:06 by btuncer           #+#    #+#             */
-/*   Updated: 2025/10/19 07:44:05 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/10/19 08:41:36 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "gc.h"
 #include "../minilibx/mlx.h"
+
+#include <stdio.h>
 
 static void dump_collector(t_gc *gc)
 {
@@ -29,7 +31,9 @@ static void dump_collector(t_gc *gc)
     while (node)
     {
         if (node->mem)
+        {
             free(node->mem);
+        }
         node_to_free = node;
         node = node->next;
         free(node_to_free);
@@ -53,13 +57,10 @@ void safe_mlx(void *ptr, int option)
         win = ptr;
     else if (option == op_destroy)
     {
-        (void)ptr;
         if (mlx && win)
-            mlx_destroy_window(win, mlx);
+            mlx_destroy_window(mlx, win); 
         if (mlx)
-            mlx_destroy_display(mlx);
-        free(win);
-        free(mlx);
+            mlx_destroy_display(mlx);            
         mlx = NULL;
         win = NULL;
     }
@@ -69,6 +70,8 @@ void safe_mlx(void *ptr, int option)
 
 void dump_crit_gc(void)
 {
+	printf("=== hello mf ===\n");
     safe_mlx(NULL, op_destroy);
+	printf("=== cya mf ===\n");
     dump_collector(get_crit_gc());
 }

@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 08:07:31 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/16 15:06:50 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/10/19 08:00:05 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "main.h"
 #include <math.h>
 
+#include "gc/gc.h"
 int	is_valid_map_char(char c)
 {
 	return (c == '0' || c == '1' || is_space(c)
