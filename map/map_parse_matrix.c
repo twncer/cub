@@ -6,14 +6,14 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 08:48:09 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/19 09:36:28 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/10/19 10:35:34 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
+#include "../main/main.h"
 #include <stdlib.h>
 #include <stdio.h>
-#include "gc/gc.h"
+#include "../gc/gc.h"
 
 static int	flood_fill(char **matrix, int x, int y)
 {

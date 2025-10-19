@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 05:41:36 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/19 09:21:21 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/10/19 10:35:35 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 #include <stdlib.h>
 #include <stdio.h>   // Added: for printf function
 #include <string.h>  // Added: for strlen and strcmp functions
-#include "main.h"
+#include "../main/main.h"
 
-#include "gc/gc.h"
+#include "../gc/gc.h"
 
 static char	*reader(int fd)
 {

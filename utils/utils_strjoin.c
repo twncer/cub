@@ -6,14 +6,14 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 06:59:43 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/19 09:16:55 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/10/19 10:35:36 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "utils.h"  // Added: for ft_strlen function declaration
 
-#include "gc/gc.h"
+#include "../gc/gc.h"
 char	*ft_strjoin(char *str1, char *str2)
 {
 	char	*res;

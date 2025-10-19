@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   render_raycast_single.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 03:50:45 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/12 09:26:28 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/10/19 10:30:51 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
+#include "../main/main.h"
 #include <math.h>
 
 static void	find_ray_direction(t_cast_data *d)

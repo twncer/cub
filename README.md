@@ -11,6 +11,7 @@
 - [OK] memory management (Burak)
 
 ### In Progress
+- [ ] remove useless and commented code blocks
 - [ ] find name for project group (brainstorm here) -> firbal?
 - [ ] tests and more tests need to look all scenarios (Burak)
 

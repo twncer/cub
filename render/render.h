@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   render.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 18:02:04 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/12 11:35:53 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/10/19 10:33:21 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RENDER_H
 # define RENDER_H
 
-# include "player.h"
-# include "map.h"
+# include "../player/player.h"
+# include "../map/map.h"
 
 typedef struct s_cast_data	t_cast_data;
 typedef struct s_ray		t_ray;

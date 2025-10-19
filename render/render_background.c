@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   render_background.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 00:15:12 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/15 21:22:32 by root             ###   ########.fr       */
+/*   Updated: 2025/10/19 10:30:50 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
+#include "../main/main.h"
 
 void	render_background(t_main *g)
 {

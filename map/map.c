@@ -6,11 +6,11 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 05:33:47 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/19 09:21:30 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/10/19 10:30:49 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
+#include "../main/main.h"
 #include <stdlib.h>
 #include <stdio.h>  // Added: for printf function
 

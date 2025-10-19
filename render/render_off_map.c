@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   render_off_map.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/12 10:24:13 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/12 10:28:40 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/10/19 10:30:50 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
+#include "../main/main.h"
 
 #include <stdio.h>
 void	render_black_screen(t_window *win)

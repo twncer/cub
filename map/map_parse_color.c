@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   map_parse_color.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 07:07:17 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/09/08 01:30:43 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/10/19 10:30:46 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
+#include "../main/main.h"
 #include <stdio.h>   // Added: for printf function
 #include <stdlib.h>  // Added: for exit function
 

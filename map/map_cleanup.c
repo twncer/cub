@@ -6,12 +6,12 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 01:02:54 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/19 09:35:44 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/10/19 10:34:56 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
-#include "minilibx/mlx.h"
+#include "../main/main.h"
+#include "../minilibx/mlx.h"
 #include <stdlib.h>
 #include <stdio.h>
 

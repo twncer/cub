@@ -1,15 +1,16 @@
-CC				= cc
-CFLAGS			= -Wall -Wextra -Werror -I$(INC_DIR) -I$(MLX_DIR)
+CC              = cc
+CFLAGS          = -Wall -Wextra -Werror -I$(INC_DIR) -I$(MLX_DIR)
 
-NAME			= cub3d
+NAME            = cub3d
 
-MLX_DIR			= minilibx
-MLX				= $(MLX_DIR)/libmlx.a
-MLXFLAGS		= -lmlx -lXext -lX11 -lm -lz
+MLX_DIR         = minilibx
+MLX             = $(MLX_DIR)/libmlx.a
+MLXFLAGS        = -lmlx -lXext -lX11 -lm -lz
 
-SRC				= $(wildcard *.c) \
-					$(wildcard gc/*.c)
-OBJ				= $(SRC:.c=.o)
+SRC             = $(wildcard *.c) \
+                  $(filter-out $(MLX_DIR)/%, $(wildcard */*.c))
+
+OBJ             = $(SRC:.c=.o)
 
 all: $(NAME)
 
@@ -22,12 +23,12 @@ $(MLX):
 clean:
 	rm -rf $(OBJ)
 	rm -rf $(OBJ_BONUS)
-	@make -C $(MLX_DIR) clean
+	@make -C $(MLX_DIR) clean 2>/dev/null || true
 
 fclean: clean
 	rm -rf $(NAME)
 	rm -rf $(BONUS_NAME)
 
-re:	fclean all
+re: fclean all
 
 .PHONY: all clean fclean re

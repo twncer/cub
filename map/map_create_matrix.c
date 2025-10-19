@@ -6,17 +6,17 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 08:07:31 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/19 09:11:38 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/10/19 10:35:34 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #define _GNU_SOURCE // delete it later its just for me .p
 #include <stdlib.h>
 #include <stdio.h>
-#include "main.h"
+#include "../main/main.h"
 #include <math.h>
 
-#include "gc/gc.h"
+#include "../gc/gc.h"
 int	is_valid_map_char(char c)
 {
 	return (c == '0' || c == '1' || is_space(c)

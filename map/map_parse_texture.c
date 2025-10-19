@@ -6,19 +6,19 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 07:52:38 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/19 09:21:09 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/10/19 10:35:35 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "map.h"
-#include "main.h"
+#include "../main/main.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <fcntl.h>
 #include <unistd.h>
 #include <string.h>
 
-#include "gc/gc.h"
+#include "../gc/gc.h"
 static char	*extract_texture_path(char *path_start)
 {
 	char	*path_end;

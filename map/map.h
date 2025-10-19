@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 03:32:21 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/08 03:07:29 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/10/19 10:34:26 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 # define MAP_H
 
 #include "texture.h"
-#include "utils.h"
-#include "player.h"
+#include "../utils/utils.h"
+#include "../player/player.h"
 
 typedef struct s_map	t_map;
 typedef struct s_main	t_main;

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   render_scene.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/12 10:25:35 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/12 11:43:26 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/10/19 10:30:52 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
+#include "../main/main.h"
 #include <math.h>
 
 static t_texture	*get_wall_texture(t_main *g, char wall_side)

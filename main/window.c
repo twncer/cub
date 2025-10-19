@@ -6,17 +6,17 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/04 04:31:29 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/19 09:22:07 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/10/19 10:35:33 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
-#include "minilibx/mlx.h"
+#include "../minilibx/mlx.h"
 #include <X11/X.h>
 #include <X11/keysym.h>
 #include <stdlib.h>
 
-#include "gc/gc.h"
+#include "../gc/gc.h"
 #include <stdio.h>
 /*
 ◦ The left and right arrow keys of the keyboard must allow you to look left and

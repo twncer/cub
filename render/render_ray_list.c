@@ -6,17 +6,17 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 21:05:00 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/19 09:21:49 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/10/19 10:35:36 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render_ray_list.h"
 #include <stdlib.h>
 #include <string.h>
-#include "window.h"
+#include "../main/window.h"
 #include <math.h>
 
-#include "gc/gc.h"
+#include "../gc/gc.h"
 
 #include <stdio.h>
 

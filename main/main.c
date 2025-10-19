@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 03:23:43 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/19 09:32:13 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/10/19 10:35:32 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 #include <stdio.h>
 #include <string.h>
 #include "main.h"
-#include "minilibx/mlx.h"
-#include "gc/gc.h"
+#include "../minilibx/mlx.h"
+#include "../gc/gc.h"
 
 __attribute__((destructor))
 void cya(void)
