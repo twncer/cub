@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.c                                           :+:      :+:    :+:   */
+/*   events.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/07 17:41:45 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/22 18:09:15 by btuncer          ###   ########.fr       */
+/*   Created: 2025/10/22 18:37:23 by btuncer           #+#    #+#             */
+/*   Updated: 2025/10/22 20:47:38 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../main/main.h"
-#include <math.h>
-#include <stdio.h>
+#ifndef EVENTS_H
+# define EVENTS_H
 
-void	cub_render(t_main *g)
-{
-	render_background(g);
-	render_scene(g);
-	// do raycasting and store its data
-	// according to raycasting data
-	// render walls and image that you make
-	// put all this shit on screen yay
-	mlx_put_image_to_window(g->window.mlx, g->window.win, g->window.img, 0, 0);
-}
+# include "../main/main.h"
+# include <unistd.h>
+# include <stdlib.h>
+
+int onpress_event(int key, t_main *game);
+int onrelease_event(int key, t_main *game);
+int loop_event(t_main *game);
+int terminate_hook(void);
+void unlock_switch(t_main *game);
+
+#endif

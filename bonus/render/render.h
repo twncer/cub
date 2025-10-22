@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 18:02:04 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/19 10:33:21 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/10/22 18:09:12 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ struct s_ray
 
 typedef void	(*t_raycasting_func)(t_main *g);
 
-void	cub_render(t_main *g, t_raycasting_func raycasting);
+void	cub_render(t_main *g);
 void	put_pixel(int x, int y, int color, t_window *win);
 void	render_background(t_main *g);
 void	raycasting(t_main *g);

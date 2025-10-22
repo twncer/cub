@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 19:10:17 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/20 21:56:12 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/10/22 18:21:52 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,27 +22,27 @@ void	change_position(t_main *g, int key)
 
 	player = &g->map.player;
 	(void)key;
-	if (g->key_list.W)
+	if (g->key_list.w)
 	{
 		player->pos.x += 0.05 * cos(player->dov) * MOVE_SPEED;
 		player->pos.y += 0.05 * sin(player->dov) * MOVE_SPEED;
 	}
-	if (g->key_list.S)
+	if (g->key_list.s)
 	{
 		player->pos.x -= 0.05 * cos(player->dov) * MOVE_SPEED;
 		player->pos.y -= 0.05 * sin(player->dov) * MOVE_SPEED;
 	}
-	if (g->key_list.D)
+	if (g->key_list.d)
 	{
 		player->pos.x += 0.05 * cos(player->dov + (M_PI / 2)) * MOVE_SPEED;
 		player->pos.y += 0.05 * sin(player->dov + (M_PI / 2)) * MOVE_SPEED;
 	}
-	if (g->key_list.A)
+	if (g->key_list.a)
 	{
 		player->pos.x += 0.05 * cos(player->dov - (M_PI / 2)) * MOVE_SPEED;
 		player->pos.y += 0.05 * sin(player->dov - (M_PI / 2)) * MOVE_SPEED;
 	}
-	cub_render(g, raycasting);
+	raycasting(g); // raycast only if player moving
 }
 
 void	change_direction(t_main *g, int key)
@@ -51,22 +51,23 @@ void	change_direction(t_main *g, int key)
 	double		rotation_step;
 
 	player = &g->map.player;
+	(void)key;
 	rotation_step = (FOV * M_PI / 180.0) * SENSITIVITY * 0.05;
 	// this means one package goes dont touch this !!
-	if (key == XK_Right)
+	if (g->key_list.arrow_r)
 	{
 		player->dov += rotation_step;
 		if (player->dov >= (M_PI * 2))
 		 	player->dov -= (M_PI * 2);
 		list_pop_left(&g->rays);
-		cub_render(g, raycasting_right_rotation);
+		raycasting_right_rotation(g);
 	}
-	else // (key == XK_Left)
+	if (g->key_list.arrow_l)
 	{
 		player->dov -= rotation_step;
 		if (player->dov < 0)
 			player->dov += (2 * M_PI);
 		list_pop_right(&g->rays);
-		cub_render(g, raycasting_left_rotation);
+		raycasting_left_rotation(g);
 	}
 }

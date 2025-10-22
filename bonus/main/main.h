@@ -6,17 +6,12 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 06:39:23 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/20 20:42:32 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/10/22 20:50:56 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MAIN_H
 # define MAIN_H
-
-# define KEY_D 100
-# define KEY_A 97
-# define KEY_W 119
-# define KEY_S 115
 
 # include "../map/map.h"
 # include "window.h"
@@ -28,13 +23,25 @@
 
 typedef struct s_key_list t_key_list;
 typedef struct s_main t_main;
+typedef struct s_switch_key t_switch_key;
+
+struct s_switch_key
+{
+	int key;
+	int key_switch;
+};
 
 struct s_key_list
 {
-	bool W;
-	bool A;
-	bool S;
-	bool D;
+	bool w;
+	bool a;
+	bool s;
+	bool d;
+	int arrow_l;
+	int arrow_r;
+	t_switch_key e;
+	t_switch_key q;
+	t_switch_key spc;
 };
 
 struct s_main
@@ -44,5 +51,8 @@ struct s_main
 	t_ray_list	rays;
 	t_key_list	key_list;
 };
+
+void	__init__(t_main *game);
+void _init_hooks(t_main *game);
 
 #endif

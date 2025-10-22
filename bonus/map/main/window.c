@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/04 04:31:29 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/19 10:35:33 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/10/22 21:10:02 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 
 static int	quit(t_main *g) // if u implement destructor this func can take void!
 {
-	mlx_destroy_image(g->window.mlx, g->window.img);
+	mlx_destroy_image(g->window.mlx, g->window.img); // TODO
 	// mlx_destroy_window(g->window.mlx, g->window.win);
 	map_cleanup(g); // needs mlx connection for cleanup
 	exit(0);
