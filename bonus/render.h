@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 18:02:04 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/12 11:35:53 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/10/22 18:13:32 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,7 @@ void	raycast_single(t_cast_data *d, char **matrix);
 int 	check_off_map(t_main *g);
 void	render_black_screen(t_window *win);
 void	render_scene(t_main *g);
+// bonus function
+int insert_door_hit(t_cast_data *d);
+
 #endif

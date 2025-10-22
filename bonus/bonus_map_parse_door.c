@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/19 04:21:07 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/19 10:02:10 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/10/22 20:26:26 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,34 @@ static int	count_doors(char *raw_map)
 	return (ret);
 }
 
+static void	insert_inner_walls(t_door *new)
+{
+	if (new->axis == 0) // horizontal
+	{
+		new->inner_wall_1.s.x = new->pos.x;
+		new->inner_wall_1.s.y = new->pos.y + 0.35;
+		new->inner_wall_1.e.x = new->pos.x + 1;
+		new->inner_wall_1.e.y = new->pos.y + 0.35;
+	
+		new->inner_wall_2.s.x = new->pos.x;
+		new->inner_wall_2.s.y = new->pos.y + 0.65;
+		new->inner_wall_2.e.x = new->pos.x + 1.0;
+		new->inner_wall_2.e.y = new->pos.y + 0.65;
+	}
+	else // door->axis == 1 // vertical
+	{
+		new->inner_wall_1.s.x = new->pos.x + 0.35;
+		new->inner_wall_1.s.y = new->pos.y;
+		new->inner_wall_1.e.x = new->pos.x + 0.35;
+		new->inner_wall_1.e.y = new->pos.y + 1.0;
+	
+		new->inner_wall_2.s.x = new->pos.x + 0.65;
+		new->inner_wall_2.s.y = new->pos.y;
+		new->inner_wall_2.e.x = new->pos.x + 0.65;
+		new->inner_wall_2.e.y = new->pos.y + 1.0;
+	}
+}
+
 static void	new_door(int x, int y, int axis, t_door *new)
 {
 	new->pos.x = x;
@@ -47,6 +75,7 @@ static void	new_door(int x, int y, int axis, t_door *new)
 		
 	}
 	new->state = LOCKED;
+	insert_inner_walls(new);
 }
 
 static t_door *create_doors(char *raw_map, int count)
@@ -78,8 +107,7 @@ static t_door *create_doors(char *raw_map, int count)
 	}
 	return (doors);
 }
-t_door	*find_door(int x, int y, t_door *new);
-#include <stdio.h>
+
 void	parse_doors(char *raw_map)
 {
 	t_door	*doors;

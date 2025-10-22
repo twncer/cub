@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 19:10:17 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/12 12:23:02 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/10/22 20:09:24 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,13 @@
 #include <math.h>
 
 #include <stdio.h>
+
+// on wall collision checking check x and y axis seperatly 
+// if x-y axis on wall find closest positon to the wall and move player to this loc
+// after finding the closest position find a new move_speed for y to normalize walking
+// if closest position is player position for x and y player stops
+// if closest position is player position for x and y can stil can go further moves on y direction slowly (on minimum move_speed maybe?)
+
 void	change_position(t_main *g, int key)
 {
 	t_player	*player;
