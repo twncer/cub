@@ -1,0 +1,53 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   mouse_events.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/25 20:50:30 by btuncer           #+#    #+#             */
+/*   Updated: 2025/10/25 23:12:28 by btuncer          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "events.h"
+#include "../minilibx/mlx_int.h"
+#include <X11/Xlib.h>
+
+#include <stdio.h>
+
+void center_mouse(t_main *game)
+{
+    t_xvar *xvar;
+    Display *display;     
+    Window window_cub3d;
+
+    xvar = (t_xvar *)game->window.mlx;
+    display = xvar->display;
+    window_cub3d = xvar->win_list->window;
+    XWarpPointer(display, None, window_cub3d, 0, 0, 0, 0, WIN_WIDTH / 2, WIN_HEIGHT / 2);
+}
+
+void read_mouse_movements(t_main *game)
+{
+    t_xvar *xvar;
+    Window cub3d;
+    int win_x, win_y;
+    unsigned int m;
+    
+    xvar = (t_xvar *)game->window.mlx;
+    cub3d = xvar->win_list->window;
+    XQueryPointer(xvar->display, cub3d, &cub3d, &cub3d, &win_x, &win_x, &win_x, &win_y, &m);
+
+    printf("mouse positions on window: %i:%i\n", win_x, win_y);
+}
+
+// Bool XQueryPointer(
+//     Display *display,          // X display bağlantısı
+//     Window w,                  // Query yapılacak window
+//     Window *root_return,       // Root window (OUT)
+//     Window *child_return,      // Mouse'un üzerinde olduğu child window (OUT)
+//     int *root_x, *root_y,      // Ekran (root) koordinatları (OUT)
+//     int *win_x, *win_y,        // Window içi koordinatlar (OUT)
+//     unsigned int *mask_return  // Mouse button ve modifier keys (OUT)
+// );

@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 18:29:09 by btuncer           #+#    #+#             */
-/*   Updated: 2025/10/22 20:47:41 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/10/25 22:54:14 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,14 @@
 // 	switch keys are for player to be not able to spam some events by just
 // continuously pressing on the key. switch key attribute provide a safe
 // switching between active and inactive
-static void onpress_switch_key(t_switch_key *switch_key)
+static void onpress_switch_key(t_switch_key *switch_key, int key, t_main *game)
 {
 	switch_key->key = true;
 	if (!switch_key->key_switch)
 	{
 		printf("im doing a press event!\n"); // event that will happen when pressed
+		if (key == XK_e)
+			center_mouse(game);
 		switch_key->key_switch = true;
 	}
 }
@@ -58,11 +60,11 @@ int onpress_event(int key, t_main *game)
 	else if (key == XK_Right)
 		game->key_list.arrow_r = true;
 	else if (key == XK_e)
-		onpress_switch_key(&(game->key_list.e));
+		onpress_switch_key(&(game->key_list.e), key, game);
 	else if (key == XK_q)
-		onpress_switch_key(&(game->key_list.q));
+		onpress_switch_key(&(game->key_list.q), key, game);
 	else if (key == XK_space)
-		onpress_switch_key(&(game->key_list.spc));
+		onpress_switch_key(&(game->key_list.spc), key, game);
 	return (0);
 }
 

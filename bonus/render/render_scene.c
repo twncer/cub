@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/12 10:25:35 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/19 10:30:52 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/10/25 20:21:05 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	init_render_data(t_render_data *d, t_main *g, t_ray *ray)
 	else // ray->side == 'E' || ray->side == 'W'
 		d->wall_hit = ray->hit.y;
 	d->wall_hit = d->wall_hit - floor(d->wall_hit);
-}
+} 
 
 static void	draw_wall_column(t_main *g, int x, t_ray *ray)
 {
