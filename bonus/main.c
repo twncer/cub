@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 03:23:43 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/16 15:15:35 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/10/24 01:58:43 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ int main(int argc, char **argv)
 	cub_create_window(&game); // game goes here for memory management stuff 
 	// (if you add gc with destructor it can be change to &(game.win))
 	// game loop needed here
-	
 	cub_render(&game, raycasting); // add the render and its done easy right
 	mlx_loop(game.window.mlx);
 	map_cleanup(&game);

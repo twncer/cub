@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 03:50:45 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/22 18:28:43 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/10/24 16:34:34 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	insert_vertical_hit(t_cast_data *d)
 	else
 	{
 		d->ray->side = 'N';
-		d->ray->hit.y = d->map_pos.y + 1;
+		d->ray->hit.y = d->map_pos.y + 1.0;
 	}
 	d->ray->hit.x = d->player->pos.x +
 		(d->ray->distance * d->ray_d.x);
@@ -105,13 +105,26 @@ static void	raycast_loop(t_cast_data *d, char **matrix)
 			break ;
 	}
 }
+int	check_inner_wall_hit(t_cast_data *d, t_door_wall *door);
+#include <stdio.h>
 
 void	raycast_single(t_cast_data *d, char **matrix)
 {
+    t_door_wall  *door;
+
 	d->map_pos.x = (int)d->player->pos.x;
 	d->map_pos.y = (int)d->player->pos.y;
 	find_ray_direction(d);
 	raycast_loop(d, matrix);
+	if (matrix[(int)d->player->pos.y][(int)d->player->pos.x] == 'D')
+	{
+		door = find_door((int)d->player->pos.x, (int)d->player->pos.y, NULL);
+		if (check_inner_wall_hit(d, door))
+			return ;
+	}
+	//printf("%c\n", d->ray->side);
+	if (d->ray->side > 2)
+		return ;
 	if (d->ray->side == 0)
 		insert_horizontal_hit(d);
 	else
