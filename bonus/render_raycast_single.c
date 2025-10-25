@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 03:50:45 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/24 16:34:34 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/10/25 20:53:30 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,32 +97,24 @@ static void	raycast_loop(t_cast_data *d, char **matrix)
 		if (d->map_pos.y < 0 || !matrix[d->map_pos.y] || 
 			d->map_pos.x < 0 || !matrix[d->map_pos.y][d->map_pos.x])
 			break ;
-		// in here need to add doors
 		if (matrix[d->map_pos.y][d->map_pos.x] == 'D')
-			if (insert_door_hit(d))
+			if (insert_door_hit(d, 0))
 				return ;
 		if (matrix[d->map_pos.y][d->map_pos.x] == '1')
 			break ;
 	}
 }
-int	check_inner_wall_hit(t_cast_data *d, t_door_wall *door);
-#include <stdio.h>
 
 void	raycast_single(t_cast_data *d, char **matrix)
 {
-    t_door_wall  *door;
-
 	d->map_pos.x = (int)d->player->pos.x;
 	d->map_pos.y = (int)d->player->pos.y;
 	find_ray_direction(d);
 	raycast_loop(d, matrix);
+	// adding door if in door block
 	if (matrix[(int)d->player->pos.y][(int)d->player->pos.x] == 'D')
-	{
-		door = find_door((int)d->player->pos.x, (int)d->player->pos.y, NULL);
-		if (check_inner_wall_hit(d, door))
+		if (insert_door_hit(d, 1))
 			return ;
-	}
-	//printf("%c\n", d->ray->side);
 	if (d->ray->side > 2)
 		return ;
 	if (d->ray->side == 0)
