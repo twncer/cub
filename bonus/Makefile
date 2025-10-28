@@ -8,7 +8,8 @@ MLX             = $(MLX_DIR)/libmlx.a
 MLXFLAGS        = -lmlx -lXext -lX11 -lm -lz
 
 SRC             = $(wildcard *.c) \
-                  $(filter-out $(MLX_DIR)/%, $(wildcard */*.c))
+                  $(filter-out $(MLX_DIR)/%, $(wildcard */*.c)) \
+                  $(filter-out $(MLX_DIR)/%, $(wildcard */*/*.c))
 
 OBJ             = $(SRC:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 20:50:30 by btuncer           #+#    #+#             */
-/*   Updated: 2025/10/25 23:12:28 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/10/28 01:14:35 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,17 @@ void read_mouse_movements(t_main *game)
     Window cub3d;
     int win_x, win_y;
     unsigned int m;
+    int win_x_abs;
     
     xvar = (t_xvar *)game->window.mlx;
     cub3d = xvar->win_list->window;
     XQueryPointer(xvar->display, cub3d, &cub3d, &cub3d, &win_x, &win_x, &win_x, &win_y, &m);
 
-    printf("mouse positions on window: %i:%i\n", win_x, win_y);
+    win_x_abs = win_x - WIN_WIDTH / 2;
+    if (win_x_abs > 0)
+        change_direction_advanced(game, 'R', win_x_abs);
+    else if (win_x_abs < 0)
+        change_direction_advanced(game, 'L', win_x_abs);
 }
 
 // Bool XQueryPointer(

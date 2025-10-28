@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 18:29:09 by btuncer           #+#    #+#             */
-/*   Updated: 2025/10/25 22:54:14 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/10/28 00:28:29 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,16 @@
 static void onpress_switch_key(t_switch_key *switch_key, int key, t_main *game)
 {
 	switch_key->key = true;
-	if (!switch_key->key_switch)
+	if (key == XK_F3)
+	{
+		printf("im pressin f3 mf\n");
+		switch_key->key_switch = !(switch_key->key_switch);
+		if (switch_key->key_switch)
+			mlx_mouse_hide(game->window.mlx, game->window.win);
+		else
+			mlx_mouse_show(game->window.mlx, game->window.win);
+	}
+	else if (!switch_key->key_switch)
 	{
 		printf("im doing a press event!\n"); // event that will happen when pressed
 		if (key == XK_e)
@@ -65,6 +74,8 @@ int onpress_event(int key, t_main *game)
 		onpress_switch_key(&(game->key_list.q), key, game);
 	else if (key == XK_space)
 		onpress_switch_key(&(game->key_list.spc), key, game);
+	else if (key == XK_F3)
+		onpress_switch_key(&(game->key_list.f3), key, game);
 	return (0);
 }
 
@@ -72,8 +83,7 @@ int onrelease_event(int key, t_main *game)
 {
 	if (key == XK_Escape)
 		terminate_hook();
-
-	if (key == XK_w)
+	else if (key == XK_w)
 		game->key_list.w = false;
 	else if (key == XK_a)
 		game->key_list.a = false;
@@ -91,5 +101,6 @@ int onrelease_event(int key, t_main *game)
 		onrelease_switch_key(&(game->key_list.q));
 	else if (key == XK_space)
 		onrelease_switch_key(&(game->key_list.spc));
+	// I dont need f3's onrelease event, its gonna be a switch fr
 	return (0);
 }

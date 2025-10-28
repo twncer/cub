@@ -6,11 +6,12 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 17:41:45 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/25 21:13:54 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/10/28 02:12:35 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../main/main.h"
+#include "../hud/minimap/minimap.h"
 #include <math.h>
 #include <stdio.h>
 
@@ -22,5 +23,7 @@ void	cub_render(t_main *g)
 	// according to raycasting data
 	// render walls and image that you make
 	// put all this shit on screen yay
+
+	draw_minimap(g);
 	mlx_put_image_to_window(g->window.mlx, g->window.win, g->window.img, 0, 0);
 }

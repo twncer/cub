@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 06:39:23 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/22 20:50:56 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/10/28 00:06:37 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ struct s_key_list
 	t_switch_key e;
 	t_switch_key q;
 	t_switch_key spc;
+	t_switch_key f3;
 };
 
 struct s_main

@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 18:33:18 by btuncer           #+#    #+#             */
-/*   Updated: 2025/10/25 23:04:07 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/10/28 00:24:08 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,11 @@ int loop_event(t_main *game)
 	cub_render(game);
 	change_position(game, 0);
 	change_direction(game, 0);
-	read_mouse_movements(game);
+	if (game->key_list.f3.key_switch)
+	{
+		read_mouse_movements(game);
+		center_mouse(game);
+	}
     debug(game);
 	// (void)debug;
 

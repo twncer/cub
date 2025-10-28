@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 03:41:29 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/22 18:26:42 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/10/27 23:56:56 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ struct s_player
 
 void	change_direction(t_main *g, int key);
 void	change_position(t_main *g, int key);
+void	change_direction_advanced(t_main *g, int direction, int weight);
 
 #endif
 

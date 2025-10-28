@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 03:23:43 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/25 20:44:45 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/10/28 00:25:11 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ int main(int argc, char **argv)
 	// game loop needed here
 	
 	dump_gc();
+	mlx_mouse_hide(game.window.mlx, game.window.win);
 	cub_render(&game); // add the render and its done easy right
 	
 	_init_hooks(&game);

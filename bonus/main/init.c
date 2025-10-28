@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 03:23:43 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/22 20:21:07 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/10/28 00:12:33 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,12 @@ static void _init_keys(t_main *game)
 	// switch keys
 	game->key_list.e.key = false;
 	game->key_list.e.key_switch = false;
+	game->key_list.q.key = false;
+	game->key_list.q.key_switch = false;
+	game->key_list.spc.key = false;
+	game->key_list.spc.key_switch = false;
+	game->key_list.f3.key = false;
+	game->key_list.f3.key_switch = true;
 }
 
 void	__init__(t_main *game)
