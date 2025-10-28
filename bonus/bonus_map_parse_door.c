@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/19 04:21:07 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/24 03:41:42 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/10/28 03:55:44 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,25 +36,25 @@ static void	insert_inner_walls(t_door_wall *new)
 	if (new->axis == 0) // horizontal
 	{
 		new->inner_wall_1.s.x = new->map_pos.x;
-		new->inner_wall_1.s.y = new->map_pos.y + 0.35;
-		new->inner_wall_1.e.x = new->map_pos.x + 1;
-		new->inner_wall_1.e.y = new->map_pos.y + 0.35;
+		new->inner_wall_1.s.y = new->map_pos.y + (1.0 - DOOR_WIDTH) / 2.0;
+		new->inner_wall_1.e.x = new->map_pos.x + 1.0;
+		new->inner_wall_1.e.y = new->map_pos.y + (1.0 - DOOR_WIDTH) / 2.0;
 	
 		new->inner_wall_2.s.x = new->map_pos.x;
-		new->inner_wall_2.s.y = new->map_pos.y + 0.65;
+		new->inner_wall_2.s.y = new->map_pos.y + 0.5 + (DOOR_WIDTH / 2.0);
 		new->inner_wall_2.e.x = new->map_pos.x + 1.0;
-		new->inner_wall_2.e.y = new->map_pos.y + 0.65;
+		new->inner_wall_2.e.y = new->map_pos.y + 0.5 + (DOOR_WIDTH / 2.0);
 	}
 	else // door->axis == 1 // vertical
 	{
-		new->inner_wall_1.s.x = new->map_pos.x + 0.35;
+		new->inner_wall_1.s.x = new->map_pos.x + (1.0 - DOOR_WIDTH) / 2.0;
 		new->inner_wall_1.s.y = new->map_pos.y;
-		new->inner_wall_1.e.x = new->map_pos.x + 0.35;
+		new->inner_wall_1.e.x = new->map_pos.x + (1.0 - DOOR_WIDTH) / 2.0;
 		new->inner_wall_1.e.y = new->map_pos.y + 1.0;
 	
-		new->inner_wall_2.s.x = new->map_pos.x + 0.65;
+		new->inner_wall_2.s.x = new->map_pos.x + 0.5 + (DOOR_WIDTH / 2.0);
 		new->inner_wall_2.s.y = new->map_pos.y;
-		new->inner_wall_2.e.x = new->map_pos.x + 0.65;
+		new->inner_wall_2.e.x = new->map_pos.x + 0.5 + (DOOR_WIDTH / 2.0);
 		new->inner_wall_2.e.y = new->map_pos.y + 1.0;
 	}
 }
@@ -64,15 +64,15 @@ static void	insert_door(t_door_wall *new)
 	if (new->axis == 0) // horizontal
 	{
 		new->pos.s.x = new->map_pos.x + 0.5;
-		new->pos.s.y = new->map_pos.y + 0.35;
+		new->pos.s.y = new->map_pos.y + (1.0 - DOOR_WIDTH) / 2.0;
 		new->pos.e.x = new->pos.s.x;
-		new->pos.e.y = new->pos.s.y + 0.3;
+		new->pos.e.y = new->pos.s.y + DOOR_WIDTH;
 	}
 	else // vertical
 	{
-		new->pos.s.x = new->map_pos.x + 0.35;
+		new->pos.s.x = new->map_pos.x + (1.0 - DOOR_WIDTH) / 2.0;
 		new->pos.s.y = new->map_pos.y + 0.5;
-		new->pos.e.x = new->pos.s.x + 0.3;
+		new->pos.e.x = new->pos.s.x + DOOR_WIDTH;
 		new->pos.e.y = new->pos.s.y;
 	}
 
@@ -92,8 +92,6 @@ static void	new_door(int x, int y, int axis, t_door_wall *new)
 		
 	}
 	new->state = LOCKED;
-	new->angle = 0.0;
-	new->target_angle = 0.0;
 	insert_inner_walls(new);
 	insert_door(new);
 }

@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 22:32:13 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/25 23:05:14 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/10/27 23:56:40 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,5 @@ struct	s_fireball_ray // add this to cast_data
 	int			index;
 	t_vector	hit;
 	double		distance;
-	char		side; // indicates which texture 
+	char		side; // indicates which texture
 };

@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/19 03:26:34 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/24 03:55:54 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/10/28 03:51:34 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 
 # define DOOR_SPEED 1.0;
+# define DOOR_WIDTH 0.4
 
 typedef struct s_door_wall	t_door_wall;
 
@@ -32,8 +33,6 @@ enum e_door_states
 	OPEN = 11,
 	CLOSE, // also unlocked
 	LOCKED,
-	BURNING,
-	DESTROYED,
 	OPENING,
 	CLOSING
 };
@@ -45,10 +44,10 @@ struct s_door_wall
 	t_segment		inner_wall_1; // the wall inside the wall
 	t_segment		inner_wall_2;
 	int				axis; // 0 -> horizontal [d on map], 1 -> vertical [D on map]
-	double			angle; // this is not the dov of block its dov of the door vector (start to end)
-	double			target_angle;
 	t_segment		pos;
 };
+
+
 
 t_door_wall	*find_door(int x, int y, t_door_wall *new);
 

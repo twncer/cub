@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 17:46:07 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/25 23:07:37 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/10/28 04:00:01 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,10 @@
 #include <stdio.h>
 
 t_door_wall	*find_door(int x, int y, t_door_wall *new);
-// for now dont think about the door just render a wall that have hole 
-// render this -> 0.35(wall) 0.3(hole) 0.35(wall)
-// check its axis and calculate its hole?
-// if ray pass throug the hole return (0) -> this ray continues its journey
-// check the position on the wall that rays hits
-// need to find the ray hit point and its side
 
 static int	check_inner_wall_hit(t_cast_data *d, t_door_wall *door)
 {
-	if (check_intersection(d, door->inner_wall_1))
+	if (find_intersection(d, door->inner_wall_1))
 	{
 		if (door->axis == 1)
 			d->ray->side = 'W';
@@ -33,7 +27,7 @@ static int	check_inner_wall_hit(t_cast_data *d, t_door_wall *door)
 			d->ray->side = 'N';
 		return (1);
 	}
-	if (check_intersection(d, door->inner_wall_2))
+	if (find_intersection(d, door->inner_wall_2))
 	{
 		if (door->axis == 1) 
 			d->ray->side = 'E';
@@ -46,12 +40,12 @@ static int	check_inner_wall_hit(t_cast_data *d, t_door_wall *door)
 
 static int	check_door_hit(t_cast_data *d, t_door_wall *door)
 {
-	if (door->angle >= 89.0)
+	if (door->state == OPEN)
 		return (0);
 
-	if (check_intersection(d, door->pos))
+	if (find_intersection(d, door->pos))
 	{
-		// need a fucking door texture here
+		d->ray->side = 'N';
 		return (1);
 	}
 	return (0);
@@ -60,12 +54,14 @@ static int	check_door_hit(t_cast_data *d, t_door_wall *door)
 static int	insert_inner_wall_hit(t_cast_data *d, t_door_wall *door)
 {
     double  wall_hit_pos;
-
+	double	door_start;
+	
+	door_start = (1.0 - DOOR_WIDTH) / 2.0;
 	if (door->axis == 0)
 		wall_hit_pos = d->ray->hit.y - floor(d->ray->hit.y);
 	else
 		wall_hit_pos = d->ray->hit.x - floor(d->ray->hit.x);
-	if (wall_hit_pos > 0.35 && wall_hit_pos < 0.65)
+	if (wall_hit_pos > door_start && wall_hit_pos < door_start + DOOR_WIDTH)
 	{
 		if (check_door_hit(d, door))
 			return (1);

@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 19:10:17 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/24 07:25:14 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/10/27 23:50:36 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void	change_position(t_main *g, int key)
 	t_player	*player;
 
 	player = &g->map.player;
-	printf("oldpos::%f\n",player->pos.x);
 	if (key == XK_w)
 	{
 		player->pos.x += 0.05 * cos(player->dov) * MOVE_SPEED;
@@ -50,7 +49,6 @@ void	change_position(t_main *g, int key)
 		player->pos.x += 0.05 * cos(player->dov - (M_PI / 2)) * MOVE_SPEED;
 		player->pos.y += 0.05 * sin(player->dov - (M_PI / 2)) * MOVE_SPEED;
 	}
-	printf("newpos::%f\n",player->pos.x);
 	cub_render(g, raycasting);
 }
 

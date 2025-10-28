@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 18:02:04 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/25 23:22:20 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/10/28 02:10:18 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,11 @@
 # include "player.h"
 # include "map.h"
 
-typedef struct s_cast_data	t_cast_data;
 typedef struct s_ray		t_ray;
 typedef struct s_main		t_main;
 typedef struct s_window		t_window;
+
+typedef struct s_cast_data	t_cast_data;
 typedef struct s_render_data		t_render_data;
 typedef struct s_intersection_data	t_intersection_data;
 
@@ -72,6 +73,6 @@ void	render_scene(t_main *g);
 int		insert_door_hit(t_cast_data *d, int player_location);
 void	insert_vertical_hit(t_cast_data *d);
 void	insert_horizontal_hit(t_cast_data *d);
-int 	check_intersection(t_cast_data *d, t_segment inner_wall);
+int 	find_intersection(t_cast_data *d, t_segment inner_wall);
 
 #endif
