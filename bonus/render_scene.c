@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/12 10:25:35 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/28 00:21:36 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/10/29 10:57:39 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ static void	init_render_data(t_render_data *d, t_main *g, t_ray *ray)
 	if (d->wall_start < 0)
 		d->wall_start = 0;
 	d->wall_end = (d->wall_height / 2) + (WIN_HEIGHT / 2);
-	if (d->wall_end < 0)
-		d->wall_end = 0;
+	if (d->wall_end >= WIN_HEIGHT)
+		d->wall_end = WIN_HEIGHT - 1;
 	if (ray->side == 'N' || ray->side == 'S')
 		d->wall_hit = ray->hit.x;
 	else // ray->side == 'E' || ray->side == 'W'

@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/19 04:21:07 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/28 03:55:44 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/10/29 00:20:00 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static void	insert_inner_walls(t_door_wall *new)
 		new->inner_wall_2.e.y = new->map_pos.y + 1.0;
 	}
 }
-
+/*
 static void	insert_door(t_door_wall *new)
 {
 	if (new->axis == 0) // horizontal
@@ -77,7 +77,7 @@ static void	insert_door(t_door_wall *new)
 	}
 
 }
-
+*/
 static void	new_door(int x, int y, int axis, t_door_wall *new)
 {
 	new->map_pos.x = x;
@@ -91,19 +91,17 @@ static void	new_door(int x, int y, int axis, t_door_wall *new)
 		new->axis = 1;
 		
 	}
-	new->state = LOCKED;
 	insert_inner_walls(new);
-	insert_door(new);
 }
 
-static t_door_wall *create_doors(char *raw_map, int count)
+static t_door_wall *create_door_walls(char *raw_map, int count)
 {
-	t_door_wall	*doors;
+	t_door_wall	*door_walls;
 	int		x;
 	int		y;
 	int		i;
 	
-	doors = malloc(sizeof(t_door_wall) * count); // gc add here
+	door_walls = malloc(sizeof(t_door_wall) * count); // gc add here
 	x = 0;
 	y = 0;
 	i = 0;
@@ -116,23 +114,23 @@ static t_door_wall *create_doors(char *raw_map, int count)
 		}
 		else if (*raw_map == 'd' || *raw_map == 'D')
 		{
-			new_door(x, y, *raw_map, &(doors[i++]));
+			new_door(x, y, *raw_map, &(door_walls[i++]));
 			x++;
 		}
 		else
 			x++;
 		raw_map++;
 	}
-	return (doors);
+	return (door_walls);
 }
 
 void	parse_doors(char *raw_map)
 {
-	t_door_wall	*doors;
+	t_door_wall	*door_walls;
 
 	int count = count_doors(raw_map);
 	if (count == 0)
 		return ;
-	doors = create_doors(raw_map, count);
-	find_door(-1, count, doors);
+	door_walls = create_door_walls(raw_map, count);
+	find_door_wall(-1, count, door_walls);
 }

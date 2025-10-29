@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/19 03:26:18 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/28 02:26:44 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/10/29 00:28:45 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <math.h>
 
 #include <stdio.h>
-t_door_wall	*find_door(int x, int y, t_door_wall *new)
+t_door_wall	*find_door_wall(int x, int y, t_door_wall *new)
 {
 	static t_door_wall *doors = NULL;
 	static int count = 0;
@@ -28,6 +28,12 @@ t_door_wall	*find_door(int x, int y, t_door_wall *new)
 		doors = new;
 		return (NULL);
 	}
+	if (x == -1)
+	{
+		if (y < count)
+			return (&(doors[y]));
+		return (NULL);
+	}
 	i = -1;
 	while (++i < count)
 	{
@@ -36,8 +42,3 @@ t_door_wall	*find_door(int x, int y, t_door_wall *new)
 	}
 	return (NULL);
 }
-
-
-
-// interact_door
-

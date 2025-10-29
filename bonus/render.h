@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 18:02:04 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/28 02:10:18 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/10/29 06:55:20 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,14 +58,14 @@ struct s_ray
 	char		side;
 };
 
-typedef void	(*t_raycasting_func)(t_main *g);
+typedef void	(*t_raycasting_func)(t_main *g, t_cast_data *d);
 
 void	cub_render(t_main *g, t_raycasting_func raycasting);
 void	put_pixel(int x, int y, int color, t_window *win);
 void	render_background(t_main *g);
-void	raycasting(t_main *g);
-void	raycasting_right_rotation(t_main *g);
-void	raycasting_left_rotation(t_main *g);
+void	raycasting(t_main *g, t_cast_data *d);
+void	raycasting_right_rotation(t_main *g, t_cast_data *d);
+void	raycasting_left_rotation(t_main *g, t_cast_data *d);
 void	raycast_single(t_cast_data *d, char **matrix);
 int 	check_off_map(t_main *g);
 void	render_black_screen(t_window *win);
@@ -74,5 +74,6 @@ int		insert_door_hit(t_cast_data *d, int player_location);
 void	insert_vertical_hit(t_cast_data *d);
 void	insert_horizontal_hit(t_cast_data *d);
 int 	find_intersection(t_cast_data *d, t_segment inner_wall);
+void	render_objects(t_main *g, t_cast_data *scene_data);
 
 #endif

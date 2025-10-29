@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 22:32:13 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/27 23:56:40 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/10/29 02:06:26 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,15 @@ rendering
 
 #include "vector.h"
 
+# define NUM_OF_FIREBALLS 5
+
+typedef struct s_fireball	t_fireball;
+// while rendering the fireball
+// calculate fireball segment **
+// calculate fireball tail segment **
+// find the intersection and print
 struct	s_fireball
 {
 	t_vector	position;
-};
-
-struct	s_fireball_ray // add this to cast_data
-{
-	int			index;
-	t_vector	hit;
-	double		distance;
-	char		side; // indicates which texture
+	double		direction;
 };

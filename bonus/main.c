@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 03:23:43 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/24 01:58:43 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/10/28 19:20:44 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int main(int argc, char **argv)
 	_init(&game);
 	// read, validate, parse .cub file
 	cub_map(argv[1], &game); // game  goes here because i need to use mlx connection to convert textures
+	cub_objects(&game); // creates objects
 	cub_create_window(&game); // game goes here for memory management stuff 
 	// (if you add gc with destructor it can be change to &(game.win))
 	// game loop needed here

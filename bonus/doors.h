@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/19 03:26:34 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/28 03:51:34 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/10/29 00:42:35 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,12 @@
 # include "vector.h"
 
 
-# define DOOR_SPEED 1.0;
+# define DOOR_SPEED 1.0
 # define DOOR_WIDTH 0.4
+# define DOOR_THICKNESS 0.2
 
 typedef struct s_door_wall	t_door_wall;
+typedef struct s_door		t_door;
 
 // if door hit a player while closing it opens ig
 // while opening or closing the door make you are casting a spell
@@ -39,17 +41,20 @@ enum e_door_states
 
 struct s_door_wall
 {
-	int				state;
 	t_vector_int	map_pos;
 	t_segment		inner_wall_1; // the wall inside the wall
 	t_segment		inner_wall_2;
 	int				axis; // 0 -> horizontal [d on map], 1 -> vertical [D on map]
-	t_segment		pos;
 };
 
+struct s_door
+{
+	int			state;
+	t_segment	barrier_1;
+	t_segment	barrier_2;
+};
 
-
-t_door_wall	*find_door(int x, int y, t_door_wall *new);
+t_door_wall	*find_door_wall(int x, int y, t_door_wall *new);
 
 /*
 door on map
