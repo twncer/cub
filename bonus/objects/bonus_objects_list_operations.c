@@ -6,11 +6,11 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 19:26:36 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/02 06:07:49 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/02 09:36:19 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
+#include "../main/main.h"
 #include <stddef.h>
 
 void	add_object(t_obj_list *list, int type, void *obj)

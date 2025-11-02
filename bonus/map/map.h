@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 03:32:21 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/19 10:34:26 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/02 09:14:18 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,7 @@ int		create_matrix(char *raw_map, t_main *game);  // Added: missing function dec
 // Note: create_matrix function is called but not defined - needs implementation
 void	map_cleanup_exit(char *errmsg, t_main *game);
 void	map_cleanup(t_main *game);
+
+void	parse_doors(char *raw_map);
 
 #endif

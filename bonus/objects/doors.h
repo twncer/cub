@@ -6,14 +6,14 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/19 03:26:34 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/02 08:15:10 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/02 09:30:22 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DOORS_H
 # define DOORS_H
 
-# include "vector.h"
+# include "../main/vector.h"
 
 
 # define DOOR_WIDTH 0.4

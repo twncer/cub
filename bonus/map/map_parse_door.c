@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bonus_map_parse_door.c                             :+:      :+:    :+:   */
+/*   map_parse_door.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/19 04:21:07 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/02 06:51:56 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/02 09:11:46 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #define _GNU_SOURCE // delete it later its just for me .p
 // doors must parse before matrix!!
-#include "main.h"
+#include "../main/main.h"
 #include <stdlib.h>
 #include <math.h>
 // classic function count create parse!

@@ -6,11 +6,11 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 23:07:05 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/29 10:15:45 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/02 09:23:44 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
+#include "../main/main.h"
 #include <math.h>
 
 int find_intersection(t_cast_data *d, t_segment inner_wall)

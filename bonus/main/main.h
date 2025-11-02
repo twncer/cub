@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 06:39:23 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/31 06:05:56 by root             ###   ########.fr       */
+/*   Updated: 2025/11/02 09:08:23 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@
 # include "../render/render.h"
 # include "../render/render_ray_list.h"
 # include "../cub3_images/cub3_images.h"
+# include "../objects/doors.h"
+# include "../objects/bonus_objects.h"
+# include "../objects/bonus_fireball.h"
 
 # include <stdbool.h>
 
@@ -51,6 +54,7 @@ struct s_main
 	t_map		map;
 	t_window	window;
 	t_ray_list	rays;
+	t_obj_list	objects;
 	t_key_list	key_list;
 	t_cub3_image img;
 };

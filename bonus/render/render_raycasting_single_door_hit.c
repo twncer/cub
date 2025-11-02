@@ -6,11 +6,11 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 17:46:07 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/02 06:54:33 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/02 09:23:35 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
+#include "../main/main.h"
 #include <math.h>
 
 #include <stdio.h>

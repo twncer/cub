@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_raycasting.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 00:20:16 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/19 10:30:52 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/02 09:24:33 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ static t_ray_node	*init_cast_data(t_cast_data *d, t_main *g)
 
 void	raycasting(t_main *g)
 {
+	t_cast_data	d;
 	t_ray_node	*curr;
 	int			i;
-	t_cast_data	d;
 
 	curr = init_cast_data(&d, g);
 	while (curr)
@@ -51,9 +51,9 @@ void	raycasting(t_main *g)
 // cast on right(tail) pack
 void	raycasting_right_rotation(t_main *g)
 {
+	t_cast_data	d;
 	t_ray_node	*curr;
 	int			i;
-	t_cast_data	d;
 
 	curr = init_cast_data(&d, g);
 	while (curr)
@@ -80,9 +80,9 @@ void	raycasting_right_rotation(t_main *g)
 
 void	raycasting_left_rotation(t_main *g)
 {
+	t_cast_data	d;
 	t_ray_node	*curr;
 	int			i;
-	t_cast_data	d;
 
 	curr = init_cast_data(&d, g);
 	while (curr)

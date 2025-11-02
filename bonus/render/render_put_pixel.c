@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_put_pixel.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 03:54:18 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/28 01:42:09 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/02 09:21:23 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

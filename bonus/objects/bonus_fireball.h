@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 22:32:13 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/29 02:06:26 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/02 09:31:04 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ rendering
 	put the fireball texture after wall
 */
 
-#include "vector.h"
+#include "../main/vector.h"
 
 # define NUM_OF_FIREBALLS 5
 

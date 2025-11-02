@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_create_matrix.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 08:07:31 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/19 10:35:34 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/02 09:10:40 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@
 #include "../main/main.h"
 #include <math.h>
 
-#include "../gc/gc.h"
 int	is_valid_map_char(char c)
 {
 	return (c == '0' || c == '1' || is_space(c)
-		|| c == 'N' || c == 'S' || c == 'E' || c == 'W');
+		|| c == 'N' || c == 'S' || c == 'E' || c == 'W'
+		|| c == 'd' || c == 'D');
 }
 
 static int get_map_height(char *raw_map, t_main *g)
@@ -49,6 +49,8 @@ static int	char_to_int(char c)
 		return (48);
 	else if (c == '1')
 		return (49);
+	else if (c == 'd' || c == 'D')
+		return (68);
 	else if (is_space(c)) // placeholders in map line to correctly visialize map
 		return (50);
 	return (83);
@@ -66,7 +68,6 @@ void	parse_player_view(t_main *g, char direction)
 		g->map.player.dov = 3 * M_PI / 2; // 270d
 }
 
-// put 2 for spaces as placeholder. continue on rawmap including nl ((*rawmap)++) 
 static char	*create_map_line(char **raw_map, t_main *g)
 {
 	char	*matrix_line;
@@ -76,7 +77,7 @@ static char	*create_map_line(char **raw_map, t_main *g)
 	line_len = 0;
 	while ((*raw_map)[line_len] && (*raw_map)[line_len] != '\n')
 		line_len++;
-	matrix_line = alloc_crit(sizeof(char) * (line_len + 1));
+	matrix_line = malloc(sizeof(char) * (line_len + 1));
 	if (!matrix_line)
 		return (NULL);
 	i = -1;
@@ -105,7 +106,7 @@ int	create_matrix(char *raw_map, t_main *g)
 	int	i;
 
 	matrix_height = get_map_height(raw_map, g);
-	g->map.matrix = alloc_crit(sizeof(char *) * (matrix_height + 1));
+	g->map.matrix = malloc(sizeof(char *) * (matrix_height + 1));
 	if (!g->map.matrix)
 		map_cleanup_exit("Error: Memory allocation failed", g);
 	g->map.matrix[matrix_height] = NULL;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 18:02:04 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/22 18:09:12 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/02 09:27:23 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,11 @@
 # include "../player/player.h"
 # include "../map/map.h"
 
-typedef struct s_cast_data	t_cast_data;
 typedef struct s_ray		t_ray;
 typedef struct s_main		t_main;
 typedef struct s_window		t_window;
+
+typedef struct s_cast_data	t_cast_data;
 typedef struct s_render_data	t_render_data;
 
 struct s_cast_data
@@ -68,4 +69,11 @@ void	raycast_single(t_cast_data *d, char **matrix);
 int 	check_off_map(t_main *g);
 void	render_black_screen(t_window *win);
 void	render_scene(t_main *g);
+
+int		insert_doorwall_hit(t_cast_data *d, int player_location);
+void	insert_vertical_hit(t_cast_data *d);
+void	insert_horizontal_hit(t_cast_data *d);
+int 	find_intersection(t_cast_data *d, t_segment inner_wall);
+void	render_objects(t_main *g);
+
 #endif

@@ -6,13 +6,13 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 03:02:09 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/02 06:07:49 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/02 09:34:28 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #define _GNU_SOURCE // delete it later its just for me .p
 
-#include "main.h"
+#include "../main/main.h"
 #include <math.h>
 
 static int	do_angular_ranges_overlap(double start1, double end1,

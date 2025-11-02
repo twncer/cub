@@ -6,12 +6,14 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 02:13:10 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/02 08:15:30 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/02 09:31:31 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef OBJECTS
 # define OBJECTS
+
+# include "../main/main.h"
 
 typedef struct s_object_node	t_obj_node;
 typedef struct s_object_list	t_obj_list;

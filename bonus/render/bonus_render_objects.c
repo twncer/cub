@@ -6,14 +6,13 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 02:12:55 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/02 08:22:10 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/02 09:34:33 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #define _GNU_SOURCE // delete it later its just for me .p
 
-#include "main.h"
-#include "doors.h"
+#include "../main/main.h"
 #include <math.h>
 #include <stdio.h>
 

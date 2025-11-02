@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parse_texture.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 07:52:38 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/30 02:06:27 by root             ###   ########.fr       */
+/*   Updated: 2025/11/02 09:12:43 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,6 @@ static void set_texture(int id, char *path, t_main *g)
 	if (!target_texture->img)
 	{
 		printf("Error: Failed to load texture image from path: %s\n", path);
-		// free(path); HERE1
 		exit(1);
 	}
 	target_texture->addr = mlx_get_data_addr(target_texture->img,
@@ -114,10 +113,8 @@ static void set_texture(int id, char *path, t_main *g)
 	if (!target_texture->addr)
 	{
 		printf("Error: Failed to get texture data address\n");
-		// free(path); HERE1
 		exit(1);
 	}
-	// free(path); HERE1
 	printf("Successfully loaded texture: %dx%d pixels\n", 
 		target_texture->width, target_texture->height);
 }

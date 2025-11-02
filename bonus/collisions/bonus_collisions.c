@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 05:47:05 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/02 08:20:04 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/02 09:32:34 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,7 @@
 // according to this hit point normalize the walk vector
 // if there is no hitting to anywhere just walk
 
-#include "main.h"
-#include "doors.h"
-#include "bonus_objects.h"
+#include "../main/main.h"
 #include <math.h>
 #include <stdio.h>
 
