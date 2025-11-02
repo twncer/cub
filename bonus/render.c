@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 17:41:45 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/29 06:54:53 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/02 08:25:59 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 
 void	cub_render(t_main *g, t_raycasting_func raycast)
 {
-	t_cast_data		cast_data;
 	// check if player is in map
 	// if not render black screen xd
 	//get background colors and put it on addr ptr // render_background
@@ -25,9 +24,9 @@ void	cub_render(t_main *g, t_raycasting_func raycast)
 	else
 	{
 		render_background(g);
-		raycast(g, &cast_data);
+		raycast(g);
 		render_scene(g);
-		render_objects(g, &cast_data);
+		render_objects(g);
 	}
 	// put all this shit on screen yay
 	mlx_put_image_to_window(g->window.mlx, g->window.win, g->window.img, 0, 0);

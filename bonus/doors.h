@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/19 03:26:34 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/02 06:19:03 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/02 08:15:10 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 
 
 # define DOOR_WIDTH 0.4
+# define DOOR_BLEND_ALPHA 0.4
+# define DOOR_FIELD_COLOR 0xFF4990
 
 typedef struct s_door_wall	t_door_wall;
 typedef struct s_door		t_door;

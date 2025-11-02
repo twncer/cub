@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 05:47:05 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/31 12:59:19 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/02 08:20:04 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,40 +23,44 @@
 
 #include "main.h"
 #include "doors.h"
+#include "bonus_objects.h"
 #include <math.h>
 #include <stdio.h>
 
-static void	find_collision_direction(t_cast_data *d, t_vector pos)
+static void	init_axis_direction(double ray_dir, double pos, double map_pos,
+				double delta, int *step, double *side_dist)
 {
-	if (d->ray_d.x < 0)
+	if (ray_dir < 0)
 	{
-		d->step.x = -1;
-		d->side_dist.x = (pos.x - d->map_pos.x) * d->delta_dist.x;
+		*step = -1;
+		*side_dist = (pos - map_pos) * delta;
 	}
-	else if (d->ray_d.x > 0)
+	else if (ray_dir > 0)
 	{
-		d->step.x = 1;
-		d->side_dist.x = (d->map_pos.x + 1.0 - pos.x) * d->delta_dist.x;
-	}
-	else
-	{
-		d->step.x = 0;
-		d->side_dist.x = 1e30;
-	}
-	if (d->ray_d.y < 0)
-	{
-		d->step.y = -1;
-		d->side_dist.y = (pos.y - d->map_pos.y) * d->delta_dist.y;
-	}
-	else if (d->ray_d.y > 0)
-	{
-		d->step.y = 1;
-		d->side_dist.y = (d->map_pos.y + 1.0 - pos.y) * d->delta_dist.y;
+		*step = 1;
+		*side_dist = (map_pos + 1.0 - pos) * delta;
 	}
 	else
 	{
-		d->step.y = 0;
-		d->side_dist.y = 1e30;
+		*step = 0;
+		*side_dist = INFINITY_DISTANCE;
+	}
+}
+
+static void	init_ray_axis(double delta, double *ray_dir, double *delta_dist)
+{
+	if (fabs(delta) < 0.0001)
+	{
+		*ray_dir = 0;
+		*delta_dist = INFINITY_DISTANCE;
+	}
+	else
+	{
+		if (delta > 0)
+			*ray_dir = 1.0;
+		else
+			*ray_dir = -1.0;
+		*delta_dist = fabs(1.0 / *ray_dir);
 	}
 }
 
@@ -65,27 +69,12 @@ static void	init_cast_data(t_cast_data *d, t_main *g, double dx, double dy)
 	d->player = &g->map.player;
 	d->map_pos.x = (int)d->player->pos.x;
 	d->map_pos.y = (int)d->player->pos.y;
-	if (fabs(dx) < 0.0001)
-	{
-		d->ray_d.x = 0;
-		d->delta_dist.x = 1e30;
-	}
-	else
-	{
-		d->ray_d.x = (dx > 0) ? 1.0 : -1.0;
-		d->delta_dist.x = fabs(1.0 / d->ray_d.x);
-	}
-	if (fabs(dy) < 0.0001)
-	{
-		d->ray_d.y = 0;
-		d->delta_dist.y = 1e30;
-	}
-	else
-	{
-		d->ray_d.y = (dy > 0) ? 1.0 : -1.0;
-		d->delta_dist.y = fabs(1.0 / d->ray_d.y);
-	}
-	find_collision_direction(d, d->player->pos);
+	init_ray_axis(dx, &d->ray_d.x, &d->delta_dist.x);
+	init_ray_axis(dy, &d->ray_d.y, &d->delta_dist.y);
+	init_axis_direction(d->ray_d.x, d->player->pos.x, d->map_pos.x,
+		d->delta_dist.x, &d->step.x, &d->side_dist.x);
+	init_axis_direction(d->ray_d.y, d->player->pos.y, d->map_pos.y,
+		d->delta_dist.y, &d->step.y, &d->side_dist.y);
 }
 
 static double	calculate_wall_distance(t_cast_data *d, t_vector pos, int side)
@@ -93,18 +82,14 @@ static double	calculate_wall_distance(t_cast_data *d, t_vector pos, int side)
 	double	distance;
 
 	if (side == 0)
-	{
 		distance = (d->map_pos.x - pos.x + ((1 - d->step.x) / 2.0)) / d->ray_d.x;
-	}
 	else
-	{
 		distance = (d->map_pos.y - pos.y + ((1 - d->step.y) / 2.0)) / d->ray_d.y;
-	}
 	return (fabs(distance));
 }
 
 
-static double	check_inner_wall_collision(t_cast_data *d, t_segment wall)
+static double	find_collision_distance(t_cast_data *d, t_segment wall)
 {
 	t_vector	wall_d;
 	t_vector	ray_d;
@@ -126,64 +111,76 @@ static double	check_inner_wall_collision(t_cast_data *d, t_segment wall)
 	return (1000.0);
 }
 
-static int	check_door_passage(t_cast_data *d, t_vector pos, t_door_wall *door, int side)
+static double	calculate_hit_position(t_cast_data *d, t_vector pos, int side)
 {
 	t_vector	hit;
-	double		wall_hit_pos;
-	double		door_start;
-	double		inner_dist;
 
-	if (side != door->axis)
-		return (1);
 	if (side == 0)
 	{
 		hit.x = d->map_pos.x + ((1 - d->step.x) / 2.0);
 		hit.y = pos.y + ((hit.x - pos.x) / d->ray_d.x) * d->ray_d.y;
-		wall_hit_pos = hit.y - floor(hit.y);
+		return (hit.y - floor(hit.y));
 	}
 	else
 	{
 		hit.y = d->map_pos.y + ((1 - d->step.y) / 2.0);
 		hit.x = pos.x + ((hit.y - pos.y) / d->ray_d.y) * d->ray_d.x;
-		wall_hit_pos = hit.x - floor(hit.x);
+		return (hit.x - floor(hit.x));
 	}
+}
+
+static int	check_doorwall_passage(t_cast_data *d, t_vector pos, t_door_wall *dw, int side)
+{
+	double	wall_hit_pos;
+	double	door_start;
+	double	door_end;
+
+	if (side != dw->axis)
+		return (1);
+	wall_hit_pos = calculate_hit_position(d, pos, side);
 	door_start = (1.0 - DOOR_WIDTH + PLAYER_RADIUS) / 2.0;
-	if (wall_hit_pos > door_start && wall_hit_pos < door_start + DOOR_WIDTH - PLAYER_RADIUS)
+	door_end = door_start + DOOR_WIDTH - PLAYER_RADIUS;
+	if (wall_hit_pos > door_start && wall_hit_pos < door_end)
 		return (1);
 	return (0);
 }
 
-static double	collision_loop(t_cast_data *d, t_vector pos, char **map, double max_dist)
+static void	step_ray(t_cast_data *d, int *side, double *dist)
+{
+	if (d->side_dist.x < d->side_dist.y)
+	{
+		d->side_dist.x += d->delta_dist.x;
+		d->map_pos.x += d->step.x;
+		*side = 0;
+		*dist = d->side_dist.x;
+	}
+	else
+	{
+		d->side_dist.y += d->delta_dist.y;
+		d->map_pos.y += d->step.y;
+		*side = 1;
+		*dist = d->side_dist.y;
+	}
+}
+
+static double	check_wall_collision(t_cast_data *d, t_vector pos, char **map, double max_dist)
 {
 	int			side;
-	double		current_dist;
-	t_door_wall	*door;
+	double		dist;
+	t_door_wall	*dw;
 
-	while (42)
+	while (1)
 	{
-		if (d->side_dist.x < d->side_dist.y)
-		{
-			d->side_dist.x += d->delta_dist.x;
-			d->map_pos.x += d->step.x;
-			side = 0;
-			current_dist = d->side_dist.x;
-		}
-		else
-		{
-			d->side_dist.y += d->delta_dist.y;
-			d->map_pos.y += d->step.y;
-			side = 1;
-			current_dist = d->side_dist.y;
-		}
-		if (current_dist > max_dist)
+		step_ray(d, &side, &dist);
+		if (dist > max_dist)
 			break ;
 		if (d->map_pos.y < 0 || !map[d->map_pos.y] ||
 			d->map_pos.x < 0 || !map[d->map_pos.y][d->map_pos.x])
 			break ;
 		if (map[d->map_pos.y][d->map_pos.x] == 'D')
 		{
-			door = find_door_wall(d->map_pos.x, d->map_pos.y, NULL);
-			if (door && !check_door_passage(d, pos, door, side))
+			dw = find_door_wall(d->map_pos.x, d->map_pos.y, NULL);
+			if (dw && !check_doorwall_passage(d, pos, dw, side))
 				return (calculate_wall_distance(d, pos, side));
 		}
 		if (map[d->map_pos.y][d->map_pos.x] == '1')
@@ -192,103 +189,128 @@ static double	collision_loop(t_cast_data *d, t_vector pos, char **map, double ma
 	return (1000.0);
 }
 
-
-
-static double	check_door_inner_walls(t_cast_data *d, t_door_wall *door)
+static t_segment	extend_segment(t_segment seg, double extension)
 {
-	t_segment	extended_wall1;
-	t_segment	extended_wall2;
 	t_vector	dir;
 	double		len;
-	double		wall1_dist;
-	double		wall2_dist;
+	t_segment	result;
 
-	dir.x = door->inner_wall_1.e.x - door->inner_wall_1.s.x;
-	dir.y = door->inner_wall_1.e.y - door->inner_wall_1.s.y;
+	dir.x = seg.e.x - seg.s.x;
+	dir.y = seg.e.y - seg.s.y;
 	len = sqrt(dir.x * dir.x + dir.y * dir.y);
 	dir.x /= len;
 	dir.y /= len;
-	extended_wall1.s.x = door->inner_wall_1.s.x - dir.x * (PLAYER_RADIUS / 2);
-	extended_wall1.s.y = door->inner_wall_1.s.y - dir.y * (PLAYER_RADIUS / 2);
-	extended_wall1.e.x = door->inner_wall_1.e.x + dir.x * (PLAYER_RADIUS / 2);
-	extended_wall1.e.y = door->inner_wall_1.e.y + dir.y * (PLAYER_RADIUS / 2);
-	dir.x = door->inner_wall_2.e.x - door->inner_wall_2.s.x;
-	dir.y = door->inner_wall_2.e.y - door->inner_wall_2.s.y;
-	len = sqrt(dir.x * dir.x + dir.y * dir.y);
-	dir.x /= len;
-	dir.y /= len;
-	extended_wall2.s.x = door->inner_wall_2.s.x - dir.x * (PLAYER_RADIUS / 2);
-	extended_wall2.s.y = door->inner_wall_2.s.y - dir.y * (PLAYER_RADIUS / 2);
-	extended_wall2.e.x = door->inner_wall_2.e.x + dir.x * (PLAYER_RADIUS / 2);
-	extended_wall2.e.y = door->inner_wall_2.e.y + dir.y * (PLAYER_RADIUS / 2);
-	wall1_dist = check_inner_wall_collision(d, extended_wall1);
-	wall2_dist = check_inner_wall_collision(d, extended_wall2);
-	if (wall1_dist < wall2_dist)
-		return (wall1_dist);
-	return (wall2_dist);
+	result.s.x = seg.s.x - dir.x * extension;
+	result.s.y = seg.s.y - dir.y * extension;
+	result.e.x = seg.e.x + dir.x * extension;
+	result.e.y = seg.e.y + dir.y * extension;
+	return (result);
 }
 
-static double	check_current_door(t_cast_data *d, char **map)
+static double	check_doorwall_inner_walls(t_cast_data *d, t_door_wall *dw)
 {
-	t_door_wall	*door;
+	t_segment	wall;
+	double		dist1;
+	double		dist2;
+
+	wall = extend_segment(dw->inner_wall_1, PLAYER_RADIUS / 2);
+	dist1 = find_collision_distance(d, wall);
+	wall = extend_segment(dw->inner_wall_2, PLAYER_RADIUS / 2);
+	dist2 = find_collision_distance(d, wall);
+	if (dist1 < dist2)
+		return (dist1);
+	return (dist2);
+}
+
+static double	check_doorwall_collision(t_cast_data *d, char **map)
+{
+	t_door_wall	*dw;
 	double		min_dist;
 	double		dist;
-	int			px;
-	int			py;
-	int			dx;
-	int			dy;
+	int			x;
+	int			y;
 
-	px = (int)d->player->pos.x;
-	py = (int)d->player->pos.y;
 	min_dist = 1000.0;
-	dy = -1;
-	while (dy <= 1)
+	y = (int)d->player->pos.y - 1 - 1;
+	while (++y <= (int)d->player->pos.y + 1)
 	{
-		dx = -1;
-		while (dx <= 1)
+		x = (int)d->player->pos.x - 1 - 1;
+		while (++x <= (int)d->player->pos.x + 1)
 		{
-			if (py + dy >= 0 && map[py + dy] && px + dx >= 0 && 
-				map[py + dy][px + dx] == 'D')
+			if (y >= 0 && map[y] && x >= 0 && map[y][x] == 'D')
 			{
-				door = find_door_wall(px + dx, py + dy, NULL);
-				if (door)
-				{
-					dist = check_door_inner_walls(d, door);
-					if (dist < min_dist)
-						min_dist = dist;
-				}
+				dw = find_door_wall(x, y, NULL);
+				if (!dw)
+					continue ;
+				dist = check_doorwall_inner_walls(d, dw);
+				if (dist < min_dist)
+					min_dist = dist;
 			}
-			dx++;
 		}
-		dy++;
 	}
 	return (min_dist);
 }
 
-static double	check_single_axis(t_cast_data *d, t_main *g, double movement)
+static double	check_object_collision(t_cast_data *d, t_main *g)
+{
+	t_obj_node	*curr;
+	t_door		*door;
+	double		min_dist;
+	double		dist;
+
+	curr = g->objects.all;
+	min_dist = 1000.0;
+	while (curr)
+	{
+		if (curr->type == DOOR)
+		{
+			door = (t_door *)curr->object;
+			if (door->state != OPEN)
+			{
+				dist = find_collision_distance(d, door->barrier);
+				if (dist < min_dist)
+					min_dist = dist;
+			}
+		}
+		curr = curr->next;
+	}
+	return (min_dist);
+}
+
+static double	get_min_collision_distance(t_cast_data *d, t_main *g, double max_check)
 {
 	double	wall_distance;
-	double	door_distance;
-	double	perp_distance;
-	double	min_distance;
-	double	max_movement;
-	double	movement_sign;
-	double	max_check_distance;
+	double	doorwall_distance;
+	double	object_distance;
 
-	if (fabs(movement) < 0.0001)
+	wall_distance = check_wall_collision(d, g->map.player.pos, g->map.matrix, max_check);
+	doorwall_distance = check_doorwall_collision(d, g->map.matrix);
+	object_distance = check_object_collision(d, g);
+	if (doorwall_distance < wall_distance)
+		wall_distance = doorwall_distance;
+	if (object_distance < wall_distance)
+		wall_distance = object_distance;
+	return (wall_distance);
+}
+
+static double	check_single_axis(t_cast_data *d, t_main *g, double movement)
+{
+	double	abs_movement;
+	double	min_dist;
+	double	max_move;
+	double	sign;
+
+	abs_movement = fabs(movement);
+	if (abs_movement < 0.0001)
 		return (0);
-	max_check_distance = fabs(movement) + PLAYER_RADIUS + 1.5;
-	wall_distance = collision_loop(d, g->map.player.pos, g->map.matrix, max_check_distance);
-	door_distance = check_current_door(d, g->map.matrix);
-	min_distance = (wall_distance < door_distance) ? wall_distance : door_distance;
-	max_movement = min_distance - PLAYER_RADIUS;
-	if (max_movement <= 0)
+	min_dist = get_min_collision_distance(d, g, abs_movement + PLAYER_RADIUS + 1.5);
+	max_move = min_dist - PLAYER_RADIUS;
+	if (max_move <= 0)
 		return (0);
-	movement_sign = (movement > 0) ? 1.0 : -1.0;
-	if (fabs(movement) <= max_movement)
+	sign = (movement > 0) ? 1.0 : -1.0;
+	if (abs_movement <= max_move)
 		return (movement);
-	else
-		return (max_movement * movement_sign);
+	return (max_move * sign);
 }
 
 t_vector	check_collision(t_main *g, t_vector movement)

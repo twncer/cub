@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 03:50:45 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/25 20:53:30 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/02 06:54:33 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ static void	raycast_loop(t_cast_data *d, char **matrix)
 			d->map_pos.x < 0 || !matrix[d->map_pos.y][d->map_pos.x])
 			break ;
 		if (matrix[d->map_pos.y][d->map_pos.x] == 'D')
-			if (insert_door_hit(d, 0))
+			if (insert_doorwall_hit(d, 0))
 				return ;
 		if (matrix[d->map_pos.y][d->map_pos.x] == '1')
 			break ;
@@ -113,7 +113,7 @@ void	raycast_single(t_cast_data *d, char **matrix)
 	raycast_loop(d, matrix);
 	// adding door if in door block
 	if (matrix[(int)d->player->pos.y][(int)d->player->pos.x] == 'D')
-		if (insert_door_hit(d, 1))
+		if (insert_doorwall_hit(d, 1))
 			return ;
 	if (d->ray->side > 2)
 		return ;

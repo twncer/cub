@@ -6,13 +6,14 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 02:12:55 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/02 06:30:02 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/02 08:22:10 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #define _GNU_SOURCE // delete it later its just for me .p
 
 #include "main.h"
+#include "doors.h"
 #include <math.h>
 #include <stdio.h>
 
@@ -88,8 +89,8 @@ static void draw_door_column(t_main *g, int x, t_ray *ray)
 	if (end >= WIN_HEIGHT)
 		end = WIN_HEIGHT - 1;
 	y = start - 1;
-	field_color = 0xFF4990;
-	alpha = 0.4;
+	field_color = DOOR_FIELD_COLOR;
+	alpha = DOOR_BLEND_ALPHA;
 	while (++y <= end)
 	{
 		bg_color = get_pixel_color(&g->window, x, y);
@@ -136,22 +137,18 @@ static void	render_door(t_main *g, t_door *door)
 	}
 }
 
-void	render_objects(t_main *g, t_cast_data *d)
+void	render_objects(t_main *g)
 {
 	t_obj_node	*curr;
-	t_door		*door;
 
 	clear_render_queue(&g->objects);
 	create_render_queue(g);
 	curr = g->objects.to_render;
-	t_ray		tmp_ray;
-	int z = 0;
 	while (curr)
 	{
 		if (curr->type == DOOR)
 			render_door(g, curr->object);
 		// add fireball here xd
 		curr = curr->next_render;
-		z++;
 	}
 }

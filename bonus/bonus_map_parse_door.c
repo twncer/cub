@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/19 04:21:07 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/29 00:20:00 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/02 06:51:56 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,31 +31,31 @@ static int	count_doors(char *raw_map)
 	return (ret);
 }
 
-static void	insert_inner_walls(t_door_wall *new)
+static void	insert_inner_walls(t_door_wall *dw)
 {
-	if (new->axis == 0) // horizontal
+	if (dw->axis == 0) // horizontal
 	{
-		new->inner_wall_1.s.x = new->map_pos.x;
-		new->inner_wall_1.s.y = new->map_pos.y + (1.0 - DOOR_WIDTH) / 2.0;
-		new->inner_wall_1.e.x = new->map_pos.x + 1.0;
-		new->inner_wall_1.e.y = new->map_pos.y + (1.0 - DOOR_WIDTH) / 2.0;
+		dw->inner_wall_1.s.x = dw->map_pos.x;
+		dw->inner_wall_1.s.y = dw->map_pos.y + (1.0 - DOOR_WIDTH) / 2.0;
+		dw->inner_wall_1.e.x = dw->map_pos.x + 1.0;
+		dw->inner_wall_1.e.y = dw->map_pos.y + (1.0 - DOOR_WIDTH) / 2.0;
 	
-		new->inner_wall_2.s.x = new->map_pos.x;
-		new->inner_wall_2.s.y = new->map_pos.y + 0.5 + (DOOR_WIDTH / 2.0);
-		new->inner_wall_2.e.x = new->map_pos.x + 1.0;
-		new->inner_wall_2.e.y = new->map_pos.y + 0.5 + (DOOR_WIDTH / 2.0);
+		dw->inner_wall_2.s.x = dw->map_pos.x;
+		dw->inner_wall_2.s.y = dw->map_pos.y + 0.5 + (DOOR_WIDTH / 2.0);
+		dw->inner_wall_2.e.x = dw->map_pos.x + 1.0;
+		dw->inner_wall_2.e.y = dw->map_pos.y + 0.5 + (DOOR_WIDTH / 2.0);
 	}
 	else // door->axis == 1 // vertical
 	{
-		new->inner_wall_1.s.x = new->map_pos.x + (1.0 - DOOR_WIDTH) / 2.0;
-		new->inner_wall_1.s.y = new->map_pos.y;
-		new->inner_wall_1.e.x = new->map_pos.x + (1.0 - DOOR_WIDTH) / 2.0;
-		new->inner_wall_1.e.y = new->map_pos.y + 1.0;
+		dw->inner_wall_1.s.x = dw->map_pos.x + (1.0 - DOOR_WIDTH) / 2.0;
+		dw->inner_wall_1.s.y = dw->map_pos.y;
+		dw->inner_wall_1.e.x = dw->map_pos.x + (1.0 - DOOR_WIDTH) / 2.0;
+		dw->inner_wall_1.e.y = dw->map_pos.y + 1.0;
 	
-		new->inner_wall_2.s.x = new->map_pos.x + 0.5 + (DOOR_WIDTH / 2.0);
-		new->inner_wall_2.s.y = new->map_pos.y;
-		new->inner_wall_2.e.x = new->map_pos.x + 0.5 + (DOOR_WIDTH / 2.0);
-		new->inner_wall_2.e.y = new->map_pos.y + 1.0;
+		dw->inner_wall_2.s.x = dw->map_pos.x + 0.5 + (DOOR_WIDTH / 2.0);
+		dw->inner_wall_2.s.y = dw->map_pos.y;
+		dw->inner_wall_2.e.x = dw->map_pos.x + 0.5 + (DOOR_WIDTH / 2.0);
+		dw->inner_wall_2.e.y = dw->map_pos.y + 1.0;
 	}
 }
 /*
@@ -78,20 +78,20 @@ static void	insert_door(t_door_wall *new)
 
 }
 */
-static void	new_door(int x, int y, int axis, t_door_wall *new)
+static void	new_door(int x, int y, int axis, t_door_wall *dw)
 {
-	new->map_pos.x = x;
-	new->map_pos.y = y;
+	dw->map_pos.x = x;
+	dw->map_pos.y = y;
 	if (axis == 'd')
 	{
-		new->axis = 0;
+		dw->axis = 0;
 	}
 	else // axis == 'D'
 	{
-		new->axis = 1;
+		dw->axis = 1;
 		
 	}
-	insert_inner_walls(new);
+	insert_inner_walls(dw);
 }
 
 static t_door_wall *create_door_walls(char *raw_map, int count)

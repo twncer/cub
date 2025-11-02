@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 19:10:17 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/31 12:55:27 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/02 08:20:04 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,23 +35,23 @@ void	change_position(t_main *g, int key)
 	player = &g->map.player;
 	if (key == XK_w)
 	{
-		movement.x = 0.05 * cos(player->dov) * MOVE_SPEED;
-		movement.y = 0.05 * sin(player->dov) * MOVE_SPEED;
+		movement.x = MOVE_MULT * cos(player->dov) * MOVE_SPEED;
+		movement.y = MOVE_MULT * sin(player->dov) * MOVE_SPEED;
 	}
 	else if (key == XK_s)
 	{
-		movement.x = -0.05 * cos(player->dov) * MOVE_SPEED;
-		movement.y = -0.05 * sin(player->dov) * MOVE_SPEED;
+		movement.x = -MOVE_MULT * cos(player->dov) * MOVE_SPEED;
+		movement.y = -MOVE_MULT * sin(player->dov) * MOVE_SPEED;
 	}
 	else if (key == XK_d)
 	{
-		movement.x = 0.05 * cos(player->dov + (M_PI / 2)) * MOVE_SPEED;
-		movement.y = 0.05 * sin(player->dov + (M_PI / 2)) * MOVE_SPEED;
+		movement.x = MOVE_MULT * cos(player->dov + (M_PI / 2)) * MOVE_SPEED;
+		movement.y = MOVE_MULT * sin(player->dov + (M_PI / 2)) * MOVE_SPEED;
 	}
 	else // (key == XK_a)
 	{
-		movement.x = 0.05 * cos(player->dov - (M_PI / 2)) * MOVE_SPEED;
-		movement.y = 0.05 * sin(player->dov - (M_PI / 2)) * MOVE_SPEED;
+		movement.x = MOVE_MULT * cos(player->dov - (M_PI / 2)) * MOVE_SPEED;
+		movement.y = MOVE_MULT * sin(player->dov - (M_PI / 2)) * MOVE_SPEED;
 	}
 	movement = check_collision(g, movement);
 	player->pos.x += movement.x;

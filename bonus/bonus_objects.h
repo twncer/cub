@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 02:13:10 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/31 12:58:24 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/02 08:15:30 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ typedef struct s_object_node	t_obj_node;
 typedef struct s_object_list	t_obj_list;
 typedef enum e_object_types		t_obj_type;
 typedef struct s_fov_data		t_fov_data;
+
+# define INFINITY_DISTANCE 1e30
 
 enum e_object_types
 {
