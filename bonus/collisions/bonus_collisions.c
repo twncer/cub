@@ -6,42 +6,51 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 05:47:05 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/02 09:32:34 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/02 12:28:15 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-
-// !!!!! this file only include wall collisions. 
-
-// ideas:
-// wall collisions -> normal wall - inner wall
-// object collisions -> door - fireball(burak?)((make it last))
-// need a raycasting like algorithm
-// algo:: if player moves and collide to a wall find the hit point
-// according to this hit point normalize the walk vector
-// if there is no hitting to anywhere just walk
 
 #include "../main/main.h"
 #include <math.h>
 #include <stdio.h>
 
-static void	init_axis_direction(double ray_dir, double pos, double map_pos,
-				double delta, int *step, double *side_dist)
+static void	init_x_axis_direction(t_cast_data *d)
 {
-	if (ray_dir < 0)
+	if (d->ray_d.x < 0)
 	{
-		*step = -1;
-		*side_dist = (pos - map_pos) * delta;
+		d->step.x = -1;
+		d->side_dist.x = (d->player->pos.x - d->map_pos.x) * d->delta_dist.x;
 	}
-	else if (ray_dir > 0)
+	else if (d->ray_d.x > 0)
 	{
-		*step = 1;
-		*side_dist = (map_pos + 1.0 - pos) * delta;
+		d->step.x = 1;
+		d->side_dist.x = (d->map_pos.x + 1.0 - d->player->pos.x)
+			* d->delta_dist.x;
 	}
 	else
 	{
-		*step = 0;
-		*side_dist = INFINITY_DISTANCE;
+		d->step.x = 0;
+		d->side_dist.x = INFINITY_DISTANCE;
+	}
+}
+
+static void	init_y_axis_direction(t_cast_data *d)
+{
+	if (d->ray_d.y < 0)
+	{
+		d->step.y = -1;
+		d->side_dist.y = (d->player->pos.y - d->map_pos.y) * d->delta_dist.y;
+	}
+	else if (d->ray_d.y > 0)
+	{
+		d->step.y = 1;
+		d->side_dist.y = (d->map_pos.y + 1.0 - d->player->pos.y)
+			* d->delta_dist.y;
+	}
+	else
+	{
+		d->step.y = 0;
+		d->side_dist.y = INFINITY_DISTANCE;
 	}
 }
 
@@ -69,10 +78,8 @@ static void	init_cast_data(t_cast_data *d, t_main *g, double dx, double dy)
 	d->map_pos.y = (int)d->player->pos.y;
 	init_ray_axis(dx, &d->ray_d.x, &d->delta_dist.x);
 	init_ray_axis(dy, &d->ray_d.y, &d->delta_dist.y);
-	init_axis_direction(d->ray_d.x, d->player->pos.x, d->map_pos.x,
-		d->delta_dist.x, &d->step.x, &d->side_dist.x);
-	init_axis_direction(d->ray_d.y, d->player->pos.y, d->map_pos.y,
-		d->delta_dist.y, &d->step.y, &d->side_dist.y);
+	init_x_axis_direction(d);
+	init_y_axis_direction(d);
 }
 
 static double	calculate_wall_distance(t_cast_data *d, t_vector pos, int side)
@@ -80,12 +87,13 @@ static double	calculate_wall_distance(t_cast_data *d, t_vector pos, int side)
 	double	distance;
 
 	if (side == 0)
-		distance = (d->map_pos.x - pos.x + ((1 - d->step.x) / 2.0)) / d->ray_d.x;
+		distance = (d->map_pos.x - pos.x + ((1 - d->step.x) / 2.0))
+			/ d->ray_d.x;
 	else
-		distance = (d->map_pos.y - pos.y + ((1 - d->step.y) / 2.0)) / d->ray_d.y;
+		distance = (d->map_pos.y - pos.y + ((1 - d->step.y) / 2.0))
+			/ d->ray_d.y;
 	return (fabs(distance));
 }
-
 
 static double	find_collision_distance(t_cast_data *d, t_segment wall)
 {
@@ -127,17 +135,18 @@ static double	calculate_hit_position(t_cast_data *d, t_vector pos, int side)
 	}
 }
 
-static int	check_doorwall_passage(t_cast_data *d, t_vector pos, t_door_wall *dw, int side)
+static int	check_doorwall_passage(t_cast_data *d, t_vector pos,
+		t_door_wall *dw, int side)
 {
 	double	wall_hit_pos;
 	double	door_start;
 	double	door_end;
 
 	if (side != dw->axis)
-		return (1);
+		return (0);
 	wall_hit_pos = calculate_hit_position(d, pos, side);
-	door_start = (1.0 - DOOR_WIDTH + PLAYER_RADIUS) / 2.0;
-	door_end = door_start + DOOR_WIDTH - PLAYER_RADIUS;
+	door_start = (1.0 - DOOR_WIDTH) / 2.0;
+	door_end = door_start + DOOR_WIDTH;
 	if (wall_hit_pos > door_start && wall_hit_pos < door_end)
 		return (1);
 	return (0);
@@ -161,7 +170,8 @@ static void	step_ray(t_cast_data *d, int *side, double *dist)
 	}
 }
 
-static double	check_wall_collision(t_cast_data *d, t_vector pos, char **map, double max_dist)
+static double	check_wall_collision_single(t_cast_data *d, t_vector pos,
+		char **map, double max_dist)
 {
 	int			side;
 	double		dist;
@@ -185,6 +195,36 @@ static double	check_wall_collision(t_cast_data *d, t_vector pos, char **map, dou
 			return (calculate_wall_distance(d, pos, side));
 	}
 	return (1000.0);
+}
+
+static void	init_offset_cast_data(t_cast_data *dst, t_cast_data *src,
+		t_vector offset_pos)
+{
+	*dst = *src;
+	dst->player = src->player;
+	dst->map_pos.x = (int)offset_pos.x;
+	dst->map_pos.y = (int)offset_pos.y;
+	init_x_axis_direction(dst);
+	init_y_axis_direction(dst);
+}
+
+static double	check_wall_collision(t_cast_data *d, t_vector pos, char **map,
+		double max_dist)
+{
+	t_cast_data	d_offset;
+	t_vector	offset_pos;
+	double		distances[3];
+
+	distances[0] = check_wall_collision_single(d, pos, map, max_dist);
+	offset_pos.x = pos.x + (-d->ray_d.y * PLAYER_RADIUS / 2.0);
+	offset_pos.y = pos.y + (d->ray_d.x * PLAYER_RADIUS / 2.0);
+	init_offset_cast_data(&d_offset, d, offset_pos);
+	distances[1] = check_wall_collision_single(&d_offset, offset_pos, map, max_dist);
+	offset_pos.x = pos.x + (-d->ray_d.y * PLAYER_RADIUS / 2.0) * -1;
+	offset_pos.y = pos.y + (d->ray_d.x * PLAYER_RADIUS / 2.0) * -1;
+	init_offset_cast_data(&d_offset, d, offset_pos);
+	distances[2] = check_wall_collision_single(&d_offset, offset_pos, map, max_dist);
+	return (fmin(fmin(distances[0], distances[1]), distances[2]));
 }
 
 static t_segment	extend_segment(t_segment seg, double extension)

@@ -6,14 +6,14 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 03:50:45 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/02 09:23:11 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/02 11:59:23 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../main/main.h"
 #include <math.h>
 
-static void	find_ray_direction(t_cast_data *d)
+static void	init_ray_direction(t_cast_data *d)
 {
 	if (d->ray_d.x < 0) // west
 	{
@@ -109,7 +109,7 @@ void	raycast_single(t_cast_data *d, char **matrix)
 {
 	d->map_pos.x = (int)d->player->pos.x;
 	d->map_pos.y = (int)d->player->pos.y;
-	find_ray_direction(d);
+	init_ray_direction(d);
 	raycast_loop(d, matrix);
 	// adding door if in door block
 	if (matrix[(int)d->player->pos.y][(int)d->player->pos.x] == 'D')
