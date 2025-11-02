@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 02:12:55 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/31 04:55:14 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/02 06:30:02 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,17 +120,17 @@ static void	render_door(t_main *g, t_door *door)
 		t_ray	*old_ray = get_ray_from_list(&g->rays, x);
 		d.ray_d.x = cos(d.direction);
 		d.ray_d.y = sin(d.direction);
-		if (!find_intersection(&d, door->barrier_1))
+		if (!find_intersection(&d, door->barrier))
 		{
 			d.direction += d.fov_rad / WIN_WIDTH;
 			continue ;
 		}
+		d.ray->distance *= cos(d.direction - g->map.player.dov);// dont change need to apply this fuck here
 		if (d.ray->distance > old_ray->distance)
 		{
 			d.direction += d.fov_rad / WIN_WIDTH;
 			continue ;
 		}
-		d.ray->distance *= cos(d.direction - g->map.player.dov);
 		draw_door_column(g, x, &ray);
 		d.direction += d.fov_rad / WIN_WIDTH;
 	}

@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 19:22:07 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/29 09:25:28 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/02 06:18:59 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,27 +34,17 @@ static void	insert_barrier(t_door *door, t_vector_int map_pos, double axis)
 {
 	if (axis == 0) // horizontal
 	{
-		door->barrier_1.s.x = map_pos.x + 0.5 - (DOOR_THICKNESS / 2.0);
-		door->barrier_1.s.y = map_pos.y + (1.0 - DOOR_WIDTH) / 2.0;
-		door->barrier_1.e.x = map_pos.x + 0.5 - (DOOR_THICKNESS / 2.0);
-		door->barrier_1.e.y = door->barrier_1.s.y + DOOR_WIDTH;
-	
-		door->barrier_2.s.x = map_pos.x + 0.5 + (DOOR_THICKNESS / 2.0);
-		door->barrier_2.s.y = map_pos.y + (1.0 - DOOR_WIDTH) / 2.0;
-		door->barrier_2.e.x = map_pos.x + 0.5 + (DOOR_THICKNESS / 2.0);
-		door->barrier_2.e.y = door->barrier_1.s.y + (DOOR_WIDTH / 2.0);
+		door->barrier.s.x = map_pos.x + 0.5;
+		door->barrier.s.y = map_pos.y + (1.0 - DOOR_WIDTH) / 2.0;
+		door->barrier.e.x = map_pos.x + 0.5;
+		door->barrier.e.y = door->barrier.s.y + DOOR_WIDTH;
 	}
 	else // vertical
 	{
-		door->barrier_1.s.x = map_pos.x + (1.0 - DOOR_WIDTH) / 2.0;
-		door->barrier_1.s.y = map_pos.y + 0.5 - (DOOR_THICKNESS / 2.0);
-		door->barrier_1.e.x = door->barrier_1.s.x + DOOR_WIDTH;
-		door->barrier_1.e.y = map_pos.y + 0.5 - (DOOR_THICKNESS / 2.0);
-	
-		door->barrier_2.s.x = map_pos.x + (1.0 - DOOR_WIDTH) / 2.0;
-		door->barrier_2.s.y = map_pos.y + 0.5 + (DOOR_THICKNESS / 2.0);
-		door->barrier_2.e.x = door->barrier_2.s.x + DOOR_WIDTH;
-		door->barrier_2.e.y = map_pos.y + 0.5 + (DOOR_THICKNESS / 2.0);
+		door->barrier.s.x = map_pos.x + (1.0 - DOOR_WIDTH) / 2.0;
+		door->barrier.s.y = map_pos.y + 0.5;
+		door->barrier.e.x = door->barrier.s.x + DOOR_WIDTH;
+		door->barrier.e.y = map_pos.y + 0.5;
 	}
 	door->state = LOCKED;
 }
@@ -102,11 +92,8 @@ static void debug(t_main *g)
             printf("DOOR #%d:\n", door_count++);
             printf("  State: %d\n", door->state);
             printf("  Barrier 1:\n");
-            printf("    Start: (%.2f, %.2f)\n", door->barrier_1.s.x, door->barrier_1.s.y);
-            printf("    End:   (%.2f, %.2f)\n", door->barrier_1.e.x, door->barrier_1.e.y);
-            printf("  Barrier 2:\n");
-            printf("    Start: (%.2f, %.2f)\n", door->barrier_2.s.x, door->barrier_2.s.y);
-            printf("    End:   (%.2f, %.2f)\n", door->barrier_2.e.x, door->barrier_2.e.y);
+            printf("    Start: (%.2f, %.2f)\n", door->barrier.s.x, door->barrier.s.y);
+            printf("    End:   (%.2f, %.2f)\n", door->barrier.e.x, door->barrier.e.y);
             printf("\n");
         }
         else

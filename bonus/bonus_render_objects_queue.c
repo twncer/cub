@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 03:02:09 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/30 03:59:28 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/02 06:07:49 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	create_render_queue(t_main *g)
 	{
 		if (curr->type == DOOR)
 		{
-			if (is_segment_in_fov(&g->map.player, &((t_door *)curr->object)->barrier_1))
+			if (is_segment_in_fov(&g->map.player, &((t_door *)curr->object)->barrier))
 				add_to_render_queue(&g->objects, curr, &g->map.player); // i calculate distance in here check inside
 		}
 		// else add fireball

@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/19 03:26:34 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/29 00:42:35 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/02 06:19:03 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,7 @@
 # include "vector.h"
 
 
-# define DOOR_SPEED 1.0
 # define DOOR_WIDTH 0.4
-# define DOOR_THICKNESS 0.2
 
 typedef struct s_door_wall	t_door_wall;
 typedef struct s_door		t_door;
@@ -35,8 +33,8 @@ enum e_door_states
 	OPEN = 11,
 	CLOSE, // also unlocked
 	LOCKED,
-	OPENING,
-	CLOSING
+	OPENING, // for animation
+	CLOSING // for animation
 };
 
 struct s_door_wall
@@ -50,8 +48,7 @@ struct s_door_wall
 struct s_door
 {
 	int			state;
-	t_segment	barrier_1;
-	t_segment	barrier_2;
+	t_segment	barrier;
 };
 
 t_door_wall	*find_door_wall(int x, int y, t_door_wall *new);

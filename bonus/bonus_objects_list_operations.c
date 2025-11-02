@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 19:26:36 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/30 03:56:38 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/02 06:07:49 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ static double	calculate_distance_door(t_player *player, t_obj_node *obj)
 	if (obj->type == DOOR)
 	{
 		door = (t_door *)obj->object;
-		dx = (door->barrier_1.s.x + door->barrier_1.e.x) / 2.0 - player->pos.x;
-		dy = (door->barrier_1.s.y + door->barrier_1.e.y) / 2.0 - player->pos.y;
+		dx = (door->barrier.s.x + door->barrier.e.x) / 2.0 - player->pos.x;
+		dy = (door->barrier.s.y + door->barrier.e.y) / 2.0 - player->pos.y;
 	}
 	else
 	{
