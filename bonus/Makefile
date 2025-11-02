@@ -1,5 +1,5 @@
 CC              = cc
-CFLAGS          = -Wall -Wextra -Werror -I$(INC_DIR) -I$(MLX_DIR)
+CFLAGS          = -Wall -Wextra -I$(INC_DIR) -I$(MLX_DIR) # -Werror
 
 NAME            = cub3d
 

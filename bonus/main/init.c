@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 03:23:43 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/28 00:12:33 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/10/31 06:29:59 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void	__init__(t_main *game)
 	}
 	game->map.player.pos.x = -1;
 	game->map.player.pos.y = -1;
+	game->img = create_image("cub3_images/images/book.cub3");
 	_init_keys(game);
 	list_create(&game->rays, WIN_WIDTH * SENSITIVITY * 0.05);
 }

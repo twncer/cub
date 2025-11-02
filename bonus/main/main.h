@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 06:39:23 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/28 00:06:37 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/10/31 06:05:56 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include "../player/player.h"
 # include "../render/render.h"
 # include "../render/render_ray_list.h"
+# include "../cub3_images/cub3_images.h"
 
 # include <stdbool.h>
 
@@ -51,6 +52,7 @@ struct s_main
 	t_window	window;
 	t_ray_list	rays;
 	t_key_list	key_list;
+	t_cub3_image img;
 };
 
 void	__init__(t_main *game);

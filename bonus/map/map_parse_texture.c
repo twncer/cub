@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parse_texture.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 07:52:38 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/19 10:35:35 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/10/30 02:06:27 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include <string.h>
 
 #include "../gc/gc.h"
+
 static char	*extract_texture_path(char *path_start)
 {
 	char	*path_end;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 03:23:43 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/28 00:25:11 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/10/31 07:13:11 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int main(int argc, char **argv)
 	cub_render(&game); // add the render and its done easy right
 	
 	_init_hooks(&game);
+	
 	mlx_loop(game.window.mlx);
 
 	map_cleanup(&game);
