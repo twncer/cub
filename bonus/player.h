@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 03:41:29 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/16 13:44:42 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/10/31 13:13:53 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ typedef struct s_main	t_main; // forward dec
 
 # define FOV 60.0
 # define MOVE_SPEED 1.0
-# define SENSITIVITY 1.0 
+# define SENSITIVITY 1.0
+# define PLAYER_RADIUS 0.1
 
 struct s_player
 {

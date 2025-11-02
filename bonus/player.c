@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 19:10:17 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/27 23:50:36 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/10/31 12:55:27 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,33 +24,42 @@
 // if closest position is player position for x and y can stil can go further moves on y direction slowly (on minimum move_speed maybe?)
 // you have tons of ray data check the fuckn distance 
 // if distance is too low so just dont fucking move there
+
+t_vector	check_collision(t_main *g, t_vector movement);
+
 void	change_position(t_main *g, int key)
 {
 	t_player	*player;
+	t_vector	movement;
 
 	player = &g->map.player;
 	if (key == XK_w)
 	{
-		player->pos.x += 0.05 * cos(player->dov) * MOVE_SPEED;
-		player->pos.y += 0.05 * sin(player->dov) * MOVE_SPEED;
+		movement.x = 0.05 * cos(player->dov) * MOVE_SPEED;
+		movement.y = 0.05 * sin(player->dov) * MOVE_SPEED;
 	}
 	else if (key == XK_s)
 	{
-		player->pos.x -= 0.05 * cos(player->dov) * MOVE_SPEED;
-		player->pos.y -= 0.05 * sin(player->dov) * MOVE_SPEED;
+		movement.x = -0.05 * cos(player->dov) * MOVE_SPEED;
+		movement.y = -0.05 * sin(player->dov) * MOVE_SPEED;
 	}
 	else if (key == XK_d)
 	{
-		player->pos.x += 0.05 * cos(player->dov + (M_PI / 2)) * MOVE_SPEED;
-		player->pos.y += 0.05 * sin(player->dov + (M_PI / 2)) * MOVE_SPEED;
+		movement.x = 0.05 * cos(player->dov + (M_PI / 2)) * MOVE_SPEED;
+		movement.y = 0.05 * sin(player->dov + (M_PI / 2)) * MOVE_SPEED;
 	}
 	else // (key == XK_a)
 	{
-		player->pos.x += 0.05 * cos(player->dov - (M_PI / 2)) * MOVE_SPEED;
-		player->pos.y += 0.05 * sin(player->dov - (M_PI / 2)) * MOVE_SPEED;
+		movement.x = 0.05 * cos(player->dov - (M_PI / 2)) * MOVE_SPEED;
+		movement.y = 0.05 * sin(player->dov - (M_PI / 2)) * MOVE_SPEED;
 	}
+	movement = check_collision(g, movement);
+	player->pos.x += movement.x;
+	player->pos.y += movement.y;
 	cub_render(g, raycasting);
 }
+
+
 
 void	change_direction(t_main *g, int key)
 {
