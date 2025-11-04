@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 03:23:43 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/10/31 06:29:59 by root             ###   ########.fr       */
+/*   Updated: 2025/11/03 05:52:21 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,9 @@ void	__init__(t_main *game)
 	}
 	game->map.player.pos.x = -1;
 	game->map.player.pos.y = -1;
-	game->img = create_image("cub3_images/images/book.cub3");
+	create_image("cub3_images/images/main_menu.cub3");
+	init_gallery_with_config(&(game->gallery), NULL);
+	init_main_menu(game, &(game->main_menu));
 	_init_keys(game);
 	list_create(&game->rays, WIN_WIDTH * SENSITIVITY * 0.05);
 }

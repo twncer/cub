@@ -6,11 +6,12 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 01:15:49 by btuncer           #+#    #+#             */
-/*   Updated: 2025/10/31 02:47:09 by root             ###   ########.fr       */
+/*   Updated: 2025/11/03 04:35:22 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./minimap.h"
+#include "../hud.h"
+#include "../../main/main.h"
 
 void draw_minimap(t_main *game)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 06:39:23 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/02 09:08:23 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/03 05:50:59 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include "../objects/doors.h"
 # include "../objects/bonus_objects.h"
 # include "../objects/bonus_fireball.h"
-
+# include "../hud/hud.h"
 # include <stdbool.h>
 
 typedef struct s_key_list t_key_list;
@@ -56,7 +56,8 @@ struct s_main
 	t_ray_list	rays;
 	t_obj_list	objects;
 	t_key_list	key_list;
-	t_cub3_image img;
+	t_cub3_gallery gallery;
+	t_main_menu main_menu;
 };
 
 void	__init__(t_main *game);

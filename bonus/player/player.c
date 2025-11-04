@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 19:10:17 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/02 09:41:36 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/11/02 21:47:06 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,27 +21,28 @@ void	change_position(t_main *g, int key)
 	t_player	*player;
 	t_vector	movement;
 
+	movement.x = 0; movement.y = 0;
 	player = &g->map.player;
 	(void)key;
 	if (g->key_list.w)
 	{
-		movement.x = MOVE_MULT * cos(player->dov) * MOVE_SPEED;
-		movement.y = MOVE_MULT * sin(player->dov) * MOVE_SPEED;
+		movement.x += MOVE_MULT * cos(player->dov) * MOVE_SPEED;
+		movement.y += MOVE_MULT * sin(player->dov) * MOVE_SPEED;
 	}
 	if (g->key_list.s)
 	{
-		movement.x = -MOVE_MULT * cos(player->dov) * MOVE_SPEED;
-		movement.y = -MOVE_MULT * sin(player->dov) * MOVE_SPEED;
+		movement.x += -MOVE_MULT * cos(player->dov) * MOVE_SPEED;
+		movement.y += -MOVE_MULT * sin(player->dov) * MOVE_SPEED;
 	}
 	if (g->key_list.d)
 	{
-		movement.x = MOVE_MULT * cos(player->dov + (M_PI / 2)) * MOVE_SPEED;
-		movement.y = MOVE_MULT * sin(player->dov + (M_PI / 2)) * MOVE_SPEED;
+		movement.x += MOVE_MULT * cos(player->dov + (M_PI / 2)) * MOVE_SPEED;
+		movement.y += MOVE_MULT * sin(player->dov + (M_PI / 2)) * MOVE_SPEED;
 	}
 	if (g->key_list.a)
 	{
-		movement.x = MOVE_MULT * cos(player->dov - (M_PI / 2)) * MOVE_SPEED;
-		movement.y = MOVE_MULT * sin(player->dov - (M_PI / 2)) * MOVE_SPEED;
+		movement.x += MOVE_MULT * cos(player->dov - (M_PI / 2)) * MOVE_SPEED;
+		movement.y += MOVE_MULT * sin(player->dov - (M_PI / 2)) * MOVE_SPEED;
 	}
 	movement = check_collision(g, movement);
 	player->pos.x += movement.x;

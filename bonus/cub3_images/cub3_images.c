@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 18:19:16 by root              #+#    #+#             */
-/*   Updated: 2025/10/31 05:44:33 by root             ###   ########.fr       */
+/*   Updated: 2025/11/03 06:03:06 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,17 @@ static int init_cub3_image(t_cub3_image *img, char *first_line)
     return (1);
 }
 
-static int write_line_to_image(char *line, t_cub3_image *img)
+static int write_line_to_image(char *line, t_cub3_image *img, int stat)
 {
     static int counter = 0;
     int line_counter;
     char **parsed_line;
 
+    if (stat == RESET)
+    {
+        counter = 0;
+        return (RESET);
+    }
     parsed_line = ft_split(line, '.');
     line_counter = 0;
     while (parsed_line[line_counter])
@@ -62,8 +67,9 @@ static int read_cub3_image_content(t_cub3_image *img, FILE *file)
     {
         if (getline(&line, &buffer_size, file) < 8)
             return (0);
-        write_line_to_image(line, img);
+        write_line_to_image(line, img, CONTINUE);
     }
+    write_line_to_image(NULL, NULL, RESET);
     return (1);
 }
 
