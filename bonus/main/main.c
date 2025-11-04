@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 03:23:43 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/02 21:40:55 by root             ###   ########.fr       */
+/*   Updated: 2025/11/04 16:49:37 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ int main(int argc, char **argv)
 	
 	// game loop needed here
 	dump_gc();
-	
-	mlx_mouse_hide(game.window.mlx, game.window.win);
-	cub_render(&game); // add the render and its done easy right
+
+	// mlx_mouse_hide(game.window.mlx, game.window.win);
+	// cub_render(&game); // add the render and its done easy right
 	_init_hooks(&game);
 	
 	mlx_loop(game.window.mlx);

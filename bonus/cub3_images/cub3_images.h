@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3_images.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 13:11:18 by root              #+#    #+#             */
-/*   Updated: 2025/11/03 06:15:06 by root             ###   ########.fr       */
+/*   Updated: 2025/11/04 16:16:26 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ struct s_cub3_gallery
 t_cub3_image create_image(char *path);
 void draw_image(t_window *win, t_cub3_image *img, int x, int y);
 void draw_button(t_window *win, t_cub3_image *img, int x, int y);
+void draw_button_hover(t_window *win, t_cub3_image *img, int x, int y);
 
 void *init_gallery_with_config(t_cub3_gallery *gal, char *config);
 

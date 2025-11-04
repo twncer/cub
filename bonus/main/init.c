@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 03:23:43 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/03 05:52:21 by root             ###   ########.fr       */
+/*   Updated: 2025/11/04 17:14:52 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,6 @@ void _init_hooks(t_main *game)
 	mlx_hook(game->window.win, 2, 1L << 0, onpress_event, game);
 	mlx_hook(game->window.win, 3, 1L << 1, onrelease_event, game);
 	mlx_hook(game->window.win, 17, 0, terminate_hook, NULL);
+	mlx_mouse_hook(game->window.win, mouse_click, game);
 	mlx_loop_hook(game->window.mlx, loop_event, game);
 }

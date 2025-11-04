@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 18:37:23 by btuncer           #+#    #+#             */
-/*   Updated: 2025/10/25 23:03:48 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/04 16:59:05 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,7 @@ int terminate_hook(void);
 void unlock_switch(t_main *game);
 void center_mouse(t_main *game);
 void read_mouse_movements(t_main *game);
+t_vector get_mouse_position(t_main *game);
+int mouse_click(int button, int x, int y, void *game);
 
 #endif

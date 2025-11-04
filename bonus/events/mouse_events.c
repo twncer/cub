@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 20:50:30 by btuncer           #+#    #+#             */
-/*   Updated: 2025/10/28 01:14:35 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/04 17:22:35 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,22 @@ void center_mouse(t_main *game)
     XWarpPointer(display, None, window_cub3d, 0, 0, 0, 0, WIN_WIDTH / 2, WIN_HEIGHT / 2);
 }
 
+t_vector get_mouse_position(t_main *game)
+{
+    t_xvar *xvar;
+    Window cub3d;
+    int win_x, win_y;
+    unsigned int m;
+    t_vector response;
+    
+    xvar = (t_xvar *)game->window.mlx;
+    cub3d = xvar->win_list->window;
+    XQueryPointer(xvar->display, cub3d, &cub3d, &cub3d, &win_x, &win_x, &win_x, &win_y, &m);
+    response.x = win_x;
+    response.y = win_y;
+    return (response);
+}
+
 void read_mouse_movements(t_main *game)
 {
     t_xvar *xvar;
@@ -46,6 +62,23 @@ void read_mouse_movements(t_main *game)
     else if (win_x_abs < 0)
         change_direction_advanced(game, 'L', win_x_abs);
 }
+
+int mouse_click(int button, int x, int y, void *game)
+{
+    t_main *g;
+    t_button *btn;
+    
+    g = game;
+    if (g->main_menu.active)
+    {
+        btn = &g->main_menu.btn_start;
+        if (x > btn->position.x && x < btn->position.x + btn->width)
+            if (y > btn->position.y && y < btn->position.y + btn->height)
+                activate_button(g, btn);
+    }
+    return (0);
+}
+
 
 // Bool XQueryPointer(
 //     Display *display,          // X display bağlantısı
