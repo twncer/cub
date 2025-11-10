@@ -6,7 +6,7 @@
 /*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 03:23:43 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/04 16:49:37 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/10 15:04:01 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <string.h>
 #include "main.h"
 #include "../minilibx/mlx.h"
+#include "../minilibx/mlx_int.h"
 #include "../gc/gc.h"
 #include "../player/player.h"
 #include "../events/events.h"
@@ -53,6 +54,8 @@ int main(int argc, char **argv)
 	// mlx_mouse_hide(game.window.mlx, game.window.win);
 	// cub_render(&game); // add the render and its done easy right
 	_init_hooks(&game);
+
+	center_window(&game);
 	
 	mlx_loop(game.window.mlx);
 	map_cleanup(&game);

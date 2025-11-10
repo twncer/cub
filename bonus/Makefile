@@ -60,8 +60,8 @@ $(NAME): $(OBJ) $(MLX)
 $(MLX):
 	@make -C $(MLX_DIR)
 
-run: all
-	make clean && ./cub3d testmaps/valid_basic.cub
+run:
+	make && make clean && ./cub3d testmaps/valid_random_order.cub
 
 run_valgrind: all
 	make clean && valgrind ./cub3d testmaps/valid_basic.cub

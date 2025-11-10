@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 03:23:43 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/08 05:30:30 by root             ###   ########.fr       */
+/*   Updated: 2025/11/10 15:01:23 by btuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,24 @@
 #include "../gc/gc.h"
 #include "../player/player.h"
 #include "../events/events.h"
+#include <X11/Xlib.h>
+#include "../minilibx/mlx_int.h"
+
+void center_window(t_main *g)
+{
+	t_xvar *xvar;
+	Display *display;
+	Window window;
+	Screen *screen;
+	
+	xvar = (t_xvar *)g->window.mlx;
+	display = xvar->display;
+	window = xvar->win_list->window;
+	screen = DefaultScreenOfDisplay(display);
+	XMoveWindow(display, window, screen->width / 2 - WIN_WIDTH / 2,
+											screen->height / 2 - WIN_HEIGHT / 2 - WIN_HEIGHT / 5);	
+	XFlush(xvar->display);
+}
 
 static void _init_keys(t_main *game)
 {
