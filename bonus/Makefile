@@ -1,3 +1,42 @@
+# TODO for myself
+#
+# 1) complete the gallery integration:
+# 1.1) just complete the initiation, not the way of it
+# (OK)
+#
+# 2) make 3 shitty image for minimap:
+# 2.1) player, wall, floor
+# 2.2) figure out if you gonna rotate the player icon or make various images
+# (OK)
+# 2.8) center player in the minimap and fog the walls around
+# 2.9) blacken the fogged grids. this way I'll keep the minimap small
+# (NO)
+#
+# 3) complete the main menu functionality
+# (NO)
+#
+# 4) embed the png parser to cub3_images module
+# (NO)
+#
+# 4.5) gather config for cub3_images. auto create it maybe?
+# (NO)
+#
+# 5) check out for potential leaks:
+# 5.1) at this point just check if there is leaks and are they complex
+# (NO)
+#
+# 6) merge
+# (NO)
+#
+# 7) add mana functionality
+# (NO)
+#
+# 8) fireball is the last and last
+# (NO)
+#
+# 9) for last and last and last, check for the potential null check skips
+# (NO)
+
 CC              = cc
 CFLAGS          = -Wall -Wextra -I$(INC_DIR) -I$(MLX_DIR) # -Werror
 

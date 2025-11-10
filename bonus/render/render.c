@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 17:41:45 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/04 16:16:59 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/08 05:58:03 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void render_game(t_main *g)
 	// render walls and image that you make
 	// put all this shit on screen yay
 
-	draw_minimap(g);
+	draw_mmap(g);
 	mlx_put_image_to_window(g->window.mlx, g->window.win, g->window.img, 0, 0);
 }
 

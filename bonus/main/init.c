@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 03:23:43 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/11/04 17:14:52 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/08 05:30:30 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ static void _init_keys(t_main *game)
 	game->key_list.q.key_switch = false;
 	game->key_list.spc.key = false;
 	game->key_list.spc.key_switch = false;
-	game->key_list.f3.key = false;
-	game->key_list.f3.key_switch = true;
+	game->key_list.f3.key = false; // will be true after
+	game->key_list.f3.key_switch = false;
 }
 
 void	__init__(t_main *game)
@@ -53,8 +53,7 @@ void	__init__(t_main *game)
 	}
 	game->map.player.pos.x = -1;
 	game->map.player.pos.y = -1;
-	create_image("cub3_images/images/main_menu.cub3");
-	init_gallery_with_config(&(game->gallery), NULL);
+	init_gallery_with_config(&(game->gallery), NULL); // config will be here. // no hud inits before gallery
 	init_main_menu(game, &(game->main_menu));
 	_init_keys(game);
 	list_create(&game->rays, WIN_WIDTH * SENSITIVITY * 0.05);

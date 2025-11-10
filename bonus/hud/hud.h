@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hud.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btuncer <btuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 23:51:08 by root              #+#    #+#             */
-/*   Updated: 2025/11/04 17:03:24 by btuncer          ###   ########.fr       */
+/*   Updated: 2025/11/08 06:33:09 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # define MMAP_GRID_SIZE 16
 # define MMAP_EXPANDED_GRID_SIZE 32
 # define MMAP_GRID_COUNT 10
+# define MMAP_PLAYER_IMAGE_OFFSET 270.0
 
 # include "../minilibx/mlx.h"
 # include "../cub3_images/cub3_images.h"
@@ -45,6 +46,7 @@ struct s_main_menu
 };
 
 void draw_minimap(t_main *game);
+void draw_mmap(t_main *g);
 
 void *init_main_menu(t_main *g, t_main_menu *mmenu);
 
